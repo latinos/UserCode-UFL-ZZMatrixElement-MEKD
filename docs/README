@@ -19,17 +19,19 @@ four leptons via two Z gauge bosons, where the couplings of the scalar
 resonance to gauge bosons are kept general (parametrized). 
 
 The ME KD package consists of two parts:
-library meMadgraph.h (and the corresponding MadGraph libraries)
-macro/executable code runKD_MAD.cc
+MEKD interface class (and the corresponding MadGraph libraries)
+MEKD producer macro (defined in the runKD_MAD.cc)
 
-The library MEKD.h provides an interface class and methods to calculate
-the MEs and KDs for the chosen signal and background processes using
-the kinematic information about the 4 leptons in the final state.
+The MEKD class is declared in MEKD.h and provides interface to the
+methods to calculate the MEs and KDs for the chosen signal and
+background processes using the kinematic information about 4 leptons
+in the final state.
 
-The macro runKD_MAD.cc is a producer that can run over the input sample
-of 4 lepton events and as an output produces a file with MEs and KDs
-for each of the input events. Its functionality is based on the library
-MEKD.h and represents an example how the MEKD class is used in practice.
+The MEKD producer macro is executable that can run over an input
+sample of 4 lepton events and as the output produces a file with MEs
+and KDs for each of the input events. Its functionality is based on
+the MEKD interface class and represents a functional example how the
+class is used in practice.
 	
 ---------------------------------------------------------------------
 
