@@ -18,7 +18,7 @@ of a scalar resonance X through gluon-gluon fusion and its decay into
 four leptons via two Z gauge bosons, where the couplings of the scalar
 resonance to gauge bosons are kept general (parametrized). 
 
-The ME KD package consists of two parts:
+The MEKD package consists of two parts:
 MEKD interface class (and the corresponding MadGraph libraries)
 MEKD producer macro (defined in the runKD_MAD.cc)
 
