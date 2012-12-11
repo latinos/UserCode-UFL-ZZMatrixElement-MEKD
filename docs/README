@@ -18,7 +18,7 @@ of a scalar resonance X through gluon-gluon fusion and its decay into
 four leptons via two Z gauge bosons, where the couplings of the scalar
 resonance to gauge bosons are kept general (parametrized). 
 
-The MEKD package consists of two parts:
+The ME KD package consists of two parts:
 MEKD interface class (and the corresponding MadGraph libraries)
 MEKD producer macro (defined in the runKD_MAD.cc)
 
@@ -52,7 +52,7 @@ The ME KD package provides the following functionalities:
    distribution functions is provided.
 
 ---------------------------------------------------------------------
-3) Initializes the couplings of the spin 0 resonance according to the
+3) Initializes the couplings of the resonance according to the
    user signal selection.
 
 ---------------------------------------------------------------------
@@ -85,13 +85,18 @@ II. User instructions
 ---------------------------------------------------------------------
 0. Requirements:
 
-   a) The latest version of the code can be downloaded and installed
-      following the instructions at the MEKD web site:
+   The latest version of the code can be downloaded and installed
+   following the instructions at the MEKD web site:
 
         http://mekd.ihepa.ufl.edu
 
-   b) Compilation of the code requires installed GCC compiler. 
-      GCC binary multiple platform packages can be found here:
+   The same version of MEKD code can also be obtained from the CERN
+   CMSSW CVS repository (access reserved for CMS users) as:
+        
+        cvs co -d ZZMatrixElement/MEKD UserCode/UFL/ZZMatrixElement/MEKD
+
+   Compilation of the code requires installed GCC compiler. 
+   GCC binary multiple platform packages can be found here:
 
         http://gcc.gnu.org
 
@@ -108,11 +113,6 @@ II. User instructions
     the producer macro. One of the outputs is the executable runKD_MAD.
     If ROOT in installed and environment properly set, the code
     will be compiled with the ROOT support.
-
-    The same version of MEKD code can also be obtained from the CERN
-    CMSSW CVS repository (access restricted to CMS users) as:
-
-      cvs co -d MEKD UserCode/UFL/ZZMatrixElement/MEKD
 
 ---------------------------------------------------------------------
 1A. In order to run already compiled and linked code, user have to
@@ -133,7 +133,7 @@ II. User instructions
      root_tree     name of the input root tree (string, DEFAULT = 'passedEvents')               
      sqrts         pp collsiion energy in TeV (double, DEFAULT = 8)                             
                    Available options: 7, 8.                                                     
-     x_resonance   choice of the signal spin-0 resonance (string, DEFAULT = 'SMHiggs')            
+     x_resonance   choice of the signal resonance (string, DEFAULT = 'SMHiggs')            
                    Available options: 'SMHiggs', 'Higgs0M' and 'Graviton2PM'.                          
      pdf_include   Name of PDFs, PDFs not used if pdf_include = '' (string, DEFAULT= 'CTEQ6L')  
                    Available PDFs: 'CTEQ6L'.                                                    
