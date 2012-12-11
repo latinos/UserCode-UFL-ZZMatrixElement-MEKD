@@ -10,6 +10,10 @@
 #include <algorithm>	// for sorting
 #include <cmath>
 
+/// CMSSW includes
+#if (!defined(MEKD_STANDALONE))
+#include "FWCore/ParameterSet/interface/FileInPath.h"
+#endif
 
 /// MEs
 #include "./MadGraphSrc/BKG_DN_OF.h"
@@ -200,8 +204,12 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	Parameter_file = "../src/Cards/param_card.dat";	// Location where a parameter card is stored
 	PDF_file = "../src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
 #else
-	Parameter_file = "ZZMatrixElement/MEKD/src/Cards/param_card.dat";       // Location where a parameter card is stored
-	PDF_file = "ZZMatrixElement/MEKD/src/PDFTables/cteq6l.pdt";     // PDF/PDT table file
+    string inputParameterFile = "ZZMatrixElement/MEKD/src/Cards/param_card.dat";       // Location where a parameter card is stored
+    string inputPDFFile = "ZZMatrixElement/MEKD/src/PDFTables/cteq6l.pdt";     // PDF/PDT table file
+    edm::FileInPath parameterFileWithFullPath(inputParameterFile);
+    edm::FileInPath pdfFileWithFullPath(inputPDFFile);
+    Parameter_file = parameterFileWithFullPath.fullPath();
+    PDF_file = pdfFileWithFullPath.fullPath();
 #endif
 
 }
