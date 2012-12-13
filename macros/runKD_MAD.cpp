@@ -116,7 +116,7 @@ void usage( int status) {
 	cout << "     sqrts         pp collsiion energy in TeV (double, DEFAULT = 8)                             " << endl;
 	cout << "                   Available options: 7, 8.                                                     " << endl << endl;
 	cout << "     x_resonance   choice of the signal spin-0 resonance (string, DEFAULT = 'SMHiggs')          " << endl;
-	cout << "                   Available options: 'SMHiggs', 'Higgs0M' and 'Graviton2PM'.                   " << endl << endl;
+	cout << "                   Available options: 'SMHiggs', 'Higgs0M', 'Graviton2PM' and 'Custom'.         " << endl << endl;
 	cout << "     pdf_include   Name of PDFs, PDFs not used if pdf_include = '' (string, DEFAULT= 'CTEQ6L')  " << endl;
 	cout << "                   Available PDFs: 'CTEQ6L' (NONE = '').                                        " << endl << endl;
 	cout << "     log_file      name of the log file, no logging if log_file = '' (string, DEFAULT = '')     " << endl;
