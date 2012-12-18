@@ -94,6 +94,9 @@ private:
 	int Run_MEKD_MG_MEs_SIG_Spin0();
 	int Run_MEKD_MG_MEs_SIG_Spin0_SF();
 	int Run_MEKD_MG_MEs_SIG_Spin0_OF();
+	int Run_MEKD_MG_MEs_SIG_Spin1();
+	int Run_MEKD_MG_MEs_SIG_Spin1_SF();
+	int Run_MEKD_MG_MEs_SIG_Spin1_OF();
 	int Run_MEKD_MG_MEs_SIG_Spin2();
 	int Run_MEKD_MG_MEs_SIG_Spin2_SF();
 	int Run_MEKD_MG_MEs_SIG_Spin2_OF();
@@ -102,6 +105,7 @@ private:
 	int Run_MEKD_MG_ME_CPevenScalar();
 	int Run_MEKD_MG_ME_CPoddScalar();
 	int Run_MEKD_MG_ME_SMHiggs();
+	int Run_MEKD_MG_ME_Spin1();
 	int Run_MEKD_MG_ME_Spin2();
 };
 
