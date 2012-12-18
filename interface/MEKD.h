@@ -14,7 +14,7 @@
 #include <sstream>
 #include <cmath>
 
-#if (defined(MEKD_STANDALONE) && defined(MEKD_with_ROOT)) || !(defined(MEKD_STANDALONE))
+#if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) || !defined MEKD_STANDALONE
 // ROOT includes
 #include "TROOT.h"
 #include "TFile.h"
@@ -27,9 +27,7 @@
 
 // MadGraph-based ME calculator
 #include "MEKD_MG.h"
-#if (defined(MEKD_STANDALONE))
-#include "../src/MEKD_MG.cpp"
-#endif
+
 
 //////////////////////////////////////////////////////////////////////////
 ///  MEKD interface class.
@@ -40,6 +38,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 using namespace std;
+
 
 class MEKD {
 public:
@@ -83,7 +82,7 @@ private:
     int     setProcessNames(string processA, string processB); // sanity check for input process names, translation to the the names supported by MEKD_MG.h
     int     processParameters(); // sanity check for internal paramters
     
-#if (defined(MEKD_STANDALONE) && defined(MEKD_with_ROOT)) || !(defined(MEKD_STANDALONE))
+#if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) || !defined MEKD_STANDALONE
 //------------------------------------------------------------------------
 // ROOT-compatabile members
 //------------------------------------------------------------------------
