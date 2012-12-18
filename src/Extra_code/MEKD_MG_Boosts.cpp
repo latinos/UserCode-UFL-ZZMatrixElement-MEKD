@@ -3,7 +3,9 @@
 
 #include "MEKD_MG_Boosts.h"
 
-double Boost_trigger_gamma =1e-10;	//minimum value of 1-gamma to trigger a boost
+
+double Boost_trigger_gamma=1e-10;	//minimum value of 1-gamma to trigger a boost
+
 
 void Boost_4p_2_pT0(double mass0, double *pi0, double mass1, double *pi1, double mass2, double *pi2, double mass3, double *pi3)
 {

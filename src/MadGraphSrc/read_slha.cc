@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-
 #include "read_slha.h"
 
 using namespace std;
@@ -34,7 +33,10 @@ void SLHAReader::read_slha_file(string file_name)
   ifstream param_card;
   param_card.open(file_name.c_str(), ifstream::in);
   if(!param_card.good())
-    throw "Error while opening param card";
+	{
+		cout << "Error while opening param card\n";	/// Old-school warning
+		throw "Error while opening param card";
+	}
 //   cout << "Opened slha file " << file_name << " for reading" << endl;
   char buf[200];
   string line;
@@ -79,7 +81,7 @@ void SLHAReader::read_slha_file(string file_name)
 	while (line[0] == ' ')
 	  line = line.substr(1);
 	// Now find end of block name
-	unsigned long space_pos = line.find(' ');
+	int space_pos = line.find(' ');
 	if(space_pos != line.npos)
 	  line = line.substr(0, space_pos);
 	block = line;

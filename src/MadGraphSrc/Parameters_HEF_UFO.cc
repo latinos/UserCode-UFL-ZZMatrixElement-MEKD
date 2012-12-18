@@ -32,7 +32,8 @@ void Parameters_HEF_UFO::setIndependentParameters(SLHAReader& slha)
   // Prepare a vector for indices
   vector<int> indices(2, 0); 
   WXG = slha.get_block_entry("decay", 9000007, 5.753088e-03); 
-  WH = slha.get_block_entry("decay", 9000006, 5.753088e-03); 
+  WH = slha.get_block_entry("decay", 9000006, 5.753088e-03);
+  WZp = slha.get_block_entry("decay", 300, 5.753088e-03);
   WW = slha.get_block_entry("decay", 24, 2.085000e+00); 
   WZ = slha.get_block_entry("decay", 23, 2.495200e+00); 
   WT = slha.get_block_entry("decay", 6, 1.508336e+00); 
@@ -49,7 +50,8 @@ void Parameters_HEF_UFO::setIndependentParameters(SLHAReader& slha)
   Gf = slha.get_block_entry("sminputs", 2, 1.166370e-05); 
   aEWM1 = slha.get_block_entry("sminputs", 1, 1.279000e+02); 
   MXG = slha.get_block_entry("mass", 9000007, 1.250000e+02); 
-  MH = slha.get_block_entry("mass", 9000006, 1.250000e+02); 
+  MH = slha.get_block_entry("mass", 9000006, 1.250000e+02);
+  MZp = slha.get_block_entry("mass", 300, 1.250000e+02);
   MZ = slha.get_block_entry("mass", 23, 9.118760e+01); 
   MTA = slha.get_block_entry("mass", 15, 1.777000e+00); 
   MM = slha.get_block_entry("mass", 13, 1.056600e-01); 
@@ -88,7 +90,11 @@ void Parameters_HEF_UFO::setIndependentParameters(SLHAReader& slha)
   k3z = slha.get_block_entry("gravity", 13, 1.000000e-01); 
   k2z = slha.get_block_entry("gravity", 12, 1.000000e-01); 
   k1z = slha.get_block_entry("gravity", 11, 1.000000e-01); 
-  cabi = slha.get_block_entry("ckmblock", 1, 2.277360e-01); 
+  cabi = slha.get_block_entry("ckmblock", 1, 2.277360e-01);
+  bz2 = slha.get_block_entry("chern", 4, 1.000000e-01); 
+  bz1 = slha.get_block_entry("chern", 3, 1.000000e-01); 
+  bg2 = slha.get_block_entry("chern", 2, 1.000000e-01); 
+  bg1 = slha.get_block_entry("chern", 1, 1.000000e-01); 
   gw = 1.; 
   g1 = 1.; 
   cos__cabi = cos(cabi); 
@@ -217,7 +223,14 @@ void Parameters_HEF_UFO::setIndependentCouplings()
   GC_84 = (complexi * k8g)/4.; 
   GC_88 = complexi * k8z; 
   GC_89 = -(complexi * k9g)/2.; 
-  GC_90 = -(complexi * k9z)/2.; 
+  GC_90 = -(complexi * k9z)/2.;
+  
+	Spin1_GC_70 = -(cw * ee * complexi)/(2. * sw); 
+	Spin1_GC_75 = (ee * complexi * sw)/(2. * cw);
+	Spin1_GC_1 = -bg1; 
+	Spin1_GC_2 = -bg2/2.; 
+	Spin1_GC_3 = -bz1; 
+	Spin1_GC_4 = -bz2; 
 }
 
 void Parameters_HEF_UFO::setDependentParameters()

@@ -10,34 +10,40 @@
 #include <algorithm>	// for sorting
 #include <cmath>
 
+
 /// CMSSW includes
-#if (!defined(MEKD_STANDALONE))
+#ifndef MEKD_STANDALONE
 #include "FWCore/ParameterSet/interface/FileInPath.h"
 #endif
 
+
 /// MEs
-#include "./MadGraphSrc/BKG_DN_OF.h"
-#include "./MadGraphSrc/BKG_DN_SF.h"
-#include "./MadGraphSrc/BKG_UP_OF.h"
-#include "./MadGraphSrc/BKG_UP_SF.h"
+#include "MadGraphSrc/BKG_DN_OF.h"
+#include "MadGraphSrc/BKG_DN_SF.h"
+#include "MadGraphSrc/BKG_UP_OF.h"
+#include "MadGraphSrc/BKG_UP_SF.h"
 
-#include "./MadGraphSrc/Spin0_OF.h"
-#include "./MadGraphSrc/Spin0_SF.h"
+#include "MadGraphSrc/Spin0_OF.h"
+#include "MadGraphSrc/Spin0_SF.h"
 
-#include "./MadGraphSrc/Spin2_OF.h"
-#include "./MadGraphSrc/Spin2_SF.h"
+#include "MadGraphSrc/Spin1_OF.h"
+#include "MadGraphSrc/Spin1_SF.h"
+
+#include "MadGraphSrc/Spin2_OF.h"
+#include "MadGraphSrc/Spin2_SF.h"
+
 
 
 extern "C"
 {
-#include "./Extra_code/MEKD_CalcHEP_PDF.h"
-#include "./PDFTables/pdt.h"
+#include "Extra_code/MEKD_CalcHEP_PDF.h"
+#include "PDFTables/pdt.h"
 }
 
-#include "./Extra_code/MEKD_MG_Boosts.h"
-#include "./higgs_properties/hggeffective.h"
-#include "./Extra_code/MEKD_CalcHEP_Extra_functions.h"
-#include "./MadGraphSrc/read_slha.h"
+#include "Extra_code/MEKD_CalcHEP_Extra_functions.h"
+#include "Extra_code/MEKD_MG_Boosts.h"
+#include "higgs_properties/hggeffective.h"
+#include "MadGraphSrc/read_slha.h"
 
 #include "../interface/MEKD_MG.h"
 
@@ -59,6 +65,9 @@ BKG_UP_SF ME_Background_UpType_SF;
 Spin0_OF ME_Signal_Spin0_OF;
 Spin0_SF ME_Signal_Spin0_SF;
 
+Spin1_OF ME_Signal_Spin1_OF;
+Spin1_SF ME_Signal_Spin1_SF;
+
 Spin2_OF ME_Signal_Spin2_OF;
 Spin2_SF ME_Signal_Spin2_SF;
 
@@ -77,6 +86,9 @@ MEKD_MG::MEKD_MG()
 	
 	if( ME_Signal_Spin0_OF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Signal_Spin0_SF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	
+	if( ME_Signal_Spin1_OF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_SF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	
 	if( ME_Signal_Spin2_OF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Signal_Spin2_SF.nprocesses!=1 ) { cout << "Problem in ME class detected. Exiting.\n"; exit(1); }
@@ -104,6 +116,7 @@ MEKD_MG::MEKD_MG()
 }
 
 
+
 MEKD_MG::~MEKD_MG()
 {
 	if( Parameters_Are_Loaded ) Unload_pdfreader();
@@ -116,7 +129,7 @@ MEKD_MG::~MEKD_MG()
 
 int MEKD_MG::Load_Parameters()
 {
-	Set_Of_Model_Parameters.read_slha_file( static_cast<string>(Parameter_file) );
+	Set_Of_Model_Parameters.read_slha_file( Parameter_file );
 	
 	/// Initializing parameters
 	ME_Background_UpType_SF.initProc( Parameter_file );
@@ -126,6 +139,8 @@ int MEKD_MG::Load_Parameters()
 	
 	ME_Signal_Spin0_SF.initProc( Parameter_file );
 	ME_Signal_Spin0_OF.initProc( Parameter_file );
+	ME_Signal_Spin1_SF.initProc( Parameter_file );
+	ME_Signal_Spin1_OF.initProc( Parameter_file );
 	ME_Signal_Spin2_SF.initProc( Parameter_file );
 	ME_Signal_Spin2_OF.initProc( Parameter_file );
 	
@@ -135,10 +150,11 @@ int MEKD_MG::Load_Parameters()
 	m_c_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
 	m_e_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
 	m_mu_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876 );
+	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
 	
 	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
 	hZZ_coupling = 2*m_Z_temp*m_Z_temp/v_expectation;
+	
 	
 	Load_pdfreader( const_cast<char*>(PDF_file.c_str()) );
 	
@@ -160,7 +176,7 @@ int MEKD_MG::Reload_Parameters()
 	m_c_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
 	m_e_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
 	m_mu_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876 );
+	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
 	
 	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
 	hZZ_coupling = 2*m_Z_temp*m_Z_temp/v_expectation;
@@ -200,18 +216,18 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	
 	Final_state = "2e2m";	// Final state, for the moment: 4e, 4mu, 2e2mu
 	Test_Model = "1";	// 0 or Custon; 1 or SMHiggs; 2 or CPoddScalar; 3 or CPevenScalar
-#if (defined(MEKD_STANDALONE))   
-	Parameter_file = "../src/Cards/param_card.dat";	// Location where a parameter card is stored
-	PDF_file = "../src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
-#else
-    string inputParameterFile = "ZZMatrixElement/MEKD/src/Cards/param_card.dat";       // Location where a parameter card is stored
-    string inputPDFFile = "ZZMatrixElement/MEKD/src/PDFTables/cteq6l.pdt";     // PDF/PDT table file
-    edm::FileInPath parameterFileWithFullPath(inputParameterFile);
-    edm::FileInPath pdfFileWithFullPath(inputPDFFile);
-    Parameter_file = parameterFileWithFullPath.fullPath();
-    PDF_file = pdfFileWithFullPath.fullPath();
-#endif
 
+#ifndef MEKD_STANDALONE
+	string inputParameterFile = "ZZMatrixElement/MEKD/src/Cards/param_card.dat";	// Location where a parameter card is stored
+	string inputPDFFile = "ZZMatrixElement/MEKD/src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
+	edm::FileInPath parameterFileWithFullPath(inputParameterFile);
+	edm::FileInPath pdfFileWithFullPath(inputPDFFile);
+	Parameter_file = parameterFileWithFullPath.fullPath();
+	PDF_file = pdfFileWithFullPath.fullPath();
+#else
+	Parameter_file = "src/Cards/param_card.dat";	// Location where a parameter card is stored
+	PDF_file = "src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
+#endif
 }
 
 
@@ -220,6 +236,7 @@ int MEKD_MG::Run_MEKD_MG()
 {
 	if( !Parameters_Are_Loaded ) Load_Parameters();
 	if( Arrange_Internal_pls() == 1 ) { cout << "Particle id error. Exiting.\n"; exit(1); }
+	
 	double CollisionE;
 	
 	PDFx1 = 0;
@@ -353,10 +370,12 @@ int MEKD_MG::Run_MEKD_MG()
 				Run_MEKD_MG_ME_SMHiggs();
 			if( Test_Models[i]=="2" || Test_Models[i]=="CPoddScalar" || Test_Models[i]=="CP-odd" )
 				Run_MEKD_MG_ME_CPoddScalar();
-			if( Test_Models[i]=="3" || Test_Models[i]=="CPevenScalar" || Test_Models[i]=="CP-even" )
-		 		Run_MEKD_MG_ME_CPevenScalar();
+			if( Test_Models[i]=="3" || Test_Models[i]=="Spin1particle" )
+		 		Run_MEKD_MG_ME_Spin1();
 			if( Test_Models[i]=="4" || Test_Models[i]=="Spin2particle" )
 				Run_MEKD_MG_ME_Spin2();
+			if( Test_Models[i]=="5" || Test_Models[i]=="CPevenScalar" || Test_Models[i]=="CP-even" )
+		 		Run_MEKD_MG_ME_CPevenScalar();
 				
 			Signal_MEs.push_back( Signal_ME );
 		}
@@ -375,12 +394,15 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="2" || Test_Model=="CPoddScalar" || Test_Model=="CP-odd" ||
 			Test_Model=="!2" || Test_Model=="!CPoddScalar" || Test_Model=="!CP-odd" )
 			Run_MEKD_MG_ME_CPoddScalar();
-		if( Test_Model=="3" || Test_Model=="CPevenScalar" || Test_Model=="CP-even" ||
-			Test_Model=="!3" || Test_Model=="!CPevenScalar" || Test_Model=="!CP-even" )
-	 		Run_MEKD_MG_ME_CPevenScalar();
+		if( Test_Model=="3" || Test_Model=="Spin1particle" ||
+			Test_Model=="!3" || Test_Model=="!Spin1particle" )
+	 		Run_MEKD_MG_ME_Spin1();
 		if( Test_Model=="4" || Test_Model=="Spin2particle" ||
 			Test_Model=="!4" || Test_Model=="!Spin2particle" )
 			Run_MEKD_MG_ME_Spin2();
+		if( Test_Model=="5" || Test_Model=="CPevenScalar" || Test_Model=="CP-even" ||
+			Test_Model=="!5" || Test_Model=="!CPevenScalar" || Test_Model=="!CP-even" )
+	 		Run_MEKD_MG_ME_CPevenScalar();
 	}
 	
 	
@@ -402,6 +424,18 @@ int MEKD_MG::Run_MEKD_MG(string Input_Model)
 	Test_Model = buffer_string;
 	return error_value;
 }
+
+
+
+///#include "MEKD_MG_RunMEs.cpp"
+///////////////////////////////////
+/// INCLUDED MEKD_MG_RunMEs.cpp ///
+/// code follows below          ///
+///                             ///
+///  Part responsible for MEs   ///
+///  Calculation                ///
+///////////////////////////////////
+
 
 
 int MEKD_MG::Run_MEKD_MG_ME_Custom()
@@ -543,6 +577,43 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar()
 
 
 
+int MEKD_MG::Run_MEKD_MG_ME_Spin1()
+{
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			Set_Of_Model_Parameters.set_block_entry( "chern", 1, Mass_4l*Mass_4l*Mass_4l*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "chern", 3, Mass_4l*Mass_4l*0.5*hZZ_coupling );
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			Set_Of_Model_Parameters.set_block_entry( "chern", 1, Higgs_mass*Higgs_mass*Higgs_mass*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "chern", 3, Higgs_mass*Higgs_mass*0.5*hZZ_coupling );
+		}
+	}
+	
+	Set_Of_Model_Parameters.set_block_entry( "chern", 2, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "chern", 4, 0 );
+	
+	return Run_MEKD_MG_MEs_SIG_Spin1();
+}
+
+
+
 int MEKD_MG::Run_MEKD_MG_ME_Spin2()
 {
 	if( Use_mh_eq_m4l )
@@ -654,6 +725,39 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0()
 		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
 		
 		return Run_MEKD_MG_MEs_SIG_Spin0_SF();
+	}
+	
+	return 1;
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1()
+{
+	/// Same-flavor block. Electrons
+	if( Final_state=="4e" )
+	{
+		/// Common mass for the same-flavor leptons
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_e_temp );
+		
+		return Run_MEKD_MG_MEs_SIG_Spin1_SF();
+	}
+	
+	if( Final_state=="2e2m" || Final_state=="2e2mu" )
+	{
+		/// Common mass for the opposite-flavor leptons
+		Set_Of_Model_Parameters.set_block_entry( "mass", 11, m_e_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		
+		return Run_MEKD_MG_MEs_SIG_Spin1_OF();
+	}
+	
+	if( Final_state=="4m" || Final_state=="4mu" )
+	{
+		/// Common mass for the same-flavor leptons
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		
+		return Run_MEKD_MG_MEs_SIG_Spin1_SF();
 	}
 	
 	return 1;
@@ -904,6 +1008,44 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_OF()
 
 
 
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_SF()
+{
+	/// Signal block
+	ME_Signal_Spin1_SF.updateProc( Set_Of_Model_Parameters );
+	
+	p_set[0][3] = p_set[0][0];
+	p_set[1][3] = -p_set[1][0];
+	ME_Signal_Spin1_SF.setMomenta( p_set );
+	ME_Signal_Spin1_SF.sigmaKin();
+	buffer = const_cast<double*>( ME_Signal_Spin1_SF.getMatrixElements() );
+	if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
+	else Signal_ME = buffer[0];
+	
+	
+	return 0;
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_OF()
+{
+	/// Signal block
+	ME_Signal_Spin1_OF.updateProc( Set_Of_Model_Parameters );
+	
+	p_set[0][3] = p_set[0][0];
+	p_set[1][3] = -p_set[1][0];
+	ME_Signal_Spin1_OF.setMomenta( p_set );
+	ME_Signal_Spin1_OF.sigmaKin();
+	buffer = const_cast<double*>( ME_Signal_Spin1_OF.getMatrixElements() );
+	if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
+	else Signal_ME = buffer[0];
+	
+	
+	return 0;
+}
+
+
+
 int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_SF()
 {
 	/// Signal block
@@ -941,6 +1083,26 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_OF()
 }
 
 
+
+///////////////////////////////////
+/// END OF MEKD_MG_RunMEs.cpp   ///
+///////////////////////////////////
+
+
+
+
+
+///#include "MEKD_MG_Sorter.cpp"
+///////////////////////////////////
+/// INCLUDED MEKD_MG_Sorter.cpp ///
+/// code follows below          ///
+///                             ///
+/// Part responsible for        ///
+/// momenta rearrangement       ///
+///////////////////////////////////
+
+
+
 int MEKD_MG::Arrange_Internal_pls()
 {
 	id_set[0]=id1; id_set[1]=id2; id_set[2]=id3; id_set[3]=id4;
@@ -968,7 +1130,7 @@ int MEKD_MG::Arrange_Internal_pls()
 		if( id3 == -13 ) pl4_internal = pl3;
 		if( id4 == -13 ) pl4_internal = pl4;
 		Final_state = "2e2m";
-        
+			
 		return 0;
 	}
 	
@@ -979,7 +1141,7 @@ int MEKD_MG::Arrange_Internal_pls()
 		if( id3 == 13 ) { pl3_internal=pl3; pl4_internal=pl4; }
 		if( id3 == -13 ) { pl4_internal=pl3; pl3_internal=pl4; }
 		Final_state = "4mu";
-        
+			
 		return 0;
 	}
 	
@@ -990,13 +1152,13 @@ int MEKD_MG::Arrange_Internal_pls()
 		if( id3 == 11 ) { pl3_internal=pl3; pl4_internal=pl4; }
 		if( id3 == -11 ) { pl4_internal=pl3; pl3_internal=pl4; }
 		Final_state = "4e";
-        
+			
 		return 0;
 	}
 	
 	if( id_set[0] == 0 && id_set[1] == 0 && id_set[2] == 0 && id_set[3] == 0 )
 	{
-		cout << "Warning. Particle ids are not set. Assuming a proper input lepton configuration.\n";
+		cout << "Warning. Particle ids are not set. Assuming a proper input-lepton configuration.\n";
 		pl1_internal=pl1; pl2_internal=pl2; pl3_internal=pl3; pl4_internal=pl4;
 		
 		return 0;
@@ -1004,6 +1166,12 @@ int MEKD_MG::Arrange_Internal_pls()
 	
 	return 1;
 }
+
+
+///////////////////////////////////
+/// END OF MEKD_MG_Sorter.cpp   ///
+///////////////////////////////////
+
 
 
 #endif

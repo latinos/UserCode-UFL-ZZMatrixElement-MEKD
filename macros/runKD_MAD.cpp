@@ -1,6 +1,3 @@
-// to control stand alone compilation (e.g. non-CMSSW)
-#define MEKD_STANDALONE 1
-
 // C includes
 #include <unistd.h>	// neded for getopt, optarg,
 
@@ -13,7 +10,6 @@
 #include <cmath>
 
 /// ME calculator
-#include "../interface/MEKD.h"
 #include "../src/MEKD.cpp"
 
 /// ROOT includes

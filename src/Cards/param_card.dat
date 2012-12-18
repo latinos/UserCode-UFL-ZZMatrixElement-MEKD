@@ -9,6 +9,15 @@
 ######################################################################
 
 ###################################
+## INFORMATION FOR CHERN
+###################################
+Block chern 
+    1 1.000000e-01 # bg1 
+    2 1.000000e-01 # bg2 
+    3 1.000000e-01 # bz1 
+    4 1.000000e-01 # bz2 
+
+###################################
 ## INFORMATION FOR CKMBLOCK
 ###################################
 Block ckmblock 
@@ -65,7 +74,8 @@ Block mass
    11 5.110000e-04 # Me 
    13 1.056600e-01 # MM 
    15 1.777000e+00 # MTA 
-   23 9.118760e+01 # MZ 
+   23 9.118760e+01 # MZ
+  300 1.250000e+01 # MZp, Spin1
   9000006 1.250000e+02 # MH 
   9000007 1.250000e+02 # MXG 
 ##  Not dependent paramater.
@@ -107,7 +117,8 @@ Block yukawa
 ###################################
 DECAY   6 1.508336e+00 # WT 
 DECAY  23 2.495200e+00 # WZ 
-DECAY  24 2.085000e+00 # WW 
+DECAY  24 2.085000e+00 # WW
+DECAY 300 5.753088e-03 # WZp
 DECAY 9000006 5.753088e-03 # WH 
 DECAY 9000007 5.753088e-03 # WXG 
 ##  Not dependent paramater.
@@ -140,5 +151,10 @@ Block QNUMBERS 9000006  # h
 Block QNUMBERS 9000007  # xg 
         1 0  # 3 times electric charge
         2 5  # number of spin states (2S+1)
+        3 1  # colour rep (1: singlet, 3: triplet, 8: octet)
+        4 0  # Particle/Antiparticle distinction (0=own anti)
+Block QNUMBERS 300  # zp 
+        1 0  # 3 times electric charge
+        2 3  # number of spin states (2S+1)
         3 1  # colour rep (1: singlet, 3: triplet, 8: octet)
         4 0  # Particle/Antiparticle distinction (0=own anti)

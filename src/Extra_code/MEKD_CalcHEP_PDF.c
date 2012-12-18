@@ -5,6 +5,8 @@
 
 /// For PDFs
 #include "../PDFTables/pdt.h"
+// #define PDTFILE "../PDFTables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L. You can change PDF set as you want.
+
 
 
 /// Part of pdfreader
@@ -13,7 +15,7 @@ pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc,
 
 
 
-int ConvertID_2_CalcID(int pNum) // To translate KF code (PYTHIA) into a number defined in CalCHEP
+static int ConvertID_2_CalcID(int pNum) // To translate KF code (PYTHIA) into a number defined in CalCHEP
 {
 	switch(pNum)
 	{
