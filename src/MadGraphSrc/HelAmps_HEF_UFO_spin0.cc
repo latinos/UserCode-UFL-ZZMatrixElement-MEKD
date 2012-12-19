@@ -271,7 +271,7 @@ void VVS11_12_13_0(complex<double> V1[], complex<double> V2[], complex<double>
     S3[], complex<double> COUP1, complex<double> COUP2, complex<double> COUP3,
     complex<double> & vertex)
 {
-  complex<double> cI = complex<double> (0., 1.); 
+//   complex<double> cI = complex<double> (0., 1.); 
   complex<double> tmp; 
   VVS11_0(V1, V2, S3, COUP1, vertex); 
   VVS12_0(V1, V2, S3, COUP2, tmp); 
@@ -458,10 +458,10 @@ void FFV42_3(complex<double> F1[], complex<double> F2[], complex<double> COUP,
 void FFV42_44_3(complex<double> F1[], complex<double> F2[], complex<double>
     COUP1, complex<double> COUP2, double M3, double W3, complex<double> V3[])
 {
-  complex<double> cI = complex<double> (0., 1.); 
+//   complex<double> cI = complex<double> (0., 1.); 
   complex<double> denom; 
-  double P3[4]; 
-  double OM3; 
+//   double P3[4];
+//   double OM3;
   int i; 
   complex<double> Vtmp[6]; 
   FFV42_3(F1, F2, COUP1, M3, W3, V3); 
@@ -582,9 +582,9 @@ void VVS11_12_13_3(complex<double> V1[], complex<double> V2[], complex<double>
     COUP1, complex<double> COUP2, complex<double> COUP3, double M3, double W3,
     complex<double> S3[])
 {
-  complex<double> cI = complex<double> (0., 1.); 
+//   complex<double> cI = complex<double> (0., 1.); 
   complex<double> Stmp[3]; 
-  double P3[4]; 
+//   double P3[4];
   complex<double> denom; 
   int i; 
   VVS11_3(V1, V2, COUP1, M3, W3, S3); 
