@@ -67,7 +67,7 @@ public:
 	~MEKD_MG();
 	
 private:
-	bool Parameters_Are_Loaded;
+	bool Parameters_Are_Loaded, buffer_bool;
 	
 	int error_value;
 	

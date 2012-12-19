@@ -235,7 +235,7 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 int MEKD_MG::Run_MEKD_MG()
 {
 	if( !Parameters_Are_Loaded ) Load_Parameters();
-	if( Arrange_Internal_pls() == 1 ) { cout << "Particle id error. Exiting.\n"; exit(1); }
+	if( Arrange_Internal_pls() == 1 ) { cerr << "Particle id error. Exiting.\n"; exit(1); }
 	
 	double CollisionE;
 	
@@ -1130,29 +1130,51 @@ int MEKD_MG::Arrange_Internal_pls()
 		if( id3 == -13 ) pl4_internal = pl3;
 		if( id4 == -13 ) pl4_internal = pl4;
 		Final_state = "2e2m";
-			
+		
 		return 0;
 	}
 	
 	if( id_set[0] == -13 && id_set[1] == -13 && id_set[2] == 13 && id_set[3] == 13 )
 	{
-		if( id1 == 13 ) { pl1_internal=pl1; pl2_internal=pl2; }
-		if( id1 == -13 ) { pl2_internal=pl1; pl1_internal=pl2; }
-		if( id3 == 13 ) { pl3_internal=pl3; pl4_internal=pl4; }
-		if( id3 == -13 ) { pl4_internal=pl3; pl3_internal=pl4; }
+		buffer_bool = false;	//first muon has beed caught
+		if( id1 == 13 && !buffer_bool ) { pl1_internal=pl1; buffer_bool=true; }
+		if( id2 == 13 && buffer_bool ) pl3_internal = pl2;
+		if( id2 == 13 && !buffer_bool ) { pl1_internal=pl2; buffer_bool=true; }
+		if( id3 == 13 && buffer_bool ) pl3_internal = pl3;
+		if( id3 == 13 && !buffer_bool ) { pl1_internal=pl3; buffer_bool=true; }
+		if( id4 == 13 && buffer_bool ) pl3_internal = pl4;
+		
+		buffer_bool = false;	//first antimuon has beed caught
+		if( id1 == -13 && !buffer_bool ) { pl2_internal=pl1; buffer_bool=true; }
+		if( id2 == -13 && buffer_bool ) pl4_internal = pl2;
+		if( id2 == -13 && !buffer_bool ) { pl2_internal=pl2; buffer_bool=true; }
+		if( id3 == -13 && buffer_bool ) pl4_internal = pl3;
+		if( id3 == -13 && !buffer_bool ) { pl2_internal=pl3; buffer_bool=true; }
+		if( id4 == -13 && buffer_bool ) pl4_internal = pl4;
 		Final_state = "4mu";
-			
+		
 		return 0;
 	}
 	
 	if( id_set[0] == -11 && id_set[1] == -11 && id_set[2] == 11 && id_set[3] == 11 )
 	{
-		if( id1 == 11 ) { pl1_internal=pl1; pl2_internal=pl2; }
-		if( id1 == -11 ) { pl2_internal=pl1; pl1_internal=pl2; }
-		if( id3 == 11 ) { pl3_internal=pl3; pl4_internal=pl4; }
-		if( id3 == -11 ) { pl4_internal=pl3; pl3_internal=pl4; }
+		buffer_bool = false;	//first electron has beed caught
+		if( id1 == 11 && !buffer_bool ) { pl1_internal=pl1; buffer_bool=true; }
+		if( id2 == 11 && buffer_bool ) pl3_internal = pl2;
+		if( id2 == 11 && !buffer_bool ) { pl1_internal=pl2; buffer_bool=true; }
+		if( id3 == 11 && buffer_bool ) pl3_internal = pl3;
+		if( id3 == 11 && !buffer_bool ) { pl1_internal=pl3; buffer_bool=true; }
+		if( id4 == 11 && buffer_bool ) pl3_internal = pl4;
+		
+		buffer_bool = false;	//first positron has beed caught
+		if( id1 == -11 && !buffer_bool ) { pl2_internal=pl1; buffer_bool=true; }
+		if( id2 == -11 && buffer_bool ) pl4_internal = pl2;
+		if( id2 == -11 && !buffer_bool ) { pl2_internal=pl2; buffer_bool=true; }
+		if( id3 == -11 && buffer_bool ) pl4_internal = pl3;
+		if( id3 == -11 && !buffer_bool ) { pl2_internal=pl3; buffer_bool=true; }
+		if( id4 == -11 && buffer_bool ) pl4_internal = pl4;
 		Final_state = "4e";
-			
+		
 		return 0;
 	}
 	
