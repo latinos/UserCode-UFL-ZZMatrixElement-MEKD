@@ -36,7 +36,7 @@ double nfh = 5.0;
 
 /// Functions
 
-static double fiRe(double tau)
+double fiRe(double tau)
 {
 	double x;
 	
@@ -56,7 +56,7 @@ static double fiRe(double tau)
 }
 
 
-static double fiIm(double tau)
+double fiIm(double tau)
 {
 	double x;
 	
@@ -71,10 +71,10 @@ static double fiIm(double tau)
 }
 
 
-static double HggFr(double tau) { return  2.0*(tau+(tau-1)*fiRe(tau))/(tau*tau); }
+double HggFr(double tau) { return  2.0*(tau+(tau-1)*fiRe(tau))/(tau*tau); }
 
 
-static double HggFi(double tau) { return  2.0*(tau-1)*fiIm(tau)/(tau*tau); }
+double HggFi(double tau) { return  2.0*(tau-1)*fiIm(tau)/(tau*tau); }
 
 
 double LmbdGG(double Mh)

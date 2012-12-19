@@ -3,7 +3,7 @@
 
 
 /// To translate KF code (PYTHIA) into a number defined in CalCHEP
-static int ConvertID_2_CalcID(int pNum);
+int ConvertID_2_CalcID(int pNum);
 
 double pdfreader(long pNum, double x, double q);
 

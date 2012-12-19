@@ -15,7 +15,7 @@ pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc,
 
 
 
-static int ConvertID_2_CalcID(int pNum) // To translate KF code (PYTHIA) into a number defined in CalCHEP
+int ConvertID_2_CalcID(int pNum) // To translate KF code (PYTHIA) into a number defined in CalCHEP
 {
 	switch(pNum)
 	{

@@ -21,10 +21,10 @@ using namespace std;
 
 
 /// Functions
-static double fiRe(double tau);
-static double fiIm(double tau);
-static double HggFr(double tau);
-static double HggFi(double tau);
+double fiRe(double tau);
+double fiIm(double tau);
+double HggFr(double tau);
+double HggFi(double tau);
 
 double LmbdGG(double Mh);
 
