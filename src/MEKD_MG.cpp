@@ -225,8 +225,8 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	Parameter_file = parameterFileWithFullPath.fullPath();
 	PDF_file = pdfFileWithFullPath.fullPath();
 #else
-	Parameter_file = "src/Cards/param_card.dat";	// Location where a parameter card is stored
-	PDF_file = "src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
+	Parameter_file = "../src/Cards/param_card.dat";	// Location where a parameter card is stored
+	PDF_file = "../src/PDFTables/cteq6l.pdt";	// PDF/PDT table file
 #endif
 }
 
