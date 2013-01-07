@@ -91,20 +91,20 @@ int MEKD::computeKD( string processA, string processB,
 	
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
-	else if( processA=="ZZ" ) me2processA = ME_ZZ;
-	else if( processA=="SMHiggs" ) me2processA = ME_SMHiggs;
-	else if( processA=="CPoddScalar" ) me2processA = ME_CPoddScalar;
-// 	else if( processA=="Spin1particle" ) me2processA = ME_Spin1;
-	else if( processA=="Spin2particle" && ME_Spin2!=0 ) me2processA = ME_Spin2;
+	else if( m_processA=="ZZ" ) me2processA = ME_ZZ;
+	else if( m_processA=="SMHiggs" ) me2processA = ME_SMHiggs;
+	else if( m_processA=="CPoddScalar" ) me2processA = ME_CPoddScalar;
+// 	else if( m_processA=="Spin1particle" ) me2processA = ME_Spin1;
+	else if( m_processA=="Spin2particle" && ME_Spin2!=0 ) me2processA = ME_Spin2;
 	else { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
-	else if( processB=="ZZ" ) me2processB = ME_ZZ;
-	else if( processB=="SMHiggs" ) me2processB = ME_SMHiggs;
-	else if( processB=="CPoddScalar" ) me2processB = ME_CPoddScalar;
-// 	else if( processB=="Spin1particle" ) me2processB = ME_Spin1;
-	else if( processB=="Spin2particle" ) me2processB = ME_Spin2;
+	else if( m_processB=="ZZ" ) me2processB = ME_ZZ;
+	else if( m_processB=="SMHiggs" ) me2processB = ME_SMHiggs;
+	else if( m_processB=="CPoddScalar" ) me2processB = ME_CPoddScalar;
+// 	else if( m_processB=="Spin1particle" ) me2processB = ME_Spin1;
+	else if( m_processB=="Spin2particle" ) me2processB = ME_Spin2;
 	else { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	
 	
