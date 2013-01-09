@@ -326,12 +326,12 @@ int MEKD::computeKD( TString processA, TString processB,
 	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
 	
 	/// Put vector<TLorentzVector> into internal containers
-	for( buffer_int=0; buffer_int < input_Ps_i.size(); buffer_int++ )
+	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
 	{
-		input_Ps_i[buffer_int][0] = input_Ps[buffer_int].E();
-		input_Ps_i[buffer_int][1] = input_Ps[buffer_int].Px();
-		input_Ps_i[buffer_int][2] = input_Ps[buffer_int].Py();
-		input_Ps_i[buffer_int][3] = input_Ps[buffer_int].Pz();
+		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
+		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
+		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
+		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
 	}
 	
 	return computeKD( processA.Data(), processB.Data(), four_particle_Ps_i, input_IDs, kd, me2processA, me2processB );
@@ -386,12 +386,12 @@ int MEKD::computeMEs( vector<TLorentzVector> input_Ps, vector<int> input_IDs )
 	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
 	
 	/// Put vector<TLorentzVector> into internal containers
-	for( buffer_int=0; buffer_int < input_Ps_i.size(); buffer_int++ )
+	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
 	{
-		input_Ps_i[buffer_int][0] = input_Ps[buffer_int].E();
-		input_Ps_i[buffer_int][1] = input_Ps[buffer_int].Px();
-		input_Ps_i[buffer_int][2] = input_Ps[buffer_int].Py();
-		input_Ps_i[buffer_int][3] = input_Ps[buffer_int].Pz();
+		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
+		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
+		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
+		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
 	}
 	
 	return computeMEs( four_particle_Ps_i, input_IDs );

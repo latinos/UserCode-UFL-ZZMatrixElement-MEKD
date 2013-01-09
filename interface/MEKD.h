@@ -139,7 +139,8 @@ public:
 	
 private:
 	/// Properties. Variables.
-	int buffer_int;					// For internal collection of return values or counter
+	unsigned int buffer_uint;		// For counters as may be constantly created and destroyed
+	int buffer_int;					// For internal collection of return values
 	double m_collisionEnergy;		// c.m. collision energy sqrt(s) in TeV
 	double ME_ZZ, ME_SMHiggs, ME_CPoddScalar, ME_Spin1, ME_Spin2;	// computeMEs(...) results
 	string m_PDFName;				// name of the parton density functions to be used. Supported: CTEQ6l;
