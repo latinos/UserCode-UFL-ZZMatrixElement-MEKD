@@ -5,8 +5,8 @@ INCDIR3=../src/higgs_properties
 INCDIR4=../src/MadGraphSrc
 INCDIR5=../interface
 PDF_DIR=../src/PDFTables
-CXXFLAGS= -pedantic -Wunused-variable -fPIC -O -I$(INCDIR1) -I$(INCDIR2) -I$(INCDIR3) -I$(INCDIR4) -I$(INCDIR5) -I.
-CFLAGS= -pedantic -Wunused-variable -fPIC -std=c99
+CXXFLAGS= -pedantic -Wunused-variable -Werror=sign-compare -Wunused-but-set-variable -fPIC -O -I$(INCDIR1) -I$(INCDIR2) -I$(INCDIR3) -I$(INCDIR4) -I$(INCDIR5) -I.
+CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare -Wunused-but-set-variable -fPIC -std=c99
 LIBFLAGS= -L$(LIBDIR)
 UNAME := $(shell uname)
 
