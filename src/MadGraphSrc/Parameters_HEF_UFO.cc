@@ -230,7 +230,45 @@ void Parameters_HEF_UFO::setIndependentCouplings()
 	Spin1_GC_1 = -bg1; 
 	Spin1_GC_2 = -bg2/2.; 
 	Spin1_GC_3 = -bz1; 
-	Spin1_GC_4 = -bz2; 
+	Spin1_GC_4 = -bz2;
+	
+	Unitary_GC_5 = -(ee * complexi)/3.; 
+	Unitary_GC_6 = (2. * ee * complexi)/3.; 
+	Unitary_GC_7 = -(ee * complexi); 
+	Unitary_GC_70 = -(cw * ee * complexi)/(2. * sw); 
+	Unitary_GC_71 = (cw * ee * complexi)/(2. * sw); 
+	Unitary_GC_74 = -(ee * complexi * sw)/(6. * cw); 
+	Unitary_GC_75 = (ee * complexi * sw)/(2. * cw);
+	
+	Unitary_GC_14 = -(complexi * g1g);
+	Unitary_GC_15 = -(complexi * g1z);
+	Unitary_GC_16 = -(complexi * g2g);
+	Unitary_GC_19 = -(complexi * g2z);
+	Unitary_GC_20 = -(complexi * g3g);
+	Unitary_GC_23 = -(complexi * g3z);
+	Unitary_GC_24 = (complexi * g4g)/8.;
+	Unitary_GC_26 = (complexi * g4z)/2.;
+	
+	Unitary_GC_27 = -(complexi * k10g)/2.; 
+	Unitary_GC_28 = -(complexi * k10z)/2.; 
+	Unitary_GC_29 = -(complexi * k1g); 
+	Unitary_GC_32 = -(complexi * k1z); 
+	Unitary_GC_33 = complexi * k2g; 
+	Unitary_GC_36 = complexi * k2z; 
+	Unitary_GC_37 = complexi * k3g; 
+	Unitary_GC_40 = complexi * k3z; 
+	Unitary_GC_41 = -2. * complexi * k4g; 
+	Unitary_GC_44 = -2. * complexi * k4z; 
+	Unitary_GC_45 = complexi * k5g; 
+	Unitary_GC_46 = complexi * k5z; 
+	Unitary_GC_47 = -(complexi * k6g)/2.; 
+	Unitary_GC_48 = -(complexi * k6z)/2.; 
+	Unitary_GC_49 = -(complexi * k7g); 
+	Unitary_GC_50 = -(complexi * k7z); 
+	Unitary_GC_51 = (complexi * k8g)/4.; 
+	Unitary_GC_55 = complexi * k8z; 
+	Unitary_GC_56 = -(complexi * k9g)/2.; 
+	Unitary_GC_57 = -(complexi * k9z)/2.; 
 }
 
 void Parameters_HEF_UFO::setDependentParameters()

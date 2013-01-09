@@ -44,7 +44,12 @@ class Parameters_HEF_UFO
     std::complex<double> GC_109, GC_116, GC_60, GC_61, GC_62, GC_65, GC_66,
         GC_69, GC_70, GC_73, GC_74, GC_77, GC_78, GC_79, GC_80, GC_81, GC_82,
         GC_83, GC_84, GC_88, GC_89, GC_90, GC_1, GC_2, GC_3, GC_11, GC_12, GC_13, GC_16, GC_17, GC_20, GC_21, GC_23, GC_110, GC_115, Spin1_GC_70, Spin1_GC_75,
-		Spin1_GC_1, Spin1_GC_2, Spin1_GC_3, Spin1_GC_4;
+		Spin1_GC_1, Spin1_GC_2, Spin1_GC_3, Spin1_GC_4,
+		Unitary_GC_5, Unitary_GC_6, Unitary_GC_7, Unitary_GC_70, Unitary_GC_71, Unitary_GC_74, Unitary_GC_75,
+		Unitary_GC_14, Unitary_GC_15, Unitary_GC_16, Unitary_GC_19, Unitary_GC_20, Unitary_GC_23, Unitary_GC_24, Unitary_GC_26,
+		Unitary_GC_27, Unitary_GC_28, Unitary_GC_29, Unitary_GC_32, Unitary_GC_33, Unitary_GC_36, Unitary_GC_37, Unitary_GC_40,
+		Unitary_GC_41, Unitary_GC_44, Unitary_GC_45, Unitary_GC_46, Unitary_GC_47, Unitary_GC_48, Unitary_GC_49, Unitary_GC_50,
+		Unitary_GC_51, Unitary_GC_55, Unitary_GC_56, Unitary_GC_57;
     // Model couplings dependent on aS
 
 

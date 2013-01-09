@@ -15,8 +15,8 @@ public:
 	/// Flags
 	bool Boost_To_CM;	// for a boosted data
 	bool Debug_Mode;	// Enable debugging mode
-	bool Force_g3_running;
-	bool Overwrite_e_and_mu_masses;	/// switch for manual m_e, m_mu masses
+// 	bool Force_g3_running;	// unused. At some point was included for alpha_QCD
+	bool Overwrite_e_and_mu_masses;	// switch for manual m_e, m_mu masses
 	bool Use_Higgs_width;	//	if false, width is fixed to =1
 	bool Use_mh_eq_m4l;	// Set mh to m4l for every event
 	bool Use_PDF_w_pT0;	// Use PDFs in the pT=0 frame. If true, Boost_To_CM is ignored
@@ -37,9 +37,9 @@ public:
 	double Muon_mass;	//0.10565837, for enabled overwriting
 	double Proton_mass;	// Always used if needed
 	
-	/// Final-state lepton Information
-	double *pl1, *pl2, *pl3, *pl4;
-	double id1, id2, id3, id4;
+	/// Final-state lepton/photon information
+	double *p1, *p2, *p3, *p4, *p5;
+	double id1, id2, id3, id4, id5;
 	
 	/// String flags and file locations
 	string Final_state;	// Final state, for the moment: 4e, 4mu, 2e2mu
@@ -74,7 +74,7 @@ private:
 	double v_expectation;	// Vacuum expectation value
 	double hZZ_coupling;
 	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2, m_d_temp, m_u_temp, m_s_temp, m_c_temp, m_e_temp, m_mu_temp, m_Z_temp;
-	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal;
+	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
 	
 	string buffer_string;
 	
@@ -83,30 +83,28 @@ private:
 	
 	SLHAReader Set_Of_Model_Parameters;
 	
-	/// Internal functions
+	/// Internal functions ///
 	int Load_Parameters();
 	
 	int Arrange_Internal_pls();
 	
-	int Run_MEKD_MG_MEs_BKG();
-	int Run_MEKD_MG_MEs_BKG_SF();
-	int Run_MEKD_MG_MEs_BKG_OF();
-	int Run_MEKD_MG_MEs_SIG_Spin0();
-	int Run_MEKD_MG_MEs_SIG_Spin0_SF();
-	int Run_MEKD_MG_MEs_SIG_Spin0_OF();
-	int Run_MEKD_MG_MEs_SIG_Spin1();
-	int Run_MEKD_MG_MEs_SIG_Spin1_SF();
-	int Run_MEKD_MG_MEs_SIG_Spin1_OF();
-	int Run_MEKD_MG_MEs_SIG_Spin2();
-	int Run_MEKD_MG_MEs_SIG_Spin2_SF();
-	int Run_MEKD_MG_MEs_SIG_Spin2_OF();
-	
+	/// Sets up particular choices
 	int Run_MEKD_MG_ME_Custom();
 	int Run_MEKD_MG_ME_CPevenScalar();
 	int Run_MEKD_MG_ME_CPoddScalar();
 	int Run_MEKD_MG_ME_SMHiggs();
 	int Run_MEKD_MG_ME_Spin1();
 	int Run_MEKD_MG_ME_Spin2();
+	
+	/// Blind-calculation functions
+	int Run_MEKD_MG_MEs_BKG();
+	int Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin0();
+	int Run_MEKD_MG_MEs_SIG_Spin0_Sub(string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin1();
+	int Run_MEKD_MG_MEs_SIG_Spin1_Sub(string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin2();
+	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string flavor, bool photon);
 };
 
 
