@@ -5,6 +5,9 @@ if [ -f ${ROOTSYS}/bin/root-config ]; then
 	export MEKD_COMPILE_WITH_ROOT=Yes
 fi
 
+echo "User arguments that are being passed to the compiler: " $@
+echo "Compiling..."
+
 #make clean
-make
+make $@
 . setLocalLibrary.sh

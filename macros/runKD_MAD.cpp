@@ -21,6 +21,7 @@
 #include "TTree.h"
 #include "TTreeIndex.h"
 #include "TLorentzVector.h"
+#include "TSystem.h"	// For the workaround for >> "Warning in <TClass::TClass>: no dictionary for class...
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +48,7 @@ void Change_Momentum_Coord_Convention(double*);
 
 int main(int argc,char *argv[])
 {   
+	gSystem->Load("libTree");	// A workaround for >> "Warning in <TClass::TClass>: no dictionary for class ...
     // Parse options
 	char ch;
 	while ((ch = getopt(argc, argv, "f:t:s:x:p:l:?:h")) != -1 )
@@ -169,7 +171,7 @@ void import4IDs(istringstream &data, int &idL1, int &idL2, int &idL3, int &idL4)
 //------------------------------------------------------------------------------------------------------------
 // Import/read lwpton IDs and 4-momenta from the input file
 void readLeptonIDsAnd4Momenta(ifstream &data, int &idL1, int &idL2, int &idL3, int &idL4, double p3in[], double p4in[], double p5in[], double p6in[]) {
-    double p1in[4],p2in[4];
+//     double p1in[4],p2in[4];
     string buff;
     getline(data,buff);
     istringstream iss(buff);
