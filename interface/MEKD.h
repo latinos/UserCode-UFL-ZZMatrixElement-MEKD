@@ -98,7 +98,7 @@ public:
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
-	/// \param[in]  lept1Id								the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
 	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
 	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
 	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
@@ -109,6 +109,22 @@ public:
 					double& kd,											// return KD
 					double& me2processA,								// return |ME|^2 for process A
 					double& me2processB );								// return |ME|^2 for process B
+	
+	
+	///
+	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
+	///
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Graviton2PM" (minimal couplings graviton).
+	///
+	/// \param[in]  processName							name of the process for which the ME is to be computed (string, REQUIRED).
+	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
+	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[out] me2process							the computed |ME|^2 for process of interest (double).
+	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT
+	///
+	int computeME( string processName,
+					vector<double*> input_Ps, vector<int> input_IDs,
+					double& me2process );
 	
 	
 	///
@@ -143,9 +159,10 @@ private:
 	int buffer_int;					// For internal collection of return values
 	double m_collisionEnergy;		// c.m. collision energy sqrt(s) in TeV
 	double ME_ZZ, ME_SMHiggs, ME_CPoddScalar, ME_Spin1, ME_Spin2;	// computeMEs(...) results
-	string m_PDFName;				// name of the parton density functions to be used. Supported: CTEQ6l;
-	string m_processA;				// name of the process A (background, signal hypotheses, etc.) Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
-	string m_processB;				// name of the process B (background, signal hypotheses, etc.) Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
+	string m_PDFName;				// Name of the parton density functions to be used. Supported: CTEQ6l;
+	string m_process;				// Name of the process (background, signal hypotheses, etc.). Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
+	string m_processA;				// Name of the process A (background, signal hypotheses, etc.). Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
+	string m_processB;				// Name of the process B (background, signal hypotheses, etc.). Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
 	bool m_usePDF;					// flag to use PDFs (true) or not (false)
 	bool m_runBackgroundME;			// flat to run the ME for ZZ process (true) or not (false)
 	enum ERRCodes	{NO_ERR, ERR_SQRT, ERR_PDFS, ERR_PROCESS, NUM_ERRORS, ERR_INPUT};
@@ -154,8 +171,9 @@ private:
 	vector<double*> four_particle_Ps_i;		// For the storage of the four four-momenta
 	
 	/// Methods
-	int setProcessNames(string processA, string processB);	// sanity check for input process names, translation to the the names supported by MEKD_MG.h
-	int processParameters();		// sanity check for internal paramters
+	int setProcessName(string process);		// sanity check for input process name, translation to the the names supported by MEKD_MG
+	int setProcessNames(string processA, string processB);	// sanity check for input process names, translation to the the names supported by MEKD_MG
+	int processParameters();				// sanity check for internal paramters
 	
 #if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) || !defined MEKD_STANDALONE
 //------------------------------------------------------------------------
@@ -212,7 +230,7 @@ public:
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (Tstring, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
-	/// \param[in]  lept1Id								the input vector of IDs (PDG) of particles N=1..5 (int, REQUIRED).
+	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (int, REQUIRED).
 	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
 	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
 	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
@@ -223,6 +241,22 @@ public:
 					double& kd,												// return KD
 					double& me2processA,									// return |ME|^2 for process A
 					double& me2processB );									// return |ME|^2 for process B
+	
+	
+	///
+	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
+	///
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Graviton2PM" (minimal couplings graviton).
+	///
+	/// \param[in]  processName							name of the process for which the ME is to be computed (TString, REQUIRED).
+	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
+	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[out] me2process							the computed |ME|^2 for process of interest (double).
+	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT
+	///
+	int computeME( TString processName,
+					vector<TLorentzVector> input_Ps, vector<int> input_IDs,
+					double& me2process );
 	
 	
 	///
