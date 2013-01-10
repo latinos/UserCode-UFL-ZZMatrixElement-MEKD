@@ -29,7 +29,7 @@ MEKD::MEKD(double collisionEnergy, string PDFName)
 	m_collisionEnergy = collisionEnergy;
 	m_PDFName = PDFName;
 	
-	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy*1000;	// translate TeV in GeV
+	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy*1000;	// translate TeV to GeV
 	
 	ME_ZZ = 0;
 	ME_SMHiggs = 0;
@@ -57,6 +57,24 @@ int MEKD::processParameters()
 	
     /// Check if sqrt(s) is 7 or 8 TeV
 	if (m_collisionEnergy!=7 && m_collisionEnergy!=8) cerr << "WARNING! You have set energy to be " << m_collisionEnergy << " TeV\n";
+	
+    return 0;
+}
+
+
+///------------------------------------------------------------------------
+/// MEKD::setProcessName - sanity check and setting of process names
+///------------------------------------------------------------------------
+int MEKD::setProcessName(string process)
+{
+    /// Check if process is supported, translation of namings
+    if     ( process=="ZZ" )                                 {m_process="ZZ"; }
+    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="SMHiggs"; }
+    else if( process=="CP-odd"  || process=="Higgs0M" )     {m_process="CPoddScalar"; }
+    else if( process=="CP-even" || process=="Higgs0P" )     {m_process="CPevenScalar"; }
+    else if( process=="Spin2PM" || process=="Graviton2PM" ) {m_process="Spin2particle"; }
+    else if( process=="Custom" )                             {m_process="Custom"; }
+    else return ERR_PROCESS;
 	
     return 0;
 }
@@ -150,7 +168,7 @@ int MEKD::computeKD( string processA, string processB,
 
 
 ///------------------------------------------------------------------------
-/// MEKD::computeKD - compute KD and MEs for input prcesses A and B
+/// MEKD::computeKD - compute KD and MEs for the input processes A and B
 ///------------------------------------------------------------------------
 int MEKD::computeKD( string processA, string processB,
                      vector<double*> input_Ps, vector<int> input_IDs,
@@ -164,7 +182,7 @@ int MEKD::computeKD( string processA, string processB,
     if( (buffer_int=setProcessNames(processA, processB)) != 0 ) return buffer_int;
     if( (buffer_int=processParameters()) != 0 ) return buffer_int;
 
-	/// Set input-lepton kinematics
+	/// Set input-particle kinematics
 	MEKD_MG_Calc.p1 = input_Ps[0];
 	MEKD_MG_Calc.id1 = input_IDs[0];
 	MEKD_MG_Calc.p2 = input_Ps[1];
@@ -190,6 +208,45 @@ int MEKD::computeKD( string processA, string processB,
     me2processB = MEKD_MG_Calc.Signal_ME;
     /// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
     kd = log(me2processA / me2processB);
+	
+	return buffer_int;
+}
+
+
+///------------------------------------------------------------------------
+/// MEKD::computeME - compute ME for the input process
+///------------------------------------------------------------------------
+int MEKD::computeME( string processName,
+					vector<double*> input_Ps, vector<int> input_IDs,
+					double& me2process )
+{
+	/// Checks input for compatibility
+	if( input_Ps.size() != input_IDs.size() ) return ERR_INPUT;
+	if( input_Ps.size() != 4 && input_Ps.size() != 5 ) return ERR_INPUT;
+	
+    /// Sanity check for input process names and internal parameters
+    if( (buffer_int=setProcessName(processName)) != 0 ) return buffer_int;
+    if( (buffer_int=processParameters()) != 0 ) return buffer_int;
+
+	/// Set input-particle kinematics
+	MEKD_MG_Calc.p1 = input_Ps[0];
+	MEKD_MG_Calc.id1 = input_IDs[0];
+	MEKD_MG_Calc.p2 = input_Ps[1];
+	MEKD_MG_Calc.id2 = input_IDs[1];
+	MEKD_MG_Calc.p3 = input_Ps[2];
+	MEKD_MG_Calc.id3 = input_IDs[2];
+	MEKD_MG_Calc.p4 = input_Ps[3];
+	MEKD_MG_Calc.id4 = input_IDs[3];
+	if( input_IDs.size() == 5 )
+	{
+		MEKD_MG_Calc.p5 = input_Ps[4];
+		MEKD_MG_Calc.id5 = input_IDs[4];
+	}
+	
+	/// Compute ME for the process (e.g. signal 1)
+	buffer_int = MEKD_MG_Calc.Run_MEKD_MG( m_process );
+	/// Get ME for the process
+	me2process = MEKD_MG_Calc.Signal_ME;
 	
 	return buffer_int;
 }
@@ -275,7 +332,7 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 
 
 ///------------------------------------------------------------------------
-/// MEKD::computeKD - compute KD and MEs for input prcesses A and B
+/// MEKD::computeKD - compute KD and MEs for the input processes A and B
 ///------------------------------------------------------------------------
 int MEKD::computeKD( TString processA, TString processB,
                      TLorentzVector lept1P, int lept1Id, TLorentzVector lept2P, int lept2Id,
@@ -314,10 +371,13 @@ int MEKD::computeKD( TString processA, TString processB,
 	four_particle_IDs_i[2] = lept3Id;
 	four_particle_IDs_i[3] = lept4Id;
 	
-	return computeKD( processA.Data(), processB.Data(), four_particle_Ps_i, four_particle_IDs_i, kd, me2processA, me2processB );
+	return computeKD( (string) processA.Data(), (string) processB.Data(), four_particle_Ps_i, four_particle_IDs_i, kd, me2processA, me2processB );
 }
 
 
+///------------------------------------------------------------------------
+/// MEKD::computeKD - compute KD and MEs for the input processes A and B
+///------------------------------------------------------------------------
 int MEKD::computeKD( TString processA, TString processB,
 					vector<TLorentzVector> input_Ps, vector<int> input_IDs,
 					double& kd, double& me2processA, double& me2processB )
@@ -334,7 +394,30 @@ int MEKD::computeKD( TString processA, TString processB,
 		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
 	}
 	
-	return computeKD( processA.Data(), processB.Data(), four_particle_Ps_i, input_IDs, kd, me2processA, me2processB );
+	return computeKD( (string) processA.Data(), (string) processB.Data(), input_Ps_i, input_IDs, kd, me2processA, me2processB );
+}
+
+
+///------------------------------------------------------------------------
+/// MEKD::computeME - compute ME for the input process
+///------------------------------------------------------------------------
+int MEKD::computeME( TString processName,
+					vector<TLorentzVector> input_Ps, vector<int> input_IDs,
+					double& me2process )
+{
+	/// Resize internal vector<double*> if needed
+	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
+	
+	/// Put vector<TLorentzVector> into internal containers
+	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
+	{
+		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
+		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
+		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
+		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
+	}
+	
+	return computeME( (string) processName.Data(), input_Ps_i, input_IDs, me2process );
 }
 
 
@@ -380,6 +463,9 @@ int MEKD::computeMEs( TLorentzVector lept1P, int lept1Id, TLorentzVector lept2P,
 }
 
 
+///------------------------------------------------------------------------
+/// MEKD::computeMEs - compute MEs for a multiple reuse
+///------------------------------------------------------------------------
 int MEKD::computeMEs( vector<TLorentzVector> input_Ps, vector<int> input_IDs )
 {
 	/// Resize internal vector<double*> if needed
@@ -394,7 +480,7 @@ int MEKD::computeMEs( vector<TLorentzVector> input_Ps, vector<int> input_IDs )
 		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
 	}
 	
-	return computeMEs( four_particle_Ps_i, input_IDs );
+	return computeMEs( input_Ps_i, input_IDs );
 }
 
 //////////////////////////////////////////////////////////////////////////
