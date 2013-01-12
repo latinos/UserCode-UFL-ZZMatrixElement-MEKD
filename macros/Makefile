@@ -28,13 +28,20 @@ objects=$(objects1) $(objects2) $(objects3) $(objects4)
 
 targetlib=$(LIBDIR)/libMEKD_MG.so
 target=runKD_MAD
+test=MEKD_test
 
 
+
+test: $(test)
 
 all: $(target)
 
 
 
+
+############################
+### Linux building block ###
+############################
 
 ifeq ($(UNAME), Linux)
 # do something Linux-y
@@ -47,16 +54,28 @@ $(targetlib): $(objects)
 
 ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
 CXXFLAGS+= -D MEKD_with_ROOT -std=c++0x
+
 $(target): $(targetlib)
 	$(CXX) $(CXXFLAGS) `$(ROOTSYS)/bin/root-config --ldflags` -I $(ROOTINCLUDES) $(target).cpp -o $(target) -L. $(LIBFLAGS) -L $(ROOTLIB) `$(ROOTSYS)/bin/root-config --libs --glibs` $(targetlib)
+
+$(test): $(targetlib)
+	$(CXX) $(CXXFLAGS) `$(ROOTSYS)/bin/root-config --ldflags` -I $(ROOTINCLUDES) $(test).cpp -o $(test) -L. $(LIBFLAGS) -L $(ROOTLIB) `$(ROOTSYS)/bin/root-config --libs --glibs` $(targetlib)
 else
 $(target): $(targetlib)
 	$(CXX) $(CXXFLAGS) $(target).cpp -o $(target) -L. $(LIBFLAGS) $(targetlib)
+
+$(test): $(targetlib)
+	$(CXX) $(CXXFLAGS) $(test).cpp -o $(test) -L. $(LIBFLAGS) $(targetlib)
 endif
 
 endif
 
 
+
+
+#############################
+### Mac OS building block ###
+#############################
 
 ifeq ($(UNAME), $(filter $(UNAME),OSX Darwin))
 # do something OSX-y
@@ -71,9 +90,15 @@ ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
 CXXFLAGS+= -D MEKD_with_ROOT -std=c++0x
 $(target): $(targetlib)
 	$(CXX) $(CXXFLAGS) `$(ROOTSYS)/bin/root-config --ldflags` -I $(ROOTINCLUDES) $(target).cpp -o $(target) -L. $(LIBFLAGS) -L $(ROOTLIB) `$(ROOTSYS)/bin/root-config --libs --glibs` $(targetlib)
+
+$(test): $(targetlib)
+	$(CXX) $(CXXFLAGS) `$(ROOTSYS)/bin/root-config --ldflags` -I $(ROOTINCLUDES) $(test).cpp -o $(test) -L. $(LIBFLAGS) -L $(ROOTLIB) `$(ROOTSYS)/bin/root-config --libs --glibs` $(targetlib)
 else
 $(target): $(targetlib)
 	$(CXX) $(CXXFLAGS) $(target).cpp -o $(target) -L. $(LIBFLAGS) $(targetlib)
+
+$(test): $(targetlib)
+	$(CXX) $(CXXFLAGS) $(test).cpp -o $(test) -L. $(LIBFLAGS) $(targetlib)
 endif
 
 endif
@@ -85,4 +110,5 @@ endif
 clean:
 	rm -f $(targetlib); \
 	rm -f $(target); \
+	rm -f $(test); \
 	rm -f $(objects)
