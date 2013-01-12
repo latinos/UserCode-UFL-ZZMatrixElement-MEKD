@@ -383,7 +383,12 @@ int MEKD::computeKD( TString processA, TString processB,
 					double& kd, double& me2processA, double& me2processB )
 {
 	/// Resize internal vector<double*> if needed
-	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
+	if( input_Ps_i.size() != input_Ps.size() )
+	{
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { delete input_Ps_i[buffer_uint]; input_Ps_i[buffer_uint]=NULL; }
+		input_Ps_i.resize( input_Ps.size(), NULL );
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { input_Ps_i[buffer_uint]=new double[4]; }
+	}
 	
 	/// Put vector<TLorentzVector> into internal containers
 	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
@@ -406,7 +411,12 @@ int MEKD::computeME( TString processName,
 					double& me2process )
 {
 	/// Resize internal vector<double*> if needed
-	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
+	if( input_Ps_i.size() != input_Ps.size() )
+	{
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { delete input_Ps_i[buffer_uint]; input_Ps_i[buffer_uint]=NULL; }
+		input_Ps_i.resize( input_Ps.size(), NULL );
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { input_Ps_i[buffer_uint]=new double[4]; }
+	}
 	
 	/// Put vector<TLorentzVector> into internal containers
 	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
@@ -469,7 +479,12 @@ int MEKD::computeMEs( TLorentzVector lept1P, int lept1Id, TLorentzVector lept2P,
 int MEKD::computeMEs( vector<TLorentzVector> input_Ps, vector<int> input_IDs )
 {
 	/// Resize internal vector<double*> if needed
-	if( input_Ps_i.size() != input_Ps.size() ) input_Ps_i.resize( input_Ps.size(), new double[4] );
+	if( input_Ps_i.size() != input_Ps.size() )
+	{
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { delete input_Ps_i[buffer_uint]; input_Ps_i[buffer_uint]=NULL; }
+		input_Ps_i.resize( input_Ps.size(), NULL );
+		for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ ) { input_Ps_i[buffer_uint]=new double[4]; }
+	}
 	
 	/// Put vector<TLorentzVector> into internal containers
 	for( buffer_uint=0; buffer_uint < input_Ps_i.size(); buffer_uint++ )
