@@ -93,6 +93,7 @@ private:
 	int Run_MEKD_MG_ME_CPevenScalar();
 	int Run_MEKD_MG_ME_CPoddScalar();
 	int Run_MEKD_MG_ME_SMHiggs();
+	int Run_MEKD_MG_ME_Spin0PH();
 	int Run_MEKD_MG_ME_Spin1();
 	int Run_MEKD_MG_ME_Spin2();
 	

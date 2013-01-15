@@ -32,7 +32,7 @@ test=MEKD_test
 
 
 
-test: $(test)
+# test: $(test)
 
 all: $(target)
 
