@@ -326,7 +326,7 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 	ME_CPoddScalar = MEKD_MG_Calc.Signal_MEs[2];
 	ME_Spin0PH = MEKD_MG_Calc.Signal_MEs[3];
 // 	ME_Spin1 = MEKD_MG_Calc.Signal_MEs[4];
-	ME_Spin2 = MEKD_MG_Calc.Signal_MEs[5];
+	ME_Spin2 = MEKD_MG_Calc.Signal_MEs[4];
 	
 	return buffer_int;
 }

@@ -441,6 +441,8 @@ int MEKD_MG::Run_MEKD_MG()
 				Run_MEKD_MG_ME_Spin2();
 			if( Test_Models[i]=="5" || Test_Models[i]=="CPevenScalar" || Test_Models[i]=="CP-even" )
 		 		Run_MEKD_MG_ME_CPevenScalar();
+			if( Test_Models[i]=="6" || Test_Models[i]=="0+H" || Test_Models[i]=="Spin0PH" )
+		 		Run_MEKD_MG_ME_Spin0PH();
 				
 			Signal_MEs.push_back( Signal_ME );
 		}
@@ -468,6 +470,9 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="5" || Test_Model=="CPevenScalar" || Test_Model=="CP-even" ||
 			Test_Model=="!5" || Test_Model=="!CPevenScalar" || Test_Model=="!CP-even" )
 	 		Run_MEKD_MG_ME_CPevenScalar();
+		if( Test_Model=="6" || Test_Model=="0+H" || Test_Model=="Spin0PH" ||
+			Test_Model=="!6" || Test_Model=="!0+H" || Test_Model=="!Spin0PH" )
+	 		Run_MEKD_MG_ME_Spin0PH();
 	}
 	
 	
@@ -635,6 +640,47 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar()
 	}
 	
 	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0();
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_Spin0PH()
+{
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+		}
+	}
+	
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 5, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
 	
 	return Run_MEKD_MG_MEs_SIG_Spin0();
