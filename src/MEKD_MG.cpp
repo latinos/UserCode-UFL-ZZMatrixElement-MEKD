@@ -27,20 +27,43 @@
 #include "MadGraphSrc/BKG_UP_OFpA.h"
 #include "MadGraphSrc/BKG_UP_SFpA.h"
 
-#include "MadGraphSrc/Spin0_OF.h"
-#include "MadGraphSrc/Spin0_SF.h"
-#include "MadGraphSrc/Spin0_OFpA.h"
-#include "MadGraphSrc/Spin0_SFpA.h"
+#include "MadGraphSrc/Spin0_gg_OF.h"
+#include "MadGraphSrc/Spin0_gg_SF.h"
+#include "MadGraphSrc/Spin0_gg_OFpA.h"
+#include "MadGraphSrc/Spin0_gg_SFpA.h"
 
-#include "MadGraphSrc/Spin1_OF.h"
-#include "MadGraphSrc/Spin1_SF.h"
-// #include "MadGraphSrc/Spin1_OFpA.h"
-// #include "MadGraphSrc/Spin1_SFpA.h"
+#include "MadGraphSrc/Spin0_qq_DN_OF.h"
+#include "MadGraphSrc/Spin0_qq_DN_SF.h"
+#include "MadGraphSrc/Spin0_qq_UP_OF.h"
+#include "MadGraphSrc/Spin0_qq_UP_SF.h"
+#include "MadGraphSrc/Spin0_qq_DN_OFpA.h"
+#include "MadGraphSrc/Spin0_qq_DN_SFpA.h"
+#include "MadGraphSrc/Spin0_qq_UP_OFpA.h"
+#include "MadGraphSrc/Spin0_qq_UP_SFpA.h"
 
-#include "MadGraphSrc/Spin2_OF.h"
-#include "MadGraphSrc/Spin2_SF.h"
-#include "MadGraphSrc/Spin2_OFpA.h"
-#include "MadGraphSrc/Spin2_SFpA.h"
+#include "MadGraphSrc/Spin1_DN_OF.h"
+#include "MadGraphSrc/Spin1_DN_SF.h"
+#include "MadGraphSrc/Spin1_UP_OF.h"
+#include "MadGraphSrc/Spin1_UP_SF.h"
+#include "MadGraphSrc/Spin1_DN_OFpA.h"
+#include "MadGraphSrc/Spin1_DN_SFpA.h"
+#include "MadGraphSrc/Spin1_UP_OFpA.h"
+#include "MadGraphSrc/Spin1_UP_SFpA.h"
+
+#include "MadGraphSrc/Spin2_gg_OF.h"
+#include "MadGraphSrc/Spin2_gg_SF.h"
+#include "MadGraphSrc/Spin2_gg_OFpA.h"
+#include "MadGraphSrc/Spin2_gg_SFpA.h"
+
+#include "MadGraphSrc/Spin2_qq_DN_OF.h"
+#include "MadGraphSrc/Spin2_qq_DN_SF.h"
+#include "MadGraphSrc/Spin2_qq_UP_OF.h"
+#include "MadGraphSrc/Spin2_qq_UP_SF.h"
+#include "MadGraphSrc/Spin2_qq_DN_OFpA.h"
+#include "MadGraphSrc/Spin2_qq_DN_SFpA.h"
+#include "MadGraphSrc/Spin2_qq_UP_OFpA.h"
+#include "MadGraphSrc/Spin2_qq_UP_SFpA.h"
+
 
 
 
@@ -76,24 +99,42 @@ BKG_DN_SFpA ME_Background_DownType_SFpA;
 BKG_UP_OFpA ME_Background_UpType_OFpA;
 BKG_UP_SFpA ME_Background_UpType_SFpA;
 
-Spin0_OF ME_Signal_Spin0_OF;
-Spin0_SF ME_Signal_Spin0_SF;
-Spin0_OFpA ME_Signal_Spin0_OFpA;
-Spin0_SFpA ME_Signal_Spin0_SFpA;
+Spin0_gg_OF ME_Signal_Spin0_gg_OF;
+Spin0_gg_SF ME_Signal_Spin0_gg_SF;
+Spin0_gg_OFpA ME_Signal_Spin0_gg_OFpA;
+Spin0_gg_SFpA ME_Signal_Spin0_gg_SFpA;
 
-Spin1_OF ME_Signal_Spin1_OF;
-Spin1_SF ME_Signal_Spin1_SF;
-// Spin1_OFpA ME_Signal_Spin1_OFpA;
-// Spin1_SFpA ME_Signal_Spin1_SFpA;
-/// TEMP
-Spin1_OF ME_Signal_Spin1_OFpA;
-Spin1_SF ME_Signal_Spin1_SFpA;
-/// End of TEMP
+Spin0_qq_DN_OF ME_Signal_Spin0_qq_DownType_OF;
+Spin0_qq_DN_SF ME_Signal_Spin0_qq_DownType_SF;
+Spin0_qq_UP_OF ME_Signal_Spin0_qq_UpType_OF;
+Spin0_qq_UP_SF ME_Signal_Spin0_qq_UpType_SF;
+Spin0_qq_DN_OFpA ME_Signal_Spin0_qq_DownType_OFpA;
+Spin0_qq_DN_SFpA ME_Signal_Spin0_qq_DownType_SFpA;
+Spin0_qq_UP_OFpA ME_Signal_Spin0_qq_UpType_OFpA;
+Spin0_qq_UP_SFpA ME_Signal_Spin0_qq_UpType_SFpA;
 
-Spin2_OF ME_Signal_Spin2_OF;
-Spin2_SF ME_Signal_Spin2_SF;
-Spin2_OFpA ME_Signal_Spin2_OFpA;
-Spin2_SFpA ME_Signal_Spin2_SFpA;
+Spin1_DN_OF ME_Signal_Spin1_DownType_OF;
+Spin1_DN_SF ME_Signal_Spin1_DownType_SF;
+Spin1_UP_OF ME_Signal_Spin1_UpType_OF;
+Spin1_UP_SF ME_Signal_Spin1_UpType_SF;
+Spin1_DN_OFpA ME_Signal_Spin1_DownType_OFpA;
+Spin1_DN_SFpA ME_Signal_Spin1_DownType_SFpA;
+Spin1_UP_OFpA ME_Signal_Spin1_UpType_OFpA;
+Spin1_UP_SFpA ME_Signal_Spin1_UpType_SFpA;
+
+Spin2_gg_OF ME_Signal_Spin2_gg_OF;
+Spin2_gg_SF ME_Signal_Spin2_gg_SF;
+Spin2_gg_OFpA ME_Signal_Spin2_gg_OFpA;
+Spin2_gg_SFpA ME_Signal_Spin2_gg_SFpA;
+
+Spin2_qq_DN_OF ME_Signal_Spin2_qq_DownType_OF;
+Spin2_qq_DN_SF ME_Signal_Spin2_qq_DownType_SF;
+Spin2_qq_UP_OF ME_Signal_Spin2_qq_UpType_OF;
+Spin2_qq_UP_SF ME_Signal_Spin2_qq_UpType_SF;
+Spin2_qq_DN_OFpA ME_Signal_Spin2_qq_DownType_OFpA;
+Spin2_qq_DN_SFpA ME_Signal_Spin2_qq_DownType_SFpA;
+Spin2_qq_UP_OFpA ME_Signal_Spin2_qq_UpType_OFpA;
+Spin2_qq_UP_SFpA ME_Signal_Spin2_qq_UpType_SFpA;
 
 
 
@@ -107,25 +148,47 @@ MEKD_MG::MEKD_MG()
 	if( ME_Background_DownType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Background_UpType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Background_UpType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	
-	if( ME_Signal_Spin0_OF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin0_SF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin1_OF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin1_SF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin2_OF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin2_SF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	
 	if( ME_Background_DownType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Background_DownType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Background_UpType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	if( ME_Background_UpType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	
-	if( ME_Signal_Spin0_OFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin0_SFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin1_OFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin1_SFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin2_OFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
-	if( ME_Signal_Spin2_SFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_gg_OF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_gg_SF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_gg_OFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_gg_SFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	
+	if( ME_Signal_Spin0_qq_DownType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_DownType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_UpType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_UpType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_DownType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_DownType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_UpType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin0_qq_UpType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	
+	if( ME_Signal_Spin1_DownType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_DownType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_UpType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_UpType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_DownType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_DownType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_UpType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin1_UpType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	
+	if( ME_Signal_Spin2_gg_OF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_gg_SF.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_gg_OFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_gg_SFpA.nprocesses!=1 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	
+	if( ME_Signal_Spin2_qq_DownType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_DownType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_UpType_OF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_UpType_SF.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_DownType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_DownType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_UpType_OFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
+	if( ME_Signal_Spin2_qq_UpType_SFpA.nprocesses!=2 ) { cerr << "Problem in ME class detected. Exiting.\n"; exit(1); }
 	
 	p_set.push_back( new double[4] );
 	p_set.push_back( new double[4] );
@@ -183,36 +246,112 @@ int MEKD_MG::Load_Parameters()
 	ME_Background_UpType_OF.initProc( Parameter_file );
 	ME_Background_DownType_SF.initProc( Parameter_file );
 	ME_Background_DownType_OF.initProc( Parameter_file );
-	
-	ME_Signal_Spin0_SF.initProc( Parameter_file );
-	ME_Signal_Spin0_OF.initProc( Parameter_file );
-	ME_Signal_Spin1_SF.initProc( Parameter_file );
-	ME_Signal_Spin1_OF.initProc( Parameter_file );
-	ME_Signal_Spin2_SF.initProc( Parameter_file );
-	ME_Signal_Spin2_OF.initProc( Parameter_file );
-	
 	ME_Background_UpType_SFpA.initProc( Parameter_file );
 	ME_Background_UpType_OFpA.initProc( Parameter_file );
 	ME_Background_DownType_SFpA.initProc( Parameter_file );
 	ME_Background_DownType_OFpA.initProc( Parameter_file );
 	
-	ME_Signal_Spin0_SFpA.initProc( Parameter_file );
-	ME_Signal_Spin0_OFpA.initProc( Parameter_file );
-	ME_Signal_Spin1_SFpA.initProc( Parameter_file );
-	ME_Signal_Spin1_OFpA.initProc( Parameter_file );
-	ME_Signal_Spin2_SFpA.initProc( Parameter_file );
-	ME_Signal_Spin2_OFpA.initProc( Parameter_file );
+	ME_Signal_Spin0_gg_SF.initProc( Parameter_file );
+	ME_Signal_Spin0_gg_OF.initProc( Parameter_file );
+	ME_Signal_Spin0_gg_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin0_gg_OFpA.initProc( Parameter_file );
 	
-	m_d_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
-	m_u_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
-	m_s_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
-	m_c_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
-	m_e_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
-	m_mu_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	ME_Signal_Spin0_qq_DownType_SF.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_DownType_OF.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_UpType_SF.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_UpType_OF.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_DownType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_DownType_OFpA.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_UpType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin0_qq_UpType_OFpA.initProc( Parameter_file );
+	
+	ME_Signal_Spin1_DownType_SF.initProc( Parameter_file );
+	ME_Signal_Spin1_DownType_OF.initProc( Parameter_file );
+	ME_Signal_Spin1_UpType_SF.initProc( Parameter_file );
+	ME_Signal_Spin1_UpType_OF.initProc( Parameter_file );
+	ME_Signal_Spin1_DownType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin1_DownType_OFpA.initProc( Parameter_file );
+	ME_Signal_Spin1_UpType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin1_UpType_OFpA.initProc( Parameter_file );
+	
+	ME_Signal_Spin2_gg_SF.initProc( Parameter_file );
+	ME_Signal_Spin2_gg_OF.initProc( Parameter_file );
+	ME_Signal_Spin2_gg_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin2_gg_OFpA.initProc( Parameter_file );
+	
+	ME_Signal_Spin2_qq_DownType_SF.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_DownType_OF.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_UpType_SF.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_UpType_OF.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_DownType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_DownType_OFpA.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_UpType_SFpA.initProc( Parameter_file );
+	ME_Signal_Spin2_qq_UpType_OFpA.initProc( Parameter_file );
+	
+	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
+	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
+	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
+	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
+	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
+	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
+	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	
+	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "heff", 9, 0 );
+	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "heff", 10, 0 );
+	params_rhoc11 = Set_Of_Model_Parameters.get_block_entry( "heff", 11, 0 );
+	params_rhoc12 = Set_Of_Model_Parameters.get_block_entry( "heff", 12, 0 );
+	params_rhod11 = Set_Of_Model_Parameters.get_block_entry( "heff", 13, 0 );
+	params_rhod12 = Set_Of_Model_Parameters.get_block_entry( "heff", 14, 0 );
+	params_rhos11 = Set_Of_Model_Parameters.get_block_entry( "heff", 15, 0 );
+	params_rhos12 = Set_Of_Model_Parameters.get_block_entry( "heff", 16, 0 );
+	params_rhob11 = Set_Of_Model_Parameters.get_block_entry( "heff", 17, 0 );
+	params_rhob12 = Set_Of_Model_Parameters.get_block_entry( "heff", 18, 0 );
+	
+	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "vec", 3, 0 );
+	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "vec", 4, 0 );
+	params_rhou13 = Set_Of_Model_Parameters.get_block_entry( "vec", 5, 0 );
+	params_rhou14 = Set_Of_Model_Parameters.get_block_entry( "vec", 6, 0 );
+	params_rhoc11 = Set_Of_Model_Parameters.get_block_entry( "vec", 7, 0 );
+	params_rhoc12 = Set_Of_Model_Parameters.get_block_entry( "vec", 8, 0 );
+	params_rhoc13 = Set_Of_Model_Parameters.get_block_entry( "vec", 9, 0 );
+	params_rhoc14 = Set_Of_Model_Parameters.get_block_entry( "vec", 10, 0 );
+	params_rhod11 = Set_Of_Model_Parameters.get_block_entry( "vec", 11, 0 );
+	params_rhod12 = Set_Of_Model_Parameters.get_block_entry( "vec", 12, 0 );
+	params_rhod13 = Set_Of_Model_Parameters.get_block_entry( "vec", 13, 0 );
+	params_rhod14 = Set_Of_Model_Parameters.get_block_entry( "vec", 14, 0 );
+	params_rhos11 = Set_Of_Model_Parameters.get_block_entry( "vec", 15, 0 );
+	params_rhos12 = Set_Of_Model_Parameters.get_block_entry( "vec", 16, 0 );
+	params_rhos13 = Set_Of_Model_Parameters.get_block_entry( "vec", 17, 0 );
+	params_rhos14 = Set_Of_Model_Parameters.get_block_entry( "vec", 18, 0 );
+	params_rhob11 = Set_Of_Model_Parameters.get_block_entry( "vec", 19, 0 );
+	params_rhob12 = Set_Of_Model_Parameters.get_block_entry( "vec", 20, 0 );
+	params_rhob13 = Set_Of_Model_Parameters.get_block_entry( "vec", 21, 0 );
+	params_rhob14 = Set_Of_Model_Parameters.get_block_entry( "vec", 22, 0 );
+	
+	params_rhou21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 21, 0 );
+	params_rhou22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 22, 0 );
+	params_rhou23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 23, 0 );
+	params_rhou24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 24, 0 );
+	params_rhoc21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 25, 0 );
+	params_rhoc22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 26, 0 );
+	params_rhoc23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 27, 0 );
+	params_rhoc24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 28, 0 );
+	params_rhod21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 29, 0 );
+	params_rhod22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 30, 0 );
+	params_rhod23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 31, 0 );
+	params_rhod24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 32, 0 );
+	params_rhos21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 33, 0 );
+	params_rhos22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 34, 0 );
+	params_rhos23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 35, 0 );
+	params_rhos24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 36, 0 );
+	params_rhob21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 37, 0 );
+	params_rhob22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 38, 0 );
+	params_rhob23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 39, 0 );
+	params_rhob24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 40, 0 );
+	
 	
 	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
-	hZZ_coupling = 2*m_Z_temp*m_Z_temp/v_expectation;
+	hZZ_coupling = 2*params_m_Z*params_m_Z/v_expectation;
 	
 	
 	Load_pdfreader( const_cast<char*>(PDF_file.c_str()) );
@@ -229,16 +368,69 @@ int MEKD_MG::Reload_Parameters()
 	
 	Set_Of_Model_Parameters.read_slha_file( static_cast<string>(Parameter_file) );
 	
-	m_d_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
-	m_u_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
-	m_s_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
-	m_c_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
-	m_e_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
-	m_mu_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	m_Z_temp = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
+	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
+	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
+	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
+	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
+	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
+	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	
+	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "vec", 3, 0 );
+	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "vec", 4, 0 );
+	params_rhou13 = Set_Of_Model_Parameters.get_block_entry( "vec", 5, 0 );
+	params_rhou14 = Set_Of_Model_Parameters.get_block_entry( "vec", 6, 0 );
+	params_rhoc11 = Set_Of_Model_Parameters.get_block_entry( "vec", 7, 0 );
+	params_rhoc12 = Set_Of_Model_Parameters.get_block_entry( "vec", 8, 0 );
+	params_rhoc13 = Set_Of_Model_Parameters.get_block_entry( "vec", 9, 0 );
+	params_rhoc14 = Set_Of_Model_Parameters.get_block_entry( "vec", 10, 0 );
+	params_rhod11 = Set_Of_Model_Parameters.get_block_entry( "vec", 11, 0 );
+	params_rhod12 = Set_Of_Model_Parameters.get_block_entry( "vec", 12, 0 );
+	params_rhod13 = Set_Of_Model_Parameters.get_block_entry( "vec", 13, 0 );
+	params_rhod14 = Set_Of_Model_Parameters.get_block_entry( "vec", 14, 0 );
+	params_rhos11 = Set_Of_Model_Parameters.get_block_entry( "vec", 15, 0 );
+	params_rhos12 = Set_Of_Model_Parameters.get_block_entry( "vec", 16, 0 );
+	params_rhos13 = Set_Of_Model_Parameters.get_block_entry( "vec", 17, 0 );
+	params_rhos14 = Set_Of_Model_Parameters.get_block_entry( "vec", 18, 0 );
+	params_rhob11 = Set_Of_Model_Parameters.get_block_entry( "vec", 19, 0 );
+	params_rhob12 = Set_Of_Model_Parameters.get_block_entry( "vec", 20, 0 );
+	params_rhob13 = Set_Of_Model_Parameters.get_block_entry( "vec", 21, 0 );
+	params_rhob14 = Set_Of_Model_Parameters.get_block_entry( "vec", 22, 0 );
+	
+	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "heff", 9, 0 );
+	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "heff", 10, 0 );
+	params_rhoc11 = Set_Of_Model_Parameters.get_block_entry( "heff", 11, 0 );
+	params_rhoc12 = Set_Of_Model_Parameters.get_block_entry( "heff", 12, 0 );
+	params_rhod11 = Set_Of_Model_Parameters.get_block_entry( "heff", 13, 0 );
+	params_rhod12 = Set_Of_Model_Parameters.get_block_entry( "heff", 14, 0 );
+	params_rhos11 = Set_Of_Model_Parameters.get_block_entry( "heff", 15, 0 );
+	params_rhos12 = Set_Of_Model_Parameters.get_block_entry( "heff", 16, 0 );
+	params_rhob11 = Set_Of_Model_Parameters.get_block_entry( "heff", 17, 0 );
+	params_rhob12 = Set_Of_Model_Parameters.get_block_entry( "heff", 18, 0 );
+	
+	params_rhou21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 21, 0 );
+	params_rhou22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 22, 0 );
+	params_rhou23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 23, 0 );
+	params_rhou24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 24, 0 );
+	params_rhoc21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 25, 0 );
+	params_rhoc22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 26, 0 );
+	params_rhoc23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 27, 0 );
+	params_rhoc24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 28, 0 );
+	params_rhod21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 29, 0 );
+	params_rhod22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 30, 0 );
+	params_rhod23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 31, 0 );
+	params_rhod24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 32, 0 );
+	params_rhos21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 33, 0 );
+	params_rhos22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 34, 0 );
+	params_rhos23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 35, 0 );
+	params_rhos24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 36, 0 );
+	params_rhob21 = Set_Of_Model_Parameters.get_block_entry( "gravity", 37, 0 );
+	params_rhob22 = Set_Of_Model_Parameters.get_block_entry( "gravity", 38, 0 );
+	params_rhob23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 39, 0 );
+	params_rhob24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 40, 0 );
 	
 	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
-	hZZ_coupling = 2*m_Z_temp*m_Z_temp/v_expectation;
+	hZZ_coupling = 2*params_m_Z*params_m_Z/v_expectation;
 	
 	
 	Unload_pdfreader();
@@ -307,8 +499,8 @@ int MEKD_MG::Run_MEKD_MG()
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 11, Electron_mass );
 		Set_Of_Model_Parameters.set_block_entry( "mass", 13, Muon_mass );
-		m_e_temp = Electron_mass;
-		m_mu_temp = Muon_mass;
+		params_m_e = Electron_mass;
+		params_m_mu = Muon_mass;
 	}
 	
 	if( Final_state == "4e" || Final_state == "4eA" )
@@ -431,18 +623,22 @@ int MEKD_MG::Run_MEKD_MG()
 				{ Run_MEKD_MG_MEs_BKG(); Signal_ME=Background_ME; }
 			if( Test_Models[i]=="0" || Test_Models[i]=="Custom" )
 				Run_MEKD_MG_ME_Custom();
-			if( Test_Models[i]=="1" || Test_Models[i]=="SMHiggs" || Test_Models[i]=="Higgs" )
-				Run_MEKD_MG_ME_SMHiggs();
-			if( Test_Models[i]=="2" || Test_Models[i]=="CPoddScalar" || Test_Models[i]=="CP-odd" )
-				Run_MEKD_MG_ME_CPoddScalar();
-			if( Test_Models[i]=="3" || Test_Models[i]=="Spin1particle" )
-		 		Run_MEKD_MG_ME_Spin1();
-			if( Test_Models[i]=="4" || Test_Models[i]=="Spin2particle" )
-				Run_MEKD_MG_ME_Spin2();
-			if( Test_Models[i]=="5" || Test_Models[i]=="CPevenScalar" || Test_Models[i]=="CP-even" )
+			if( Test_Models[i]=="1" || Test_Models[i]=="SMHiggs" || Test_Models[i]=="Higgs" || Test_Models[i]=="Spin0SMH" || Test_Model=="ggSpin0SMH" )
+				Run_MEKD_MG_ME_ggSMHiggs();
+			if( Test_Models[i]=="2" || Test_Models[i]=="CPoddScalar" || Test_Models[i]=="CP-odd" || Test_Models[i]=="Spin0M" || Test_Models[i]=="ggSpin0M" )
+				Run_MEKD_MG_ME_ggSpin0M();
+			if( Test_Models[i]=="3" || Test_Models[i]=="Spin0PH" || Test_Models[i]=="Spin0Ph" || Test_Models[i]=="ggSpin0Ph" )
+		 		Run_MEKD_MG_ME_ggSpin0Ph();
+			if( Test_Models[i]=="4" || Test_Models[i]=="Spin1particle" || Test_Models[i]=="Spin1P" )
+		 		Run_MEKD_MG_ME_Spin1P();
+			if( Test_Models[i]=="5" || Test_Models[i]=="Spin1M" )
+		 		Run_MEKD_MG_ME_Spin1M();
+			if( Test_Models[i]=="6" || Test_Models[i]=="Spin2particle" || Test_Models[i]=="Spin2Pm" || Test_Models[i]=="ggSpin2Pm" )
+				Run_MEKD_MG_ME_ggSpin2Pm();
+			if( Test_Models[i]=="7" || Test_Models[i]=="qqSpin2Pm" )
+				Run_MEKD_MG_ME_qqSpin2Pm();
+			if( Test_Models[i]=="8" || Test_Models[i]=="CPevenScalar" || Test_Models[i]=="CP-even" )
 		 		Run_MEKD_MG_ME_CPevenScalar();
-			if( Test_Models[i]=="6" || Test_Models[i]=="0+H" || Test_Models[i]=="Spin0PH" )
-		 		Run_MEKD_MG_ME_Spin0PH();
 				
 			Signal_MEs.push_back( Signal_ME );
 		}
@@ -455,24 +651,30 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="0" || Test_Model=="Custom" ||
 			Test_Model=="!0" || Test_Model=="!Custom" )
 			Run_MEKD_MG_ME_Custom();
-		if( Test_Model=="1" || Test_Model=="SMHiggs" || Test_Model=="Higgs" ||
-			Test_Model=="!1" || Test_Model=="!SMHiggs" || Test_Model=="!Higgs" )
-			Run_MEKD_MG_ME_SMHiggs();
-		if( Test_Model=="2" || Test_Model=="CPoddScalar" || Test_Model=="CP-odd" ||
-			Test_Model=="!2" || Test_Model=="!CPoddScalar" || Test_Model=="!CP-odd" )
-			Run_MEKD_MG_ME_CPoddScalar();
-		if( Test_Model=="3" || Test_Model=="Spin1particle" ||
-			Test_Model=="!3" || Test_Model=="!Spin1particle" )
-	 		Run_MEKD_MG_ME_Spin1();
-		if( Test_Model=="4" || Test_Model=="Spin2particle" ||
-			Test_Model=="!4" || Test_Model=="!Spin2particle" )
-			Run_MEKD_MG_ME_Spin2();
-		if( Test_Model=="5" || Test_Model=="CPevenScalar" || Test_Model=="CP-even" ||
-			Test_Model=="!5" || Test_Model=="!CPevenScalar" || Test_Model=="!CP-even" )
+		if( Test_Model=="1" || Test_Model=="SMHiggs" || Test_Model=="Higgs" || Test_Model=="Spin0SMH" || Test_Model=="ggSpin0SMH" ||
+			Test_Model=="!1" || Test_Model=="!SMHiggs" || Test_Model=="!Higgs" || Test_Model=="!Spin0SMH" || Test_Model=="!ggSpin0SMH" )
+			Run_MEKD_MG_ME_ggSMHiggs();
+		if( Test_Model=="2" || Test_Model=="CPoddScalar" || Test_Model=="CP-odd" || Test_Model=="Spin0M" || Test_Model=="ggSpin0M" ||
+			Test_Model=="!2" || Test_Model=="!CPoddScalar" || Test_Model=="!CP-odd" || Test_Model=="!Spin0M" || Test_Model=="!ggSpin0M" )
+			Run_MEKD_MG_ME_ggSpin0M();
+		if( Test_Model=="3" || Test_Model=="Spin0PH" || Test_Model=="Spin0Ph" || Test_Model=="ggSpin0Ph" ||
+			Test_Model=="!3" || Test_Model=="!Spin0PH" || Test_Model=="!Spin0Ph" || Test_Model=="!ggSpin0Ph" )
+	 		Run_MEKD_MG_ME_ggSpin0Ph();
+		if( Test_Model=="4" || Test_Model=="Spin1particle" || Test_Model=="Spin1P" ||
+			Test_Model=="!4" || Test_Model=="!Spin1particle" || Test_Model=="!Spin1P" )
+	 		Run_MEKD_MG_ME_Spin1P();
+		if( Test_Model=="5" || Test_Model=="Spin1M" ||
+			Test_Model=="!5" || Test_Model=="!Spin1M" )
+	 		Run_MEKD_MG_ME_Spin1M();
+		if( Test_Model=="6" || Test_Model=="Spin2particle" || Test_Model=="Spin2Pm" || Test_Model=="ggSpin2Pm" ||
+			Test_Model=="!6" || Test_Model=="!Spin2particle" || Test_Model=="!Spin2Pm" || Test_Model=="!ggSpin2Pm" )
+			Run_MEKD_MG_ME_ggSpin2Pm();
+		if( Test_Model=="7" || Test_Model=="qqSpin2Pm" ||
+			Test_Model=="!7" || Test_Model=="!qqSpin2Pm" )
+				Run_MEKD_MG_ME_qqSpin2Pm();
+		if( Test_Model=="8" || Test_Model=="CPevenScalar" || Test_Model=="CP-even" ||
+			Test_Model=="!8" || Test_Model=="!CPevenScalar" || Test_Model=="!CP-even" )
 	 		Run_MEKD_MG_ME_CPevenScalar();
-		if( Test_Model=="6" || Test_Model=="0+H" || Test_Model=="Spin0PH" ||
-			Test_Model=="!6" || Test_Model=="!0+H" || Test_Model=="!Spin0PH" )
-	 		Run_MEKD_MG_ME_Spin0PH();
 	}
 	
 	
@@ -510,9 +712,13 @@ int MEKD_MG::Run_MEKD_MG(string Input_Model)
 
 int MEKD_MG::Run_MEKD_MG_ME_Custom()
 {
-	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin0())!=0 ) return error_value;
+	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin0( "gg" ))!=0 ) return error_value;
 	buffer_Custom = Signal_ME;
-	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin2())!=0 ) return error_value;
+	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin1())!=0 ) return error_value;
+	buffer_Custom += Signal_ME;
+	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin2( "gg" ))!=0 ) return error_value;
+	buffer_Custom += Signal_ME;
+	if( (error_value=Run_MEKD_MG_MEs_SIG_Spin2( "qq" ))!=0 ) return error_value;
 	Signal_ME += buffer_Custom;
 	
 	return 0;
@@ -520,7 +726,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Custom()
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_SMHiggs()
+int MEKD_MG::Run_MEKD_MG_ME_ggSMHiggs()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -556,12 +762,23 @@ int MEKD_MG::Run_MEKD_MG_ME_SMHiggs()
 	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
 	
-	return Run_MEKD_MG_MEs_SIG_Spin0();
+	params_rhou01 = 0;
+	params_rhou02 = 0;
+	params_rhoc01 = 0;
+	params_rhoc02 = 0;
+	params_rhod01 = 0;
+	params_rhod02 = 0;
+	params_rhos01 = 0;
+	params_rhos02 = 0;
+	params_rhob01 = 0;
+	params_rhob02 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( "gg" );
 }
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_CPoddScalar()
+int MEKD_MG::Run_MEKD_MG_ME_ggSpin0M()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -573,7 +790,7 @@ int MEKD_MG::Run_MEKD_MG_ME_CPoddScalar()
 		if( Vary_signal_couplings )
 		{
 			Set_Of_Model_Parameters.set_block_entry( "heff", 4, 4*LmbdGG(Mass_4l)*sqrt(3) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
 		}
 	}
 	else
@@ -586,7 +803,7 @@ int MEKD_MG::Run_MEKD_MG_ME_CPoddScalar()
 		if( Vary_signal_couplings )
 		{
 			Set_Of_Model_Parameters.set_block_entry( "heff", 4, 4*LmbdGG(Higgs_mass)*sqrt(3) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
 		}
 	}
 	
@@ -597,7 +814,18 @@ int MEKD_MG::Run_MEKD_MG_ME_CPoddScalar()
 	Set_Of_Model_Parameters.set_block_entry( "heff", 6, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
 	
-	return Run_MEKD_MG_MEs_SIG_Spin0();
+	params_rhou01 = 0;
+	params_rhou02 = 0;
+	params_rhoc01 = 0;
+	params_rhoc02 = 0;
+	params_rhod01 = 0;
+	params_rhod02 = 0;
+	params_rhos01 = 0;
+	params_rhos02 = 0;
+	params_rhob01 = 0;
+	params_rhob02 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( "gg" );
 }
 
 
@@ -617,8 +845,8 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar()
 			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l) );
 			Set_Of_Model_Parameters.set_block_entry( "heff", 3, 4*LmbdGG(Mass_4l)/Mass_4l/Mass_4l/Mass_4l/Mass_4l );
 			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/m_Z_temp/m_Z_temp/m_Z_temp/m_Z_temp);
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z);
 		}
 	}
 	else
@@ -634,20 +862,31 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar()
 			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass) );
 			Set_Of_Model_Parameters.set_block_entry( "heff", 3, 4*LmbdGG(Higgs_mass)/Higgs_mass/Higgs_mass );
 			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/m_Z_temp/m_Z_temp/m_Z_temp/m_Z_temp );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z );
 		}
 	}
 	
 	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
 	
-	return Run_MEKD_MG_MEs_SIG_Spin0();
+	params_rhou01 = 0;
+	params_rhou02 = 0;
+	params_rhoc01 = 0;
+	params_rhoc02 = 0;
+	params_rhod01 = 0;
+	params_rhod02 = 0;
+	params_rhos01 = 0;
+	params_rhos02 = 0;
+	params_rhob01 = 0;
+	params_rhob02 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( "gg" );
 }
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_Spin0PH()
+int MEKD_MG::Run_MEKD_MG_ME_ggSpin0Ph()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -659,7 +898,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0PH()
 		if( Vary_signal_couplings )
 		{
 			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l)*sqrt(3) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
 		}
 	}
 	else
@@ -672,7 +911,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0PH()
 		if( Vary_signal_couplings )
 		{
 			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass)*sqrt(3) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/m_Z_temp/m_Z_temp*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
 		}
 	}
 	
@@ -683,12 +922,23 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0PH()
 	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
 	
-	return Run_MEKD_MG_MEs_SIG_Spin0();
+	params_rhou01 = 0;
+	params_rhou02 = 0;
+	params_rhoc01 = 0;
+	params_rhoc02 = 0;
+	params_rhod01 = 0;
+	params_rhod02 = 0;
+	params_rhos01 = 0;
+	params_rhos02 = 0;
+	params_rhob01 = 0;
+	params_rhob02 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( "gg" );
 }
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_Spin1()
+int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -699,8 +949,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1()
 		
 		if( Vary_signal_couplings )
 		{
-			Set_Of_Model_Parameters.set_block_entry( "chern", 1, Mass_4l*Mass_4l*Mass_4l*LmbdGG(Mass_4l) );
-			Set_Of_Model_Parameters.set_block_entry( "chern", 3, Mass_4l*Mass_4l*0.5*hZZ_coupling );
+			params_rhod11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhos11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhob11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhou11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhoc11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z*sqrt(10) );
 		}
 	}
 	else
@@ -712,20 +966,95 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1()
 		
 		if( Vary_signal_couplings )
 		{
-			Set_Of_Model_Parameters.set_block_entry( "chern", 1, Higgs_mass*Higgs_mass*Higgs_mass*LmbdGG(Higgs_mass) );
-			Set_Of_Model_Parameters.set_block_entry( "chern", 3, Higgs_mass*Higgs_mass*0.5*hZZ_coupling );
+			params_rhod11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhos11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhob11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhou11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhoc11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z*sqrt(10) );
 		}
 	}
 	
-	Set_Of_Model_Parameters.set_block_entry( "chern", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "chern", 4, 0 );
+	params_rhod12 = 0;
+	params_rhod13 = 0;
+	params_rhod14 = 0;
+	params_rhos12 = 0;
+	params_rhos13 = 0;
+	params_rhos14 = 0;
+	params_rhob12 = 0;
+	params_rhob13 = 0;
+	params_rhob14 = 0;
+	params_rhou12 = 0;
+	params_rhou13 = 0;
+	params_rhou14 = 0;
+	params_rhoc12 = 0;
+	params_rhoc13 = 0;
+	params_rhoc14 = 0;
 	
 	return Run_MEKD_MG_MEs_SIG_Spin1();
 }
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_Spin2()
+int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
+{
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			params_rhod12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhos12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhob12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhou12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			params_rhoc12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z*sqrt(10) );
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			params_rhod12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhos12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhob12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhou12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			params_rhoc12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z*sqrt(10) );
+		}
+	}
+	
+	params_rhod11 = 0;
+	params_rhod13 = 0;
+	params_rhod14 = 0;
+	params_rhos11 = 0;
+	params_rhos13 = 0;
+	params_rhos14 = 0;
+	params_rhob11 = 0;
+	params_rhob13 = 0;
+	params_rhob14 = 0;
+	params_rhou11 = 0;
+	params_rhou13 = 0;
+	params_rhou14 = 0;
+	params_rhoc11 = 0;
+	params_rhoc13 = 0;
+	params_rhoc14 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin1();
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_ggSpin2Pm()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -761,18 +1090,117 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2()
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/sqrt(2)/m_Z_temp/m_Z_temp );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z );	// to match model: sqrt(2) -> 2 but numbers will go too low
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/sqrt(2) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/sqrt(2) );	// to match model: sqrt(2) -> 2 but numbers will go too low
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
 	
-	return Run_MEKD_MG_MEs_SIG_Spin2();
+	params_rhod21 = 0;
+	params_rhod22 = 0;
+	params_rhod23 = 0;
+	params_rhod24 = 0;
+	params_rhos21 = 0;
+	params_rhos22 = 0;
+	params_rhos23 = 0;
+	params_rhos24 = 0;
+	params_rhos21 = 0;
+	params_rhob22 = 0;
+	params_rhob23 = 0;
+	params_rhob24 = 0;
+	params_rhos21 = 0;
+	params_rhou22 = 0;
+	params_rhou23 = 0;
+	params_rhou24 = 0;
+	params_rhos21 = 0;
+	params_rhoc22 = 0;
+	params_rhoc23 = 0;
+	params_rhoc24 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin2( "gg" );
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_qqSpin2Pm()
+{
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			params_rhod21 = LmbdGG(Mass_4l)*sqrt(10);
+			params_rhos21 = LmbdGG(Mass_4l)*sqrt(10);
+			params_rhob21 = LmbdGG(Mass_4l)*sqrt(10);
+			params_rhou21 = LmbdGG(Mass_4l)*sqrt(10);
+			params_rhoc21 = LmbdGG(Mass_4l)*sqrt(10);
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+		}
+	}
+	
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/2/params_m_Z/params_m_Z*sqrt(10) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/2*sqrt(10) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
+	
+// 	params_rhod21 = 0;
+	params_rhod22 = 0;
+	params_rhod23 = 0;
+	params_rhod24 = 0;
+// 	params_rhos21 = 0;
+	params_rhos22 = 0;
+	params_rhos23 = 0;
+	params_rhos24 = 0;
+// 	params_rhos21 = 0;
+	params_rhob22 = 0;
+	params_rhob23 = 0;
+	params_rhob24 = 0;
+// 	params_rhos21 = 0;
+	params_rhou22 = 0;
+	params_rhou23 = 0;
+	params_rhou24 = 0;
+// 	params_rhos21 = 0;
+	params_rhoc22 = 0;
+	params_rhoc23 = 0;
+	params_rhoc24 = 0;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin2( "qq" );
 }
 
 
@@ -782,7 +1210,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG()
 	if( Final_state=="4e" || Final_state=="4eA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_e_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_e );
 		
 		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_BKG_Sub( "SF", true );
 		return Run_MEKD_MG_MEs_BKG_Sub( "SF", false );
@@ -791,8 +1219,8 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG()
 	if( Final_state=="2e2m" || Final_state=="2e2mu" || Final_state=="2e2mA" || Final_state=="2e2muA" )
 	{
 		/// Common mass for the opposite-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 11, m_e_temp );
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 11, params_m_e );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
 		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_BKG_Sub( "OF", true );
 		return Run_MEKD_MG_MEs_BKG_Sub( "OF", false );
@@ -801,7 +1229,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG()
 	if( Final_state=="4m" || Final_state=="4mu" || Final_state=="4mA" || Final_state=="4muA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
 		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_BKG_Sub( "SF", true );
 		return Run_MEKD_MG_MEs_BKG_Sub( "SF", false );
@@ -812,34 +1240,34 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG()
 
 
 
-int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0()
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0(string initial_state)
 {
 	if( Final_state=="4e" || Final_state=="4eA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_e_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_e );
 		
-		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "SF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "SF", false );
+		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "SF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "SF", false );
 	}
 	
 	if( Final_state=="2e2m" || Final_state=="2e2mu" || Final_state=="2e2mA" || Final_state=="2e2muA" )
 	{
 		/// Common mass for the opposite-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 11, m_e_temp );
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 11, params_m_e );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
-		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "OF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "OF", false );
+		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "OF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "OF", false );
 	}
 	
 	if( Final_state=="4m" || Final_state=="4mu" || Final_state=="4mA" || Final_state=="4muA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
-		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "SF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( "SF", false );
+		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "SF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin0_Sub( initial_state, "SF", false );
 	}
 	
 	return 1;
@@ -852,7 +1280,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1()
 	if( Final_state=="4e" || Final_state=="4eA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_e_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_e );
 		
 		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "SF", true );
 		return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "SF", false );
@@ -861,8 +1289,8 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1()
 	if( Final_state=="2e2m" || Final_state=="2e2mu" || Final_state=="2e2mA" || Final_state=="2e2muA" )
 	{
 		/// Common mass for the opposite-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 11, m_e_temp );
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 11, params_m_e );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
 		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "OF", true );
 		return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "OF", false );
@@ -871,7 +1299,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1()
 	if( Final_state=="4m" || Final_state=="4mu" || Final_state=="4mA" || Final_state=="4muA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
 		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "SF", true );
 		return Run_MEKD_MG_MEs_SIG_Spin1_Sub( "SF", false );
@@ -882,34 +1310,34 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1()
 
 
 
-int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2()
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2(string initial_state)
 {
 	if( Final_state=="4e" || Final_state=="4eA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_e_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_e );
 		
-		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "SF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "SF", false );
+		if( Final_state=="4eA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "SF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "SF", false );
 	}
 	
 	if( Final_state=="2e2m" || Final_state=="2e2mu" || Final_state=="2e2mA" || Final_state=="2e2muA" )
 	{
 		/// Common mass for the opposite-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 11, m_e_temp );
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 11, params_m_e );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
-		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "OF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "OF", false );
+		if( Final_state=="2e2mA" || Final_state=="2e2muA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "OF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "OF", false );
 	}
 	
 	if( Final_state=="4m" || Final_state=="4mu" || Final_state=="4mA" || Final_state=="4muA" )
 	{
 		/// Common mass for the same-flavor leptons
-		Set_Of_Model_Parameters.set_block_entry( "mass", 13, m_mu_temp );
+		Set_Of_Model_Parameters.set_block_entry( "mass", 13, params_m_mu );
 		
-		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "SF", true );
-		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( "SF", false );
+		if( Final_state=="4mA" || Final_state=="4muA" ) return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "SF", true );
+		return Run_MEKD_MG_MEs_SIG_Spin2_Sub( initial_state, "SF", false );
 	}
 	
 	return 1;
@@ -920,9 +1348,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2()
 int MEKD_MG::Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon)
 {
 	/// Down quark block
-	Set_Of_Model_Parameters.set_block_entry( "mass", 3, m_d_temp );
-	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - m_d_temp*m_d_temp );
-	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - m_d_temp*m_d_temp );
+	Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_d );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_d*params_m_d );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_d*params_m_d );
 	
 	if( flavor == "SF" && !photon )
 	{
@@ -964,9 +1392,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon)
 	
 	
 	/// Strange quark block
-	Set_Of_Model_Parameters.set_block_entry( "mass", 3, m_s_temp );
-	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - m_s_temp*m_s_temp );
-	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - m_s_temp*m_s_temp );
+	Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_s );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_s*params_m_s );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_s*params_m_s );
 	
 	if( flavor == "SF" && !photon )
 	{
@@ -1008,9 +1436,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon)
 	
 	
 	/// Up quark block
-	Set_Of_Model_Parameters.set_block_entry( "mass", 4, m_u_temp );
-	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - m_u_temp*m_u_temp );
-	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - m_u_temp*m_u_temp );
+	Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_u );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_u*params_m_u );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_u*params_m_u );
 	
 	if( flavor == "SF" && !photon )
 	{
@@ -1052,9 +1480,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon)
 	
 	
 	/// Charm quark block
-	Set_Of_Model_Parameters.set_block_entry( "mass", 4, m_c_temp );
-	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - m_c_temp*m_c_temp );
-	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - m_c_temp*m_c_temp );
+	Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_c );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_c*params_m_c );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_c*params_m_c );
 	
 	if( flavor == "SF" && !photon )
 	{
@@ -1099,42 +1527,231 @@ int MEKD_MG::Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon)
 
 
 
-int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_Sub(string flavor, bool photon)
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, bool photon)
 {
-	/// Signal block
-	p_set[0][3] = p_set[0][0];
-	p_set[1][3] = -p_set[1][0];
+	if( initial_state=="gg" )
+	{
+		/// gg block
+		p_set[0][3] = p_set[0][0];
+		p_set[1][3] = -p_set[1][0];
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin0_gg_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_gg_SF.setMomenta( p_set );
+			ME_Signal_Spin0_gg_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_gg_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin0_gg_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_gg_OF.setMomenta( p_set );
+			ME_Signal_Spin0_gg_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_gg_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin0_gg_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_gg_SFpA.setMomenta( p_set );
+			ME_Signal_Spin0_gg_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_gg_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin0_gg_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_gg_OFpA.setMomenta( p_set );
+			ME_Signal_Spin0_gg_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_gg_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
+		else Signal_ME = buffer[0];
+	}
 	
-	if( flavor == "SF" && !photon )
+	
+	if( initial_state=="qq" )
 	{
-		ME_Signal_Spin0_SF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin0_SF.setMomenta( p_set );
-		ME_Signal_Spin0_SF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin0_SF.getMatrixElements() );
+		/// Down quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_d );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 15, params_rhod01 );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 16, params_rhod02 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_d*params_m_d );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_d*params_m_d );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin0_qq_DownType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_SF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin0_qq_DownType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_OF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin0_qq_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin0_qq_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_d = pdfreader( 1, PDFx1, Mass_4l )*pdfreader( -1, PDFx2, Mass_4l );
+			Signal_ME = ContributionCoeff_d*buffer[0];
+			ContributionCoeff_d = pdfreader( -1, PDFx1, Mass_4l )*pdfreader( 1, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_d*buffer[1];
+		}
+		else Signal_ME = ContributionCoeff_d*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Strange quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_s );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 15, params_rhos01 );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 16, params_rhos02 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_s*params_m_s );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_s*params_m_s );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin0_qq_DownType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_SF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin0_qq_DownType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_OF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin0_qq_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin0_qq_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_DownType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_DownType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_DownType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_s= pdfreader( 3, PDFx1, Mass_4l )*pdfreader( -3, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_s*buffer[0];
+			ContributionCoeff_s = pdfreader( -3, PDFx1, Mass_4l )*pdfreader( 3, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_s*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_s*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Up quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_u );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 11, params_rhou01 );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 12, params_rhou02 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_u*params_m_u );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_u*params_m_u );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin0_qq_UpType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_SF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin0_qq_UpType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_OF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin0_qq_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin0_qq_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_u = pdfreader( 2, PDFx1, Mass_4l )*pdfreader( -2, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_u*buffer[0];
+			ContributionCoeff_u = pdfreader( -2, PDFx1, Mass_4l )*pdfreader( 2, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_u*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_u*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Charm quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_c );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 11, params_rhoc01 );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 12, params_rhoc02 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_c*params_m_c );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_c*params_m_c );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin0_qq_UpType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_SF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin0_qq_UpType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_OF.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin0_qq_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin0_qq_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin0_qq_UpType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin0_qq_UpType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin0_qq_UpType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_c = pdfreader( 4, PDFx1, Mass_4l )*pdfreader( -4, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_c*buffer[0];
+			ContributionCoeff_c = pdfreader( -4, PDFx1, Mass_4l )*pdfreader( 4, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_c*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_c*(buffer[0]+buffer[1]);
 	}
-	if( flavor == "OF" && !photon )
-	{
-		ME_Signal_Spin0_OF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin0_OF.setMomenta( p_set );
-		ME_Signal_Spin0_OF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin0_OF.getMatrixElements() );
-	}
-	if( flavor == "SF" && photon )
-	{
-		ME_Signal_Spin0_SFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin0_SFpA.setMomenta( p_set );
-		ME_Signal_Spin0_SFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin0_SFpA.getMatrixElements() );
-	}
-	if( flavor == "OF" && photon )
-	{
-		ME_Signal_Spin0_OFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin0_OFpA.setMomenta( p_set );
-		ME_Signal_Spin0_OFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin0_OFpA.getMatrixElements() );
-	}
-	if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
-	else Signal_ME = buffer[0];
 	
 	
 	return 0;
@@ -1144,40 +1761,195 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_Sub(string flavor, bool photon)
 
 int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_Sub(string flavor, bool photon)
 {
-	/// Signal block
-	p_set[0][3] = p_set[0][0];
-	p_set[1][3] = -p_set[1][0];
+	/// Down quark block
+	Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_d );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 15, params_rhod11 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 16, params_rhod12 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 17, params_rhod13 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 18, params_rhod14 );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_d*params_m_d );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_d*params_m_d );
 	
 	if( flavor == "SF" && !photon )
 	{
-		ME_Signal_Spin1_SF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin1_SF.setMomenta( p_set );
-		ME_Signal_Spin1_SF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin1_SF.getMatrixElements() );
+		ME_Signal_Spin1_DownType_SF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_SF.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_SF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_SF.getMatrixElements() );
 	}
 	if( flavor == "OF" && !photon )
 	{
-		ME_Signal_Spin1_OF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin1_OF.setMomenta( p_set );
-		ME_Signal_Spin1_OF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin1_OF.getMatrixElements() );
+		ME_Signal_Spin1_DownType_OF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_OF.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_OF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_OF.getMatrixElements() );
 	}
 	if( flavor == "SF" && photon )
 	{
-		ME_Signal_Spin1_SFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin1_SFpA.setMomenta( p_set );
-		ME_Signal_Spin1_SFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin1_SFpA.getMatrixElements() );
+		ME_Signal_Spin1_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_SFpA.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_SFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_SFpA.getMatrixElements() );
 	}
 	if( flavor == "OF" && photon )
 	{
-		ME_Signal_Spin1_OFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin1_OFpA.setMomenta( p_set );
-		ME_Signal_Spin1_OFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin1_OFpA.getMatrixElements() );
+		ME_Signal_Spin1_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_OFpA.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_OFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_OFpA.getMatrixElements() );
 	}
-	if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
-	else Signal_ME = buffer[0];
+	if( Use_PDF_w_pT0 )
+	{
+		ContributionCoeff_d = pdfreader( 1, PDFx1, Mass_4l )*pdfreader( -1, PDFx2, Mass_4l );
+		Signal_ME = ContributionCoeff_d*buffer[0];
+		ContributionCoeff_d = pdfreader( -1, PDFx1, Mass_4l )*pdfreader( 1, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_d*buffer[1];
+	}
+	else Signal_ME = ContributionCoeff_d*(buffer[0]+buffer[1]);
+	
+	
+	
+	/// Strange quark block
+	Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_s );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 15, params_rhos11 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 16, params_rhos12 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 17, params_rhos13 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 18, params_rhos14 );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_s*params_m_s );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_s*params_m_s );
+	
+	if( flavor == "SF" && !photon )
+	{
+		ME_Signal_Spin1_DownType_SF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_SF.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_SF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_SF.getMatrixElements() );
+	}
+	if( flavor == "OF" && !photon )
+	{
+		ME_Signal_Spin1_DownType_OF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_OF.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_OF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_OF.getMatrixElements() );
+	}
+	if( flavor == "SF" && photon )
+	{
+		ME_Signal_Spin1_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_SFpA.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_SFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_SFpA.getMatrixElements() );
+	}
+	if( flavor == "OF" && photon )
+	{
+		ME_Signal_Spin1_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_DownType_OFpA.setMomenta( p_set );
+		ME_Signal_Spin1_DownType_OFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_DownType_OFpA.getMatrixElements() );
+	}
+	if( Use_PDF_w_pT0 )
+	{
+		ContributionCoeff_s= pdfreader( 3, PDFx1, Mass_4l )*pdfreader( -3, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_s*buffer[0];
+		ContributionCoeff_s = pdfreader( -3, PDFx1, Mass_4l )*pdfreader( 3, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_s*buffer[1];
+	}
+	else Signal_ME += ContributionCoeff_s*(buffer[0]+buffer[1]);
+	
+	
+	
+	/// Up quark block
+	Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_u );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 7, params_rhou11 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 8, params_rhou12 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 9, params_rhou13 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 10, params_rhou14 );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_u*params_m_u );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_u*params_m_u );
+	
+	if( flavor == "SF" && !photon )
+	{
+		ME_Signal_Spin1_UpType_SF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_SF.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_SF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_SF.getMatrixElements() );
+	}
+	if( flavor == "OF" && !photon )
+	{
+		ME_Signal_Spin1_UpType_OF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_OF.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_OF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_OF.getMatrixElements() );
+	}
+	if( flavor == "SF" && photon )
+	{
+		ME_Signal_Spin1_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_SFpA.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_SFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_SFpA.getMatrixElements() );
+	}
+	if( flavor == "OF" && photon )
+	{
+		ME_Signal_Spin1_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_OFpA.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_OFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_OFpA.getMatrixElements() );
+	}
+	if( Use_PDF_w_pT0 )
+	{
+		ContributionCoeff_u = pdfreader( 2, PDFx1, Mass_4l )*pdfreader( -2, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_u*buffer[0];
+		ContributionCoeff_u = pdfreader( -2, PDFx1, Mass_4l )*pdfreader( 2, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_u*buffer[1];
+	}
+	else Signal_ME += ContributionCoeff_u*(buffer[0]+buffer[1]);
+	
+	
+	
+	/// Charm quark block
+	Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_c );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 7, params_rhoc11 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 8, params_rhoc12 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 9, params_rhoc13 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 10, params_rhoc14 );
+	p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_c*params_m_c );
+	p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_c*params_m_c );
+	
+	if( flavor == "SF" && !photon )
+	{
+		ME_Signal_Spin1_UpType_SF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_SF.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_SF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_SF.getMatrixElements() );
+	}
+	if( flavor == "OF" && !photon )
+	{
+		ME_Signal_Spin1_UpType_OF.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_OF.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_OF.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_OF.getMatrixElements() );
+	}
+	if( flavor == "SF" && photon )
+	{
+		ME_Signal_Spin1_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_SFpA.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_SFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_SFpA.getMatrixElements() );
+	}
+	if( flavor == "OF" && photon )
+	{
+		ME_Signal_Spin1_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+		ME_Signal_Spin1_UpType_OFpA.setMomenta( p_set );
+		ME_Signal_Spin1_UpType_OFpA.sigmaKin();
+		buffer = const_cast<double*>( ME_Signal_Spin1_UpType_OFpA.getMatrixElements() );
+	}
+	if( Use_PDF_w_pT0 )
+	{
+		ContributionCoeff_c = pdfreader( 4, PDFx1, Mass_4l )*pdfreader( -4, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_c*buffer[0];
+		ContributionCoeff_c = pdfreader( -4, PDFx1, Mass_4l )*pdfreader( 4, PDFx2, Mass_4l );
+		Signal_ME += ContributionCoeff_c*buffer[1];
+	}
+	else Signal_ME += ContributionCoeff_c*(buffer[0]+buffer[1]);
 	
 	
 	return 0;
@@ -1185,42 +1957,239 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_Sub(string flavor, bool photon)
 
 
 
-int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_Sub(string flavor, bool photon)
+int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, bool photon)
 {
-	/// Signal block
-	p_set[0][3] = p_set[0][0];
-	p_set[1][3] = -p_set[1][0];
+	if( initial_state=="gg" )
+	{
+		/// gg block
+		p_set[0][3] = p_set[0][0];
+		p_set[1][3] = -p_set[1][0];
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin2_gg_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_gg_SF.setMomenta( p_set );
+			ME_Signal_Spin2_gg_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_gg_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin2_gg_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_gg_OF.setMomenta( p_set );
+			ME_Signal_Spin2_gg_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_gg_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin2_gg_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_gg_SFpA.setMomenta( p_set );
+			ME_Signal_Spin2_gg_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_gg_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin2_gg_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_gg_OFpA.setMomenta( p_set );
+			ME_Signal_Spin2_gg_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_gg_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
+		else Signal_ME = buffer[0];
+	}
 	
-	if( flavor == "SF" && !photon )
+	
+	if( initial_state=="qq" )
 	{
-		ME_Signal_Spin2_SF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin2_SF.setMomenta( p_set );
-		ME_Signal_Spin2_SF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin2_SF.getMatrixElements() );
+		/// Down quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_d );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 33, params_rhod21 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 34, params_rhod22 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 35, params_rhod23 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 36, params_rhod24 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_d*params_m_d );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_d*params_m_d );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin2_qq_DownType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_SF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin2_qq_DownType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_OF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin2_qq_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin2_qq_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_d = pdfreader( 1, PDFx1, Mass_4l )*pdfreader( -1, PDFx2, Mass_4l );
+			Signal_ME = ContributionCoeff_d*buffer[0];
+			ContributionCoeff_d = pdfreader( -1, PDFx1, Mass_4l )*pdfreader( 1, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_d*buffer[1];
+		}
+		else Signal_ME = ContributionCoeff_d*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Strange quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 3, params_m_s );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 33, params_rhos21 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 34, params_rhos22 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 35, params_rhos23 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 36, params_rhos24 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_s*params_m_s );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_s*params_m_s );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin2_qq_DownType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_SF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin2_qq_DownType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_OF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin2_qq_DownType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin2_qq_DownType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_DownType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_DownType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_DownType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_s= pdfreader( 3, PDFx1, Mass_4l )*pdfreader( -3, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_s*buffer[0];
+			ContributionCoeff_s = pdfreader( -3, PDFx1, Mass_4l )*pdfreader( 3, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_s*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_s*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Up quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_u );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 25, params_rhou21 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 26, params_rhou22 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 27, params_rhou23 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 28, params_rhou24 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_u*params_m_u );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_u*params_m_u );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin2_qq_UpType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_SF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin2_qq_UpType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_OF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin2_qq_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin2_qq_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_u = pdfreader( 2, PDFx1, Mass_4l )*pdfreader( -2, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_u*buffer[0];
+			ContributionCoeff_u = pdfreader( -2, PDFx1, Mass_4l )*pdfreader( 2, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_u*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_u*(buffer[0]+buffer[1]);
+		
+		
+		
+		/// Charm quark block
+		Set_Of_Model_Parameters.set_block_entry( "mass", 4, params_m_c );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 25, params_rhoc21 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 26, params_rhoc22 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 27, params_rhoc23 );
+		Set_Of_Model_Parameters.set_block_entry( "gravity", 28, params_rhoc24 );
+		p_set[0][3] = sqrt( p_set[0][0]*p_set[0][0] - params_m_c*params_m_c );
+		p_set[1][3] = -sqrt( p_set[1][0]*p_set[1][0] - params_m_c*params_m_c );
+		
+		if( flavor == "SF" && !photon )
+		{
+			ME_Signal_Spin2_qq_UpType_SF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_SF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_SF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_SF.getMatrixElements() );
+		}
+		if( flavor == "OF" && !photon )
+		{
+			ME_Signal_Spin2_qq_UpType_OF.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_OF.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_OF.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_OF.getMatrixElements() );
+		}
+		if( flavor == "SF" && photon )
+		{
+			ME_Signal_Spin2_qq_UpType_SFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_SFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_SFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_SFpA.getMatrixElements() );
+		}
+		if( flavor == "OF" && photon )
+		{
+			ME_Signal_Spin2_qq_UpType_OFpA.updateProc( Set_Of_Model_Parameters );
+			ME_Signal_Spin2_qq_UpType_OFpA.setMomenta( p_set );
+			ME_Signal_Spin2_qq_UpType_OFpA.sigmaKin();
+			buffer = const_cast<double*>( ME_Signal_Spin2_qq_UpType_OFpA.getMatrixElements() );
+		}
+		if( Use_PDF_w_pT0 )
+		{
+			ContributionCoeff_c = pdfreader( 4, PDFx1, Mass_4l )*pdfreader( -4, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_c*buffer[0];
+			ContributionCoeff_c = pdfreader( -4, PDFx1, Mass_4l )*pdfreader( 4, PDFx2, Mass_4l );
+			Signal_ME += ContributionCoeff_c*buffer[1];
+		}
+		else Signal_ME += ContributionCoeff_c*(buffer[0]+buffer[1]);	
 	}
-	if( flavor == "OF" && !photon )
-	{
-		ME_Signal_Spin2_OF.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin2_OF.setMomenta( p_set );
-		ME_Signal_Spin2_OF.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin2_OF.getMatrixElements() );
-	}
-	if( flavor == "SF" && photon )
-	{
-		ME_Signal_Spin2_SFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin2_SFpA.setMomenta( p_set );
-		ME_Signal_Spin2_SFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin2_SFpA.getMatrixElements() );
-	}
-	if( flavor == "OF" && photon )
-	{
-		ME_Signal_Spin2_OFpA.updateProc( Set_Of_Model_Parameters );
-		ME_Signal_Spin2_OFpA.setMomenta( p_set );
-		ME_Signal_Spin2_OFpA.sigmaKin();
-		buffer = const_cast<double*>( ME_Signal_Spin2_OFpA.getMatrixElements() );
-	}
-	if( Use_PDF_w_pT0 ) { Signal_ME = pdfreader( 21, PDFx1, Mass_4l )*pdfreader( 21, PDFx2, Mass_4l )*buffer[0]; }
-	else Signal_ME = buffer[0];
 	
 	
 	return 0;

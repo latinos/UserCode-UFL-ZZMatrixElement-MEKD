@@ -5,13 +5,13 @@
 // Please visit us at https://launchpad.net/madgraph5
 //==========================================================================
 
-#ifndef MG5_Sigma_HEF_UFO_ccx_emepmummup_H
-#define MG5_Sigma_HEF_UFO_ccx_emepmummup_H
+#ifndef MG5_Sigma_HEF_MEKD_ccx_emepmummup_H
+#define MG5_Sigma_HEF_MEKD_ccx_emepmummup_H
 
 #include <complex> 
 #include <vector> 
 
-#include "Parameters_HEF_UFO.h"
+#include "Parameters_HEF_MEKD.h"
 #include "read_slha.h"
 
 using namespace std; 
@@ -41,7 +41,7 @@ class BKG_UP_OF
     virtual double sigmaHat(); 
 
     // Info on the subprocess.
-    virtual string name() const {return "c c~ > e- e+ mu- mu+ (HEF_UFO)";}
+    virtual string name() const {return "c c~ > e- e+ mu- mu+ (HEF_MEKD)";}
 
     virtual int code() const {return 0;}
 
@@ -78,7 +78,7 @@ class BKG_UP_OF
     double * jamp2[nprocesses]; 
 
     // Pointer to the model parameters
-    Parameters_HEF_UFO * pars; 
+    Parameters_HEF_MEKD * pars; 
 
     // vector with external particle masses
     vector<double> mME; 
@@ -91,4 +91,4 @@ class BKG_UP_OF
 }; 
 
 
-#endif  // MG5_Sigma_HEF_UFO_ccx_emepmummup_H
+#endif  // MG5_Sigma_HEF_MEKD_ccx_emepmummup_H

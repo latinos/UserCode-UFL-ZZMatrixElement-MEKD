@@ -71,10 +71,27 @@ private:
 	
 	int error_value;
 	
+	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
+	
+	// Parameters
 	double v_expectation;	// Vacuum expectation value
 	double hZZ_coupling;
-	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2, m_d_temp, m_u_temp, m_s_temp, m_c_temp, m_e_temp, m_mu_temp, m_Z_temp;
-	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
+	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e, params_m_mu, params_m_Z;
+	double params_rhou01, params_rhou02, params_rhoc01, params_rhoc02,
+		params_rhod01, params_rhod02, params_rhos01, params_rhos02,
+		params_rhob01, params_rhob02;
+	double params_rhou11, params_rhou12, params_rhou13, params_rhou14,
+		params_rhoc11, params_rhoc12, params_rhoc13, params_rhoc14,
+		params_rhod11, params_rhod12, params_rhod13, params_rhod14,
+		params_rhos11, params_rhos12, params_rhos13, params_rhos14,
+		params_rhob11, params_rhob12, params_rhob13, params_rhob14;
+	double params_rhou21, params_rhou22, params_rhou23, params_rhou24,
+		params_rhoc21, params_rhoc22, params_rhoc23, params_rhoc24,
+		params_rhod21, params_rhod22, params_rhod23, params_rhod24,
+		params_rhos21, params_rhos22, params_rhos23, params_rhos24,
+		params_rhob21, params_rhob22, params_rhob23, params_rhob24;
+	
 	
 	string buffer_string;
 	
@@ -91,21 +108,23 @@ private:
 	/// Sets up particular choices
 	int Run_MEKD_MG_ME_Custom();
 	int Run_MEKD_MG_ME_CPevenScalar();
-	int Run_MEKD_MG_ME_CPoddScalar();
-	int Run_MEKD_MG_ME_SMHiggs();
-	int Run_MEKD_MG_ME_Spin0PH();
-	int Run_MEKD_MG_ME_Spin1();
-	int Run_MEKD_MG_ME_Spin2();
+	int Run_MEKD_MG_ME_ggSMHiggs();
+	int Run_MEKD_MG_ME_ggSpin0M();
+	int Run_MEKD_MG_ME_ggSpin0Ph();
+	int Run_MEKD_MG_ME_Spin1P();
+	int Run_MEKD_MG_ME_Spin1M();
+	int Run_MEKD_MG_ME_ggSpin2Pm();
+	int Run_MEKD_MG_ME_qqSpin2Pm();
 	
 	/// Blind-calculation functions
 	int Run_MEKD_MG_MEs_BKG();
 	int Run_MEKD_MG_MEs_BKG_Sub(string flavor, bool photon);
-	int Run_MEKD_MG_MEs_SIG_Spin0();
-	int Run_MEKD_MG_MEs_SIG_Spin0_Sub(string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin0(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, bool photon);
 	int Run_MEKD_MG_MEs_SIG_Spin1();
 	int Run_MEKD_MG_MEs_SIG_Spin1_Sub(string flavor, bool photon);
-	int Run_MEKD_MG_MEs_SIG_Spin2();
-	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin2(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, bool photon);
 };
 
 

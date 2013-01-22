@@ -11,7 +11,7 @@
 #include <complex> 
 #include <vector> 
 
-#include "Parameters_HEF_UFO.h"
+#include "Parameters_HEF_MEKD.h"
 #include "read_slha.h"
 
 using namespace std; 
@@ -78,7 +78,7 @@ class BKG_UP_SFpA
     double * jamp2[nprocesses]; 
 
     // Pointer to the model parameters
-    Parameters_HEF_UFO * pars; 
+    Parameters_HEF_MEKD * pars; 
 
     // vector with external particle masses
     vector<double> mME; 
