@@ -32,10 +32,13 @@ MEKD::MEKD(double collisionEnergy, string PDFName)
 	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy*1000;	// translate TeV to GeV
 	
 	ME_ZZ = 0;
-	ME_SMHiggs = 0;
-	ME_CPoddScalar = 0;
-	ME_Spin1 = 0;
-	ME_Spin2 = 0;
+	ME_Spin0PSMH = 0;
+	ME_Spin0Ph = 0;
+	ME_Spin0M = 0;
+	ME_Spin1P = 0;
+	ME_Spin1M = 0;
+	ME_ggSpin2Pm = 0;
+	ME_qqSpin2Pm = 0;
 	
 	four_particle_IDs_i.resize( 4, 0 );
 	four_particle_Ps_i.resize( 4, NULL );
@@ -69,11 +72,15 @@ int MEKD::setProcessName(string process)
 {
     /// Check if process is supported, translation of namings
     if     ( process=="ZZ" )                                 {m_process="ZZ"; }
-    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="SMHiggs"; }
-    else if( process=="CP-odd"  || process=="Higgs0M" )     {m_process="CPoddScalar"; }
+    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="Spin0PSMH"; }
+    else if( process=="CP-odd"  || process=="Higgs0M" )     {m_process="Spin0M"; }
     else if( process=="CP-even" || process=="Higgs0P" )     {m_process="CPevenScalar"; }
-    else if( process=="Spin0PH" )							{m_process="Spin0PH";}
-    else if( process=="Spin2PM" || process=="Graviton2PM" ) {m_process="Spin2particle"; }
+    else if( process=="Spin0PH" || process=="Spin0Ph" )		{m_process="Spin0Ph";}
+    else if( process=="Spin1P" )							{m_process="Spin1P";}
+    else if( process=="Spin1M" )							{m_process="Spin1M";}
+    else if( process=="Spin2PM" || process=="Graviton2PM" ) {m_process="ggSpin2Pm"; }
+    else if( process=="qqSpin2PM" || process=="qqGraviton2PM"
+		|| process=="qqSpin2Pm" )							{m_process="qqSpin2Pm"; }
     else if( process=="Custom" )                             {m_process="Custom"; }
     else return ERR_PROCESS;
 	
@@ -89,20 +96,28 @@ int MEKD::setProcessNames(string processA, string processB) {
     if( processA == processB ) return ERR_PROCESS;
     /// check if processA is supported, translation of namings
     if     ( processA=="ZZ")                                 {m_processA="ZZ";}
-    else if( processA=="Higgs"   || processA=="SMHiggs")     {m_processA="SMHiggs";}
-    else if( processA=="CP-odd"  || processA=="Higgs0M")     {m_processA="CPoddScalar";}
+    else if( processA=="Higgs"   || processA=="SMHiggs")     {m_processA="Spin0PSMH";}
+    else if( processA=="CP-odd"  || processA=="Higgs0M")     {m_processA="Spin0M";}
     else if( processA=="CP-even" || processA=="Higgs0P")     {m_processA="CPevenScalar";}
-    else if( processA=="Spin0PH" )							{m_processA="Spin0PH";}
-    else if( processA=="Spin2PM" || processA=="Graviton2PM") {m_processA="Spin2particle";}
+    else if( processA=="Spin0PH" || processA=="Spin0Ph" )	{m_processA="Spin0Ph";}
+    else if( processA=="Spin1P" )							{m_processA="Spin1P";}
+    else if( processA=="Spin1M" )							{m_processA="Spin1M";}
+    else if( processA=="Spin2PM" || processA=="Graviton2PM") {m_processA="ggSpin2Pm";}
+    else if( processA=="qqSpin2PM" || processA=="qqGraviton2PM"
+		|| processA=="qqSpin2Pm" )							{m_processA="qqSpin2Pm"; }
     else if( processA=="Custom")                             {m_processA="Custom";}
     else return ERR_PROCESS;
     /// check if processB is supported, translation of namings
     if     ( processB=="ZZ")                                 {m_processB="ZZ";}
-    else if( processB=="Higgs"   || processB=="SMHiggs")     {m_processB="SMHiggs";}
-    else if( processB=="CP-odd"  || processB=="Higgs0M")     {m_processB="CPoddScalar";}
+    else if( processB=="Higgs"   || processB=="SMHiggs")     {m_processB="Spin0PSMH";}
+    else if( processB=="CP-odd"  || processB=="Higgs0M")     {m_processB="Spin0M";}
     else if( processB=="CP-even" || processB=="Higgs0P")     {m_processB="CPevenScalar";}
-    else if( processB=="Spin0PH" )							{m_processB="Spin0PH";}
-    else if( processB=="Spin2PM" || processB=="Graviton2PM") {m_processB="Spin2particle";}
+    else if( processB=="Spin0PH" || processB=="Spin0Ph" )	{m_processB="Spin0Ph";}
+    else if( processB=="Spin1P" )							{m_processB="Spin1P";}
+    else if( processB=="Spin1M" )							{m_processB="Spin1M";}
+    else if( processB=="Spin2PM" || processB=="Graviton2PM") {m_processB="ggSpin2Pm";}
+    else if( processB=="qqSpin2PM" || processB=="qqGraviton2PM"
+		|| processB=="qqSpin2Pm" )							{m_processB="qqSpin2Pm"; }
     else if( processB=="Custom")                             {m_processB="Custom";}
     else return ERR_PROCESS;
 	
@@ -124,21 +139,26 @@ int MEKD::computeKD( string processA, string processB,
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processA=="ZZ" ) me2processA = ME_ZZ;
-	else if( m_processA=="SMHiggs" ) me2processA = ME_SMHiggs;
-	else if( m_processA=="CPoddScalar" ) me2processA = ME_CPoddScalar;
-	else if( m_processA=="Spin0PH" ) me2processA = ME_Spin0PH;
-// 	else if( m_processA=="Spin1particle" ) me2processA = ME_Spin1;
-	else if( m_processA=="Spin2particle" && ME_Spin2!=0 ) me2processA = ME_Spin2;
+	else if( m_processA=="Spin0PSMH" ) me2processA = ME_Spin0PSMH;
+	else if( m_processA=="Spin0M" ) me2processA = ME_Spin0M;
+	else if( m_processA=="Spin0Ph" ) me2processA = ME_Spin0Ph;
+	else if( m_processA=="Spin1P" ) me2processA = ME_Spin1P;
+	else if( m_processA=="Spin1M" ) me2processA = ME_Spin1M;
+	else if( m_processA=="ggSpin2Pm" ) me2processA = ME_ggSpin2Pm;
+	else if( m_processA=="qqSpin2Pm" ) me2processA = ME_qqSpin2Pm;
 	else { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
+	
 	
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processB=="ZZ" ) me2processB = ME_ZZ;
-	else if( m_processB=="SMHiggs" ) me2processB = ME_SMHiggs;
-	else if( m_processB=="CPoddScalar" ) me2processB = ME_CPoddScalar;
-	else if( m_processB=="Spin0PH" ) me2processB = ME_Spin0PH;
-// 	else if( m_processB=="Spin1particle" ) me2processB = ME_Spin1;
-	else if( m_processB=="Spin2particle" ) me2processB = ME_Spin2;
+	else if( m_processB=="Spin0PSMH" ) me2processB = ME_Spin0PSMH;
+	else if( m_processB=="Spin0M" ) me2processB = ME_Spin0M;
+	else if( m_processB=="Spin0Ph" ) me2processB = ME_Spin0Ph;
+	else if( m_processB=="Spin1P" ) me2processB = ME_Spin1P;
+	else if( m_processB=="Spin1M" ) me2processB = ME_Spin1M;
+	else if( m_processB=="ggSpin2Pm" ) me2processB = ME_ggSpin2Pm;
+	else if( m_processB=="qqSpin2Pm" ) me2processB = ME_qqSpin2Pm;
 	else { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	
 	
@@ -201,6 +221,7 @@ int MEKD::computeKD( string processA, string processB,
 		MEKD_MG_Calc.p5 = input_Ps[4];
 		MEKD_MG_Calc.id5 = input_IDs[4];
 	}
+	else MEKD_MG_Calc.id5 = 0;
 
     /// Compute ME for process A only (e.g. signal 1)
     buffer_int = MEKD_MG_Calc.Run_MEKD_MG( m_processA );
@@ -247,6 +268,7 @@ int MEKD::computeME( string processName,
 		MEKD_MG_Calc.p5 = input_Ps[4];
 		MEKD_MG_Calc.id5 = input_IDs[4];
 	}
+	else MEKD_MG_Calc.id5 = 0;
 	
 	/// Compute ME for the process (e.g. signal 1)
 	buffer_int = MEKD_MG_Calc.Run_MEKD_MG( m_process );
@@ -294,11 +316,13 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 	if( MEKD_MG_Calc.Test_Models.size()==0 )	// Fills in intersting models to compute only once
 	{
 		MEKD_MG_Calc.Test_Models.push_back( "ZZ" );
-		MEKD_MG_Calc.Test_Models.push_back( "SMHiggs" );
-		MEKD_MG_Calc.Test_Models.push_back( "CPoddScalar" );
-		MEKD_MG_Calc.Test_Models.push_back( "Spin0PH" );
-// 		MEKD_MG_Calc.Test_Models.push_back( "Spin1particle" );
-		MEKD_MG_Calc.Test_Models.push_back( "Spin2particle" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin0PSMH" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin0M" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin0Ph" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin1P" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin1M" );
+		MEKD_MG_Calc.Test_Models.push_back( "ggSpin2Pm" );
+		MEKD_MG_Calc.Test_Models.push_back( "qqSpin2Pm" );
 	}
 	else if( MEKD_MG_Calc.Test_Models.size()!=4 ) return ERR_PROCESS;
 	
@@ -316,17 +340,20 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 		MEKD_MG_Calc.p5 = input_Ps[4];
 		MEKD_MG_Calc.id5 = input_IDs[4];
 	}
+	else MEKD_MG_Calc.id5 = 0;
 	
 	/// Compute MEs
 	buffer_int = MEKD_MG_Calc.Run_MEKD_MG();
 	
 	/// ME value readouts
 	ME_ZZ = MEKD_MG_Calc.Signal_MEs[0];
-	ME_SMHiggs = MEKD_MG_Calc.Signal_MEs[1];
-	ME_CPoddScalar = MEKD_MG_Calc.Signal_MEs[2];
-	ME_Spin0PH = MEKD_MG_Calc.Signal_MEs[3];
-// 	ME_Spin1 = MEKD_MG_Calc.Signal_MEs[4];
-	ME_Spin2 = MEKD_MG_Calc.Signal_MEs[4];
+	ME_Spin0PSMH = MEKD_MG_Calc.Signal_MEs[1];
+	ME_Spin0M = MEKD_MG_Calc.Signal_MEs[2];
+	ME_Spin0Ph = MEKD_MG_Calc.Signal_MEs[3];
+	ME_Spin1P = MEKD_MG_Calc.Signal_MEs[4];
+	ME_Spin1M = MEKD_MG_Calc.Signal_MEs[5];
+	ME_ggSpin2Pm = MEKD_MG_Calc.Signal_MEs[6];
+	ME_qqSpin2Pm = MEKD_MG_Calc.Signal_MEs[7];
 	
 	return buffer_int;
 }

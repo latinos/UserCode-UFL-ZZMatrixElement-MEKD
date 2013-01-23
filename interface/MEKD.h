@@ -158,8 +158,8 @@ private:
 	unsigned int buffer_uint;		// For counters as may be constantly created and destroyed
 	int buffer_int;					// For internal collection of return values
 	double m_collisionEnergy;		// c.m. collision energy sqrt(s) in TeV
-	double ME_ZZ, ME_SMHiggs, ME_CPoddScalar, ME_Spin1, ME_Spin2;	// computeMEs(...) results
-	double ME_Spin0PH;				// computeMEs(...) results
+	double ME_ZZ, ME_Spin0PSMH, ME_Spin0Ph, ME_Spin0M;	// computeMEs(...) results
+	double ME_Spin1P, ME_Spin1M, ME_ggSpin2Pm, ME_qqSpin2Pm;	// computeMEs(...) results
 	string m_PDFName;				// Name of the parton density functions to be used. Supported: CTEQ6l;
 	string m_process;				// Name of the process (background, signal hypotheses, etc.). Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
 	string m_processA;				// Name of the process A (background, signal hypotheses, etc.). Supported: Custom, SMHiggs, CPoddScalar, CPevenScalar, Spin2particle, ZZ
