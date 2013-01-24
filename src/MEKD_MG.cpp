@@ -623,7 +623,7 @@ int MEKD_MG::Run_MEKD_MG()
 				{ Run_MEKD_MG_MEs_BKG(); Signal_ME=Background_ME; }
 			if( Test_Models[i]=="0" || Test_Models[i]=="Custom" )
 				Run_MEKD_MG_ME_Custom();
-			if( Test_Models[i]=="1" || Test_Models[i]=="SMHiggs" || Test_Models[i]=="Higgs" || Test_Models[i]=="Spin0SMH" || Test_Model=="ggSpin0SMH" )
+			if( Test_Models[i]=="1" || Test_Models[i]=="SMHiggs" || Test_Models[i]=="Higgs" || Test_Models[i]=="Spin0SMH" || Test_Models[i]=="ggSpin0SMH" )
 				Run_MEKD_MG_ME_ggSMHiggs();
 			if( Test_Models[i]=="2" || Test_Models[i]=="CPoddScalar" || Test_Models[i]=="CP-odd" || Test_Models[i]=="Spin0M" || Test_Models[i]=="ggSpin0M" )
 				Run_MEKD_MG_ME_ggSpin0M();
