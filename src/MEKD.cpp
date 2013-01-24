@@ -72,7 +72,7 @@ int MEKD::setProcessName(string process)
 {
     /// Check if process is supported, translation of namings
     if     ( process=="ZZ" )                                 {m_process="ZZ"; }
-    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="Spin0PSMH"; }
+    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="Spin0SMH"; }
     else if( process=="CP-odd"  || process=="Higgs0M" )     {m_process="Spin0M"; }
     else if( process=="CP-even" || process=="Higgs0P" )     {m_process="CPevenScalar"; }
     else if( process=="Spin0PH" || process=="Spin0Ph" )		{m_process="Spin0Ph";}
@@ -96,7 +96,7 @@ int MEKD::setProcessNames(string processA, string processB) {
     if( processA == processB ) return ERR_PROCESS;
     /// check if processA is supported, translation of namings
     if     ( processA=="ZZ")                                 {m_processA="ZZ";}
-    else if( processA=="Higgs"   || processA=="SMHiggs")     {m_processA="Spin0PSMH";}
+    else if( processA=="Higgs"   || processA=="SMHiggs")     {m_processA="Spin0SMH";}
     else if( processA=="CP-odd"  || processA=="Higgs0M")     {m_processA="Spin0M";}
     else if( processA=="CP-even" || processA=="Higgs0P")     {m_processA="CPevenScalar";}
     else if( processA=="Spin0PH" || processA=="Spin0Ph" )	{m_processA="Spin0Ph";}
@@ -109,7 +109,7 @@ int MEKD::setProcessNames(string processA, string processB) {
     else return ERR_PROCESS;
     /// check if processB is supported, translation of namings
     if     ( processB=="ZZ")                                 {m_processB="ZZ";}
-    else if( processB=="Higgs"   || processB=="SMHiggs")     {m_processB="Spin0PSMH";}
+    else if( processB=="Higgs"   || processB=="SMHiggs")     {m_processB="Spin0SMH";}
     else if( processB=="CP-odd"  || processB=="Higgs0M")     {m_processB="Spin0M";}
     else if( processB=="CP-even" || processB=="Higgs0P")     {m_processB="CPevenScalar";}
     else if( processB=="Spin0PH" || processB=="Spin0Ph" )	{m_processB="Spin0Ph";}
@@ -139,7 +139,7 @@ int MEKD::computeKD( string processA, string processB,
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processA=="ZZ" ) me2processA = ME_ZZ;
-	else if( m_processA=="Spin0PSMH" ) me2processA = ME_Spin0PSMH;
+	else if( m_processA=="Spin0SMH" ) me2processA = ME_Spin0PSMH;
 	else if( m_processA=="Spin0M" ) me2processA = ME_Spin0M;
 	else if( m_processA=="Spin0Ph" ) me2processA = ME_Spin0Ph;
 	else if( m_processA=="Spin1P" ) me2processA = ME_Spin1P;
@@ -152,7 +152,7 @@ int MEKD::computeKD( string processA, string processB,
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processB=="ZZ" ) me2processB = ME_ZZ;
-	else if( m_processB=="Spin0PSMH" ) me2processB = ME_Spin0PSMH;
+	else if( m_processB=="Spin0SMH" ) me2processB = ME_Spin0PSMH;
 	else if( m_processB=="Spin0M" ) me2processB = ME_Spin0M;
 	else if( m_processB=="Spin0Ph" ) me2processB = ME_Spin0Ph;
 	else if( m_processB=="Spin1P" ) me2processB = ME_Spin1P;
@@ -316,7 +316,7 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 	if( MEKD_MG_Calc.Test_Models.size()==0 )	// Fills in intersting models to compute only once
 	{
 		MEKD_MG_Calc.Test_Models.push_back( "ZZ" );
-		MEKD_MG_Calc.Test_Models.push_back( "Spin0PSMH" );
+		MEKD_MG_Calc.Test_Models.push_back( "Spin0SMH" );
 		MEKD_MG_Calc.Test_Models.push_back( "Spin0M" );
 		MEKD_MG_Calc.Test_Models.push_back( "Spin0Ph" );
 		MEKD_MG_Calc.Test_Models.push_back( "Spin1P" );
