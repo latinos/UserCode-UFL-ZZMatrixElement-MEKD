@@ -938,7 +938,8 @@ int MEKD_MG::Run_MEKD_MG_ME_ggSpin0Ph()
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
+/// A vector default configuration
+int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
 {
 	if( Use_mh_eq_m4l )
 	{
@@ -996,7 +997,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
 
 
 
-int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
+/// A pseudovector default configuration
+int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
 {
 	if( Use_mh_eq_m4l )
 	{
