@@ -975,7 +975,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
 			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z*sqrt(10) );
 		}
 	}
-	
+
+params_rhod11 = 0; params_rhos11 = 0; params_rhob11 = 0; params_rhou11 = 0; params_rhob11 = 0;	
 	params_rhod12 = 0;
 	params_rhod13 = 0;
 	params_rhod14 = 0;
