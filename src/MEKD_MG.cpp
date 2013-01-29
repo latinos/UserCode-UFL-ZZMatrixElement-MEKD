@@ -629,10 +629,10 @@ int MEKD_MG::Run_MEKD_MG()
 				Run_MEKD_MG_ME_ggSpin0M();
 			if( Test_Models[i]=="3" || Test_Models[i]=="Spin0PH" || Test_Models[i]=="Spin0Ph" || Test_Models[i]=="ggSpin0Ph" )
 		 		Run_MEKD_MG_ME_ggSpin0Ph();
-			if( Test_Models[i]=="4" || Test_Models[i]=="Spin1particle" || Test_Models[i]=="Spin1P" )
-		 		Run_MEKD_MG_ME_Spin1P();
-			if( Test_Models[i]=="5" || Test_Models[i]=="Spin1M" )
+			if( Test_Models[i]=="4" || Test_Models[i]=="Spin1particle" || Test_Models[i]=="Spin1M" )
 		 		Run_MEKD_MG_ME_Spin1M();
+			if( Test_Models[i]=="5" || Test_Models[i]=="Spin1P" )
+		 		Run_MEKD_MG_ME_Spin1P();
 			if( Test_Models[i]=="6" || Test_Models[i]=="Spin2particle" || Test_Models[i]=="Spin2Pm" || Test_Models[i]=="ggSpin2Pm" )
 				Run_MEKD_MG_ME_ggSpin2Pm();
 			if( Test_Models[i]=="7" || Test_Models[i]=="qqSpin2Pm" )
@@ -660,12 +660,12 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="3" || Test_Model=="Spin0PH" || Test_Model=="Spin0Ph" || Test_Model=="ggSpin0Ph" ||
 			Test_Model=="!3" || Test_Model=="!Spin0PH" || Test_Model=="!Spin0Ph" || Test_Model=="!ggSpin0Ph" )
 	 		Run_MEKD_MG_ME_ggSpin0Ph();
-		if( Test_Model=="4" || Test_Model=="Spin1particle" || Test_Model=="Spin1P" ||
-			Test_Model=="!4" || Test_Model=="!Spin1particle" || Test_Model=="!Spin1P" )
-	 		Run_MEKD_MG_ME_Spin1P();
-		if( Test_Model=="5" || Test_Model=="Spin1M" ||
-			Test_Model=="!5" || Test_Model=="!Spin1M" )
+		if( Test_Model=="4" || Test_Model=="Spin1particle" || Test_Model=="Spin1M" ||
+			Test_Model=="!4" || Test_Model=="!Spin1particle" || Test_Model=="!Spin1M" )
 	 		Run_MEKD_MG_ME_Spin1M();
+		if( Test_Model=="5" || Test_Model=="Spin1P" ||
+			Test_Model=="!5" || Test_Model=="!Spin1P" )
+	 		Run_MEKD_MG_ME_Spin1P();
 		if( Test_Model=="6" || Test_Model=="Spin2particle" || Test_Model=="Spin2Pm" || Test_Model=="ggSpin2Pm" ||
 			Test_Model=="!6" || Test_Model=="!Spin2particle" || Test_Model=="!Spin2Pm" || Test_Model=="!ggSpin2Pm" )
 			Run_MEKD_MG_ME_ggSpin2Pm();
@@ -950,12 +950,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
 		
 		if( Vary_signal_couplings )
 		{
-			params_rhod11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhos11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhob11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhou11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhoc11 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z*sqrt(10) );
+			params_rhod11 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhos11 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhob11 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhou11 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhoc11 = LmbdGG(Mass_4l)*v_expectation;
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z );
 		}
 	}
 	else
@@ -967,16 +967,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M()
 		
 		if( Vary_signal_couplings )
 		{
-			params_rhod11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhos11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhob11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhou11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhoc11 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z*sqrt(10) );
+			params_rhod11 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhos11 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhob11 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhou11 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhoc11 = LmbdGG(Higgs_mass)*v_expectation;
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z );
 		}
 	}
-
-params_rhod11 = 0; params_rhos11 = 0; params_rhob11 = 0; params_rhou11 = 0; params_rhob11 = 0;	
+	
+	Set_Of_Model_Parameters.set_block_entry( "vec", 2, 0 );
+	
 	params_rhod12 = 0;
 	params_rhod13 = 0;
 	params_rhod14 = 0;
@@ -1010,12 +1011,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
 		
 		if( Vary_signal_couplings )
 		{
-			params_rhod12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhos12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhob12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhou12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			params_rhoc12 = LmbdGG(Mass_4l)*v_expectation*sqrt(10);
-			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z*sqrt(10) );
+			params_rhod12 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhos12 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhob12 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhou12 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhoc12 = LmbdGG(Mass_4l)*v_expectation;
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z );
 		}
 	}
 	else
@@ -1027,14 +1028,16 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P()
 		
 		if( Vary_signal_couplings )
 		{
-			params_rhod12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhos12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhob12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhou12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			params_rhoc12 = LmbdGG(Higgs_mass)*v_expectation*sqrt(10);
-			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z*sqrt(10) );
+			params_rhod12 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhos12 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhob12 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhou12 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhoc12 = LmbdGG(Higgs_mass)*v_expectation;
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z );
 		}
 	}
+	
+	Set_Of_Model_Parameters.set_block_entry( "vec", 1, 0 );
 	
 	params_rhod11 = 0;
 	params_rhod13 = 0;
@@ -1141,11 +1144,11 @@ int MEKD_MG::Run_MEKD_MG_ME_qqSpin2Pm()
 		
 		if( Vary_signal_couplings )
 		{
-			params_rhod21 = LmbdGG(Mass_4l)*sqrt(10);
-			params_rhos21 = LmbdGG(Mass_4l)*sqrt(10);
-			params_rhob21 = LmbdGG(Mass_4l)*sqrt(10);
-			params_rhou21 = LmbdGG(Mass_4l)*sqrt(10);
-			params_rhoc21 = LmbdGG(Mass_4l)*sqrt(10);
+			params_rhod21 = LmbdGG(Mass_4l);
+			params_rhos21 = LmbdGG(Mass_4l);
+			params_rhob21 = LmbdGG(Mass_4l);
+			params_rhou21 = LmbdGG(Mass_4l);
+			params_rhoc21 = LmbdGG(Mass_4l);
 		}
 	}
 	else
@@ -1157,7 +1160,11 @@ int MEKD_MG::Run_MEKD_MG_ME_qqSpin2Pm()
 		
 		if( Vary_signal_couplings )
 		{
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+			params_rhod21 = LmbdGG(Higgs_mass);
+			params_rhos21 = LmbdGG(Higgs_mass);
+			params_rhob21 = LmbdGG(Higgs_mass);
+			params_rhou21 = LmbdGG(Higgs_mass);
+			params_rhoc21 = LmbdGG(Higgs_mass);
 		}
 	}
 	
@@ -1171,11 +1178,11 @@ int MEKD_MG::Run_MEKD_MG_ME_qqSpin2Pm()
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/2/params_m_Z/params_m_Z*sqrt(10) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/2/params_m_Z/params_m_Z );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/2*sqrt(10) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/2 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
