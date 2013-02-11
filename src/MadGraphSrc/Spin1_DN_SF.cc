@@ -228,15 +228,15 @@ void Spin1_DN_SF::calculate_wavefunctions(const int perm[], const int hel[])
   ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]); 
   FFV1_2_3_4_3(w[0], w[1], pars->HEF_MEKD_GC_131, pars->HEF_MEKD_GC_128, pars->HEF_MEKD_GC_129,
       pars->HEF_MEKD_GC_130, pars->MZp, pars->WZp, w[6]);
-  FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[1]); 
-  FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[0]); 
-  FFV5_7_3(w[5], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[0]); 
-  FFV5_7_3(w[3], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[5]); 
+  FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[7]); 
+  FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[8]); 
+  FFV5_7_3(w[5], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[9]); 
+  FFV5_7_3(w[3], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ, pars->WZ, w[10]); 
 
   // Calculate all amplitudes
   // Amplitude(s) for diagram number 0
-  VVV1_2_0(w[1], w[0], w[6], pars->HEF_MEKD_GC_2, pars->HEF_MEKD_GC_1, amp[0]); 
-  VVV1_2_0(w[0], w[5], w[6], pars->HEF_MEKD_GC_2, pars->HEF_MEKD_GC_1, amp[1]); 
+  VVV1_2_0(w[7], w[8], w[6], pars->HEF_MEKD_GC_2, pars->HEF_MEKD_GC_1, amp[0]); 
+  VVV1_2_0(w[9], w[10], w[6], pars->HEF_MEKD_GC_2, pars->HEF_MEKD_GC_1, amp[1]); 
 
 }
 double Spin1_DN_SF::matrix_ssx_zp_mummupmummup() 
