@@ -62,6 +62,8 @@ void Parameters_HEF_MEKD::setIndependentParameters(SLHAReader& slha)
   MS = slha.get_block_entry("mass", 3, 1.010000e-01); 
   MU = slha.get_block_entry("mass", 2, 2.550000e-03); 
   MD = slha.get_block_entry("mass", 1, 5.040000e-03);
+  rhomu02 = slha.get_block_entry("heff", 20, 0.000000e+00); 
+  rhomu01 = slha.get_block_entry("heff", 19, 4.291210e-04); 
   rhob02 = slha.get_block_entry("heff", 18, 1.000000e-01); 
   rhob01 = slha.get_block_entry("heff", 17, 1.000000e-01); 
   rhos02 = slha.get_block_entry("heff", 16, 1.000000e-01); 
@@ -80,6 +82,10 @@ void Parameters_HEF_MEKD::setIndependentParameters(SLHAReader& slha)
   g3g = slha.get_block_entry("heff", 3, 1.000000e-01); 
   g2g = slha.get_block_entry("heff", 2, 1.000000e-01); 
   g1g = slha.get_block_entry("heff", 1, 1.000000e-01);
+  rhomu14 = slha.get_block_entry("vec", 26, 0.000000e+00); 
+  rhomu13 = slha.get_block_entry("vec", 25, 0.000000e+00); 
+  rhomu12 = slha.get_block_entry("vec", 24, 0.000000e+00); 
+  rhomu11 = slha.get_block_entry("vec", 23, 4.291210e-04); 
   rhob14 = slha.get_block_entry("vec", 22, 1.000000e-01); 
   rhob13 = slha.get_block_entry("vec", 21, 1.000000e-01); 
   rhob12 = slha.get_block_entry("vec", 20, 1.000000e-01); 
@@ -101,7 +107,11 @@ void Parameters_HEF_MEKD::setIndependentParameters(SLHAReader& slha)
   rhou12 = slha.get_block_entry("vec", 4, 1.000000e-01); 
   rhou11 = slha.get_block_entry("vec", 3, 1.000000e-01); 
   b2z = slha.get_block_entry("vec", 2, 1.000000e-01); 
-  b1z = slha.get_block_entry("vec", 1, 1.000000e-01); 
+  b1z = slha.get_block_entry("vec", 1, 1.000000e-01);
+  rhomu24 = slha.get_block_entry("gravity", 44, 0.000000e+00); 
+  rhomu23 = slha.get_block_entry("gravity", 43, 0.000000e+00); 
+  rhomu22 = slha.get_block_entry("gravity", 42, 0.000000e+00); 
+  rhomu21 = slha.get_block_entry("gravity", 41, 4.291210e-04); 
   rhob24 = slha.get_block_entry("gravity", 40, 1.000000e-01); 
   rhob23 = slha.get_block_entry("gravity", 39, 1.000000e-01); 
   rhob22 = slha.get_block_entry("gravity", 38, 1.000000e-01); 
@@ -275,7 +285,7 @@ void Parameters_HEF_MEKD::setIndependentCouplings()
 	HEF_MEKD_GC_161 = -(cw * ee * complexi)/(2. * sw); 
 	HEF_MEKD_GC_168 = (ee * complexi * sw)/(2. * cw); 
 	
-	// Coming from spin 1
+	// Coming extra from spin 1
 	HEF_MEKD_GC_1 = -b1z; 
 	HEF_MEKD_GC_2 = -2. * b2z; 
 // 	HEF_MEKD_GC_3 = -(ee * complexi)/3.; 
@@ -341,7 +351,97 @@ void Parameters_HEF_MEKD::setIndependentCouplings()
 	HEF_MEKD_GC_144 = -(complexi * rhou23)/2.; 
 	HEF_MEKD_GC_145 = rhou24/2.;
 // 	HEF_MEKD_GC_161 = -(cw * ee * complexi)/(2. * sw); 
-// 	HEF_MEKD_GC_168 = (ee * complexi * sw)/(2. * cw); 
+// 	HEF_MEKD_GC_168 = (ee * complexi * sw)/(2. * cw);
+	
+	/// Model HEF_MEKD2 with 2mu couplings
+	// Coming from DY
+	HEF_MEKD2_GC_3 = -(ee * complexi)/3.;
+	HEF_MEKD2_GC_4 = (2. * ee * complexi)/3.;
+	HEF_MEKD2_GC_5 = -(ee * complexi);
+	HEF_MEKD2_GC_171 = -(cw * ee * complexi)/(2. * sw);
+	HEF_MEKD2_GC_172 = (cw * ee * complexi)/(2. * sw);
+	HEF_MEKD2_GC_177 = -(ee * complexi * sw)/(6. * cw);
+	HEF_MEKD2_GC_178 = (ee * complexi * sw)/(2. * cw);
+	
+	// Coming extra from spin 0
+// 	HEF_MEKD2_GC_3 = -(ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_4 = (2. * ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_5 = -(ee * complexi); 
+	HEF_MEKD2_GC_13 = -(complexi * g1g); 
+	HEF_MEKD2_GC_15 = -(complexi * g2g); 
+	HEF_MEKD2_GC_19 = -(complexi * g3g); 
+	HEF_MEKD2_GC_23 = (complexi * g4g)/8.; 
+	HEF_MEKD2_GC_106 = complexi * rhoc01; 
+	HEF_MEKD2_GC_107 = -rhoc02; 
+	HEF_MEKD2_GC_116 = complexi * rhod01; 
+	HEF_MEKD2_GC_117 = -rhod02; 
+	HEF_MEKD2_GC_126 = complexi * rhomu01; 
+	HEF_MEKD2_GC_127 = -rhomu02; 
+	HEF_MEKD2_GC_136 = complexi * rhos01; 
+	HEF_MEKD2_GC_137 = -rhos02; 
+	HEF_MEKD2_GC_146 = complexi * rhou01; 
+	HEF_MEKD2_GC_147 = -rhou02;
+	
+	// Coming extra from spin 1
+// 	 HEF_MEKD2_GC_3 = -(ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_4 = (2. * ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_5 = -(ee * complexi); 
+	HEF_MEKD2_GC_108 = complexi * rhoc11; 
+	HEF_MEKD2_GC_109 = complexi * rhoc12; 
+	HEF_MEKD2_GC_110 = complexi * rhoc13; 
+	HEF_MEKD2_GC_111 = rhoc14; 
+	HEF_MEKD2_GC_118 = complexi * rhod11; 
+	HEF_MEKD2_GC_119 = complexi * rhod12; 
+	HEF_MEKD2_GC_120 = complexi * rhod13; 
+	HEF_MEKD2_GC_121 = rhod14; 
+	HEF_MEKD2_GC_128 = complexi * rhomu11; 
+	HEF_MEKD2_GC_129 = complexi * rhomu12; 
+	HEF_MEKD2_GC_130 = complexi * rhomu13; 
+	HEF_MEKD2_GC_131 = rhomu14; 
+	HEF_MEKD2_GC_138 = complexi * rhos11; 
+	HEF_MEKD2_GC_139 = complexi * rhos12; 
+	HEF_MEKD2_GC_140 = complexi * rhos13; 
+	HEF_MEKD2_GC_141 = rhos14; 
+	HEF_MEKD2_GC_148 = complexi * rhou11; 
+	HEF_MEKD2_GC_149 = complexi * rhou12; 
+	HEF_MEKD2_GC_150 = complexi * rhou13; 
+	HEF_MEKD2_GC_151 = rhou14; 
+	
+	// Coming extra from spin 2
+// 	HEF_MEKD2_GC_3 = -(ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_4 = (2. * ee * complexi)/3.; 
+// 	HEF_MEKD2_GC_5 = -(ee * complexi); 
+	HEF_MEKD2_GC_62 = -(complexi * k10g)/2.; 
+	HEF_MEKD2_GC_63 = -(complexi * k10z)/2.; 
+	HEF_MEKD2_GC_64 = -(complexi * k1g); 
+	HEF_MEKD2_GC_68 = complexi * k2g; 
+	HEF_MEKD2_GC_72 = complexi * k3g; 
+	HEF_MEKD2_GC_76 = -2. * complexi * k4g; 
+	HEF_MEKD2_GC_80 = complexi * k5g; 
+	HEF_MEKD2_GC_82 = -(complexi * k6g)/2.; 
+	HEF_MEKD2_GC_84 = -(complexi * k7g); 
+	HEF_MEKD2_GC_86 = (complexi * k8g)/4.; 
+	HEF_MEKD2_GC_91 = -(complexi * k9g)/2.; 
+	HEF_MEKD2_GC_112 = (complexi * rhoc21)/2.; 
+	HEF_MEKD2_GC_113 = (complexi * rhoc22)/2.; 
+	HEF_MEKD2_GC_114 = -(complexi * rhoc23)/2.; 
+	HEF_MEKD2_GC_115 = rhoc24/2.; 
+	HEF_MEKD2_GC_122 = (complexi * rhod21)/2.; 
+	HEF_MEKD2_GC_123 = (complexi * rhod22)/2.; 
+	HEF_MEKD2_GC_124 = -(complexi * rhod23)/2.; 
+	HEF_MEKD2_GC_125 = rhod24/2.; 
+	HEF_MEKD2_GC_132 = (complexi * rhomu21)/2.; 
+	HEF_MEKD2_GC_133 = (complexi * rhomu22)/2.; 
+	HEF_MEKD2_GC_134 = -(complexi * rhomu23)/2.; 
+	HEF_MEKD2_GC_135 = rhomu24/2.; 
+	HEF_MEKD2_GC_142 = (complexi * rhos21)/2.; 
+	HEF_MEKD2_GC_143 = (complexi * rhos22)/2.; 
+	HEF_MEKD2_GC_144 = -(complexi * rhos23)/2.; 
+	HEF_MEKD2_GC_145 = rhos24/2.; 
+	HEF_MEKD2_GC_152 = (complexi * rhou21)/2.; 
+	HEF_MEKD2_GC_153 = (complexi * rhou22)/2.; 
+	HEF_MEKD2_GC_154 = -(complexi * rhou23)/2.; 
+	HEF_MEKD2_GC_155 = rhou24/2.; 
 }
 
 void Parameters_HEF_MEKD::setDependentParameters()

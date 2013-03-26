@@ -15,6 +15,7 @@ ROOTLIB=$(ROOTSYS)/lib
 ROOTINCLUDES=$(ROOTSYS)/include
 ###############################
 
+
 objects1_bkg=$(INCDIR4)/BKG_DN_OF.o $(INCDIR4)/BKG_UP_OF.o $(INCDIR4)/BKG_DN_SF.o $(INCDIR4)/BKG_UP_SF.o $(INCDIR4)/BKG_DN_OFpA.o $(INCDIR4)/BKG_UP_OFpA.o $(INCDIR4)/BKG_DN_SFpA.o $(INCDIR4)/BKG_UP_SFpA.o
 
 objects1_spin0=$(INCDIR4)/Spin0_gg_OF.o $(INCDIR4)/Spin0_gg_SF.o $(INCDIR4)/Spin0_gg_OFpA.o $(INCDIR4)/Spin0_gg_SFpA.o $(INCDIR4)/Spin0_qq_DN_OF.o $(INCDIR4)/Spin0_qq_UP_OF.o $(INCDIR4)/Spin0_qq_DN_SF.o $(INCDIR4)/Spin0_qq_UP_SF.o $(INCDIR4)/Spin0_qq_DN_OFpA.o $(INCDIR4)/Spin0_qq_UP_OFpA.o $(INCDIR4)/Spin0_qq_DN_SFpA.o $(INCDIR4)/Spin0_qq_UP_SFpA.o
@@ -23,17 +24,28 @@ objects1_spin1=$(INCDIR4)/Spin1_DN_OF.o $(INCDIR4)/Spin1_UP_OF.o $(INCDIR4)/Spin
 
 objects1_spin2=$(INCDIR4)/Spin2_gg_OF.o $(INCDIR4)/Spin2_gg_SF.o $(INCDIR4)/Spin2_gg_OFpA.o $(INCDIR4)/Spin2_gg_SFpA.o $(INCDIR4)/Spin2_qq_DN_OF.o $(INCDIR4)/Spin2_qq_UP_OF.o $(INCDIR4)/Spin2_qq_DN_SF.o $(INCDIR4)/Spin2_qq_UP_SF.o $(INCDIR4)/Spin2_qq_DN_OFpA.o $(INCDIR4)/Spin2_qq_UP_OFpA.o $(INCDIR4)/Spin2_qq_DN_SFpA.o $(INCDIR4)/Spin2_qq_UP_SFpA.o
 
+objects1_bkg_2=$(INCDIR4)/BKG_DY_qq_DN_2l.o $(INCDIR4)/BKG_DY_qq_UP_2l.o $(INCDIR4)/BKG_DY_qq_DN_2lpA.o $(INCDIR4)/BKG_DY_qq_UP_2lpA.o
+
+objects1_spin0_2=$(INCDIR4)/Spin0_gg_2l.o $(INCDIR4)/Spin0_qq_DN_2l.o $(INCDIR4)/Spin0_qq_UP_2l.o $(INCDIR4)/Spin0_gg_2lpA.o $(INCDIR4)/Spin0_qq_DN_2lpA.o $(INCDIR4)/Spin0_qq_UP_2lpA.o
+
+objects1_spin1_2=$(INCDIR4)/Spin1_qq_DN_2l.o $(INCDIR4)/Spin1_qq_UP_2l.o $(INCDIR4)/Spin1_qq_DN_2lpA.o $(INCDIR4)/Spin1_qq_UP_2lpA.o
+
+objects1_spin2_2=$(INCDIR4)/Spin2_gg_2l.o $(INCDIR4)/Spin2_qq_DN_2l.o $(INCDIR4)/Spin2_qq_UP_2l.o $(INCDIR4)/Spin2_gg_2lpA.o $(INCDIR4)/Spin2_qq_DN_2lpA.o $(INCDIR4)/Spin2_qq_UP_2lpA.o
+
 
 objects2=$(INCDIR4)/HelAmps_HEF_UFO_bkg.o $(INCDIR4)/HelAmps_HEF_MEKD_spin0.o $(INCDIR4)/HelAmps_HEF_MEKD_spin1.o $(INCDIR4)/HelAmps_HEF_MEKD_spin2.o $(INCDIR4)/HelAmps_HZZ_Unitary_bkgpA.o $(INCDIR4)/HelAmps_HEF_MEKD_spin0pA.o $(INCDIR4)/HelAmps_HEF_MEKD_spin1pA.o $(INCDIR4)/HelAmps_HEF_MEKD_spin2pA.o $(INCDIR4)/Parameters_HEF_MEKD.o $(INCDIR4)/read_slha.o
+
+objects2_2=$(INCDIR4)/HelAmps_HEF_MEKD2_BKG_DY_2l.o $(INCDIR4)/HelAmps_HEF_MEKD2_BKG_DY_2lpA.o $(INCDIR4)/HelAmps_HEF_MEKD2_spin0_2l.o $(INCDIR4)/HelAmps_HEF_MEKD2_spin0_2lpA.o $(INCDIR4)/HelAmps_HEF_MEKD2_spin1_2l.o $(INCDIR4)/HelAmps_HEF_MEKD2_spin1_2lpA.o $(INCDIR4)/HelAmps_HEF_MEKD2_spin2_2l.o
+
 
 objects3=$(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o $(INCDIR2)/MEKD_MG_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
 
 objects4=$(INCDIR1)/MEKD_MG.o
 
 
-objects1=$(objects1_bkg) $(objects1_spin0) $(objects1_spin1) $(objects1_spin2)
+objects1=$(objects1_bkg) $(objects1_spin0) $(objects1_spin1) $(objects1_spin2) $(objects1_bkg_2) $(objects1_spin0_2) $(objects1_spin1_2) $(objects1_spin2_2)
 
-objects=$(objects1) $(objects2) $(objects3) $(objects4)
+objects=$(objects1) $(objects2) $(objects2_2) $(objects3) $(objects4)
 
 
 targetlib=$(LIBDIR)/libMEKD_MG.so

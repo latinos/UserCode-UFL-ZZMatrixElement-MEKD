@@ -30,7 +30,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-///  MEKD interface class.
+///  MEKD 2 interface class.
 ///
 ///  Provides neessary interface to the MadGraph-based ME calculator
 ///  and computes MEs and KDs for the process specified by the user.
@@ -54,7 +54,7 @@ public:
 	///
 	/// Compute and extract individual KD and MEs. Works after running int computeMEs(...).
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
 	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
@@ -71,7 +71,7 @@ public:
 	///
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of 4 leptons (lepton ordering does not matter).
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
 	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
@@ -94,7 +94,7 @@ public:
 	///
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
@@ -114,7 +114,7 @@ public:
 	///
 	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processName							name of the process for which the ME is to be computed (string, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
@@ -128,7 +128,7 @@ public:
 	
 	
 	///
-	/// Compute all important MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
+	/// Compute all important/default MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
 	///
 	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
 	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
@@ -141,7 +141,7 @@ public:
 	
 	
 	///
-	/// Compute all important MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
+	/// Compute all important/default MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
 	///
 	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
 	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
@@ -185,7 +185,7 @@ public:
 	/// Compute KDs and MEs for process A and process B. Works after running int computeMEs(...).
 	/// The overloaded method that supports input parameters of ROOT types TString and TLorentzVector.
 	///
-	/// Supported process names: "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
 	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
@@ -203,7 +203,7 @@ public:
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of 4 leptons (lepton ordering does not matter).
 	/// The overloaded method that supports input parameters of ROOT types TString and TLorentzVector.
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
 	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
@@ -227,7 +227,7 @@ public:
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of the input particles (ordering does not matter).
 	/// The overloaded method that supports input parameters of ROOT types TString and TLorentzVector.
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (Tstring, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
@@ -247,7 +247,7 @@ public:
 	///
 	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton).
+	/// Supported process names: "Custom", "ZZ", "SMHiggs", "Higgs0M" (pseudo-scalar), "Spin0PM", "Graviton2PM" (minimal couplings graviton). New conventions (and processes): ggSpin0Pm (ggSpin0SMH), ggSpin0M, ggSpin0Ph, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin1M, qqSpin1P, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb.
 	///
 	/// \param[in]  processName							name of the process for which the ME is to be computed (TString, REQUIRED).
 	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
@@ -261,7 +261,7 @@ public:
 	
 	
 	///
-	/// Compute all important MEs first for the use with computeKD(TString, TString, double&, double&, double&). Option Custom is outside this scope.
+	/// Compute all important/default MEs first for the use with computeKD(TString, TString, double&, double&, double&). Option Custom is outside this scope.
 	///
 	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
 	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
@@ -274,7 +274,7 @@ public:
 	
 	
 	///
-	/// Compute all important MEs first for the use with computeKD(string/TString, string/TString, double&, double&, double&). Option Custom is outside this scope.
+	/// Compute all important/default MEs first for the use with computeKD(string/TString, string/TString, double&, double&, double&). Option Custom is outside this scope.
 	///
 	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
 	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
