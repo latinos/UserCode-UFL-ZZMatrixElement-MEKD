@@ -45,7 +45,7 @@ public:
 	/// String flags and file locations
 	string Final_state;	// Final state, for the moment: 4e, 4mu, 2e2mu
 	string Resonance_decay_mode;	// default: ZZ. Alternatives: 2mu
-	string Test_Model;	// -1 or ZZ; 0 or Custom; 1 or SMHiggs; 2 or CPoddScalar; 3 or CPevenScalar; 4 or Spin2particle
+	string Test_Model;	// Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm, ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph, Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb
 	vector<string> Test_Models;	// same names as for the Test_Model
 	string Parameter_file;	// Location where a parameter card is stored
 	string PDF_file;	// PDF/PDT table file
@@ -110,20 +110,16 @@ private:
 	/// Sets up particular choices
 	int Run_MEKD_MG_ME_BKG();
 	int Run_MEKD_MG_ME_Custom();
-	int Run_MEKD_MG_ME_CPevenScalar();
-	int Run_MEKD_MG_ME_ggSMHiggs();
-	int Run_MEKD_MG_ME_ggSpin0M();
-	int Run_MEKD_MG_ME_ggSpin0Ph();
-	int Run_MEKD_MG_ME_Spin1P();
-	int Run_MEKD_MG_ME_Spin1M();
-	int Run_MEKD_MG_ME_ggSpin2Pm();
-	int Run_MEKD_MG_ME_ggSpin2Ph();
-	int Run_MEKD_MG_ME_ggSpin2Mh();
-	int Run_MEKD_MG_ME_ggSpin2Pb();
-	int Run_MEKD_MG_ME_qqSpin2Pm();
-	int Run_MEKD_MG_ME_qqSpin2Ph();
-	int Run_MEKD_MG_ME_qqSpin2Mh();
-	int Run_MEKD_MG_ME_qqSpin2Pb();
+	int Run_MEKD_MG_ME_CPevenScalar(string initial_state);
+	int Run_MEKD_MG_ME_Spin0Pm(string initial_state);	// SM Higgs
+	int Run_MEKD_MG_ME_Spin0M(string initial_state);
+	int Run_MEKD_MG_ME_Spin0Ph(string initial_state);
+	int Run_MEKD_MG_ME_Spin1P(string initial_state);
+	int Run_MEKD_MG_ME_Spin1M(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Pm(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Ph(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Mh(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Pb(string initial_state);
 	
 	/// Blind-calculation functions
 	int Run_MEKD_MG_MEs_BKG(string initial_state);

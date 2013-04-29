@@ -70,29 +70,38 @@ int MEKD::processParameters()
 ///------------------------------------------------------------------------
 int MEKD::setProcessName(string process)
 {
-    /// Check if process is supported, translation of namings
-    if     ( process=="ZZ" )								{m_process="ZZ"; }
-    else if( process=="DY" )								{m_process="DY"; }
-    else if( process=="Higgs"   || process=="SMHiggs" )     {m_process="ggSpin0SMH"; }
-    else if( process=="CP-odd"  || process=="Higgs0M" )     {m_process="ggSpin0M"; }
-    else if( process=="CP-even" || process=="Higgs0P" )     {m_process="CPevenScalar"; }
-    else if( process=="Spin0PH" || process=="Spin0Ph" )		{m_process="ggSpin0Ph";}
-    else if( process=="Spin1P" )							{m_process="qqSpin1P";}
-    else if( process=="Spin1M" )							{m_process="qqSpin1M";}
-    else if( process=="Spin2PM" || process=="Graviton2PM" ||
-		process=="ggSpin2Pm" )								{m_process="ggSpin2Pm"; }
-    else if( process=="qqSpin2PM" || process=="qqGraviton2PM" ||
-		process=="qqSpin2Pm" )								{m_process="qqSpin2Pm"; }
-	else if( process=="ggSpin2Ph" )							{m_process="ggSpin2Ph"; }
-	else if( process=="ggSpin2Mh" )							{m_process="ggSpin2Mh"; }
-	else if( process=="ggSpin2Pb" )							{m_process="ggSpin2Pb"; }
-	else if( process=="qqSpin2Ph" )							{m_process="qqSpin2Ph"; }
-	else if( process=="qqSpin2Mh" )							{m_process="qqSpin2Mh"; }
-	else if( process=="qqSpin2Pb" )							{m_process="qqSpin2Pb"; }
-    else if( process=="Custom" )							{m_process="Custom"; }
-    else return ERR_PROCESS;
+/// Check if process is supported, translation of namings
+	if     ( process=="ZZ" )													{m_process="ZZ"; }
+	else if( process=="DY" )													{m_process="DY"; }
+	else if( process=="Higgs" || process=="SMHiggs" || process=="ggSpin0Pm" )	{m_process="ggSpin0Pm"; }
+	else if( process=="CP-odd" || process=="Higgs0M" || process=="ggSpin0M" )	{m_process="ggSpin0M"; }
+	else if( process=="CP-even" || process=="Higgs0P" )							{m_process="CPevenScalar"; }
+	else if( process=="ggSpin0PH" || process=="ggSpin0Ph" )						{m_process="ggSpin0Ph"; }
+	else if( process=="qqSpin1P" )												{m_process="qqSpin1P"; }
+	else if( process=="qqSpin1M" )												{m_process="qqSpin1M"; }
+	else if( process=="ggSpin2PM" || process=="Graviton2PM" ||
+		process=="ggSpin2Pm" )													{m_process="ggSpin2Pm"; }
+	else if( process=="qqSpin2PM" || process=="qqGraviton2PM" ||
+		process=="qqSpin2Pm" )													{m_process="qqSpin2Pm"; }
+	else if( process=="ggSpin2Ph" )												{m_process="ggSpin2Ph"; }
+	else if( process=="ggSpin2Mh" )												{m_process="ggSpin2Mh"; }
+	else if( process=="ggSpin2Pb" )												{m_process="ggSpin2Pb"; }
+	else if( process=="qqSpin2Ph" )												{m_process="qqSpin2Ph"; }
+	else if( process=="qqSpin2Mh" )												{m_process="qqSpin2Mh"; }
+	else if( process=="qqSpin2Pb" )												{m_process="qqSpin2Pb"; }
+	else if( process=="Spin0Pm" )												{m_process="Spin0Pm"; }
+	else if( process=="Spin0M" )												{m_process="Spin0M"; }
+	else if( process=="Spin0Ph" )												{m_process="Spin0Ph";}
+	else if( process=="Spin1P" )												{m_process="Spin1P"; }
+	else if( process=="Spin1M" )												{m_process="Spin1M"; }
+	else if( process=="Spin2Pm" )												{m_process="Spin2Pm"; }
+	else if( process=="Spin2Ph" )												{m_process="Spin2Ph"; }
+	else if( process=="Spin2Mh" )												{m_process="Spin2Mh"; }
+	else if( process=="Spin2Pb" )												{m_process="Spin2Pb"; }
+	else if( process=="Custom" )												{m_process="Custom"; }
+	else return ERR_PROCESS;
 	
-    return 0;
+	return 0;
 }
 
 
@@ -100,49 +109,67 @@ int MEKD::setProcessName(string process)
 /// MEKD::setProcessNames - sanity check and setting of process names
 ///------------------------------------------------------------------------
 int MEKD::setProcessNames(string processA, string processB) {
-    /// processes A and B should be different
-    if( processA == processB ) return ERR_PROCESS;
-    /// check if processA is supported, translation of namings
-    if     ( processA=="ZZ")                                 {m_processA="ZZ";}
-    else if( processA=="DY" )								{m_processA="DY"; }
-    else if( processA=="Higgs"   || processA=="SMHiggs")     {m_processA="ggSpin0SMH";}
-    else if( processA=="CP-odd"  || processA=="Higgs0M")     {m_processA="ggSpin0M";}
-    else if( processA=="CP-even" || processA=="Higgs0P")     {m_processA="CPevenScalar";}
-    else if( processA=="Spin0PH" || processA=="Spin0Ph" )	{m_processA="ggSpin0Ph";}
-    else if( processA=="Spin1P" )							{m_processA="qqSpin1P";}
-    else if( processA=="Spin1M" )							{m_processA="qqSpin1M";}
-    else if( processA=="Spin2PM" || processA=="Graviton2PM" ||
-		processA=="ggSpin2Pm" )								{m_processA="ggSpin2Pm";}
-    else if( processA=="qqSpin2PM" || processA=="qqGraviton2PM" ||
-		processA=="qqSpin2Pm" )								{m_processA="qqSpin2Pm"; }
-	else if( processA=="ggSpin2Ph" )						{m_processA="ggSpin2Ph"; }
-	else if( processA=="ggSpin2Mh" )						{m_processA="ggSpin2Mh"; }
-	else if( processA=="ggSpin2Pb" )						{m_processA="ggSpin2Pb"; }
-	else if( processA=="qqSpin2Ph" )						{m_processA="qqSpin2Ph"; }
-	else if( processA=="qqSpin2Mh" )						{m_processA="qqSpin2Mh"; }
-	else if( processA=="qqSpin2Pb" )						{m_processA="qqSpin2Pb"; }
-    else if( processA=="Custom")							{m_processA="Custom";}
-    else return ERR_PROCESS;
-    /// check if processB is supported, translation of namings
-    if     ( processB=="ZZ")                                 {m_processB="ZZ";}
-    else if( processB=="DY" )								{m_processB="DY"; }
-    else if( processB=="Higgs"   || processB=="SMHiggs")     {m_processB="ggSpin0SMH";}
-    else if( processB=="CP-odd"  || processB=="Higgs0M")     {m_processB="ggSpin0M";}
-    else if( processB=="CP-even" || processB=="Higgs0P")     {m_processB="CPevenScalar";}
-    else if( processB=="Spin0PH" || processB=="Spin0Ph" )	{m_processB="ggSpin0Ph";}
-    else if( processB=="Spin1P" )							{m_processB="qqSpin1P";}
-    else if( processB=="Spin1M" )							{m_processB="qqSpin1M";}
-    else if( processB=="Spin2PM" || processB=="Graviton2PM" ||
-		processB=="ggSpin2Pm" )								{m_processB="ggSpin2Pm";}
-    else if( processB=="qqSpin2PM" || processB=="qqGraviton2PM" ||
-		processB=="qqSpin2Pm" )								{m_processB="qqSpin2Pm"; }
-	else if( processB=="ggSpin2Ph" )						{m_processB="ggSpin2Ph"; }
-	else if( processB=="ggSpin2Mh" )						{m_processB="ggSpin2Mh"; }
-	else if( processB=="ggSpin2Pb" )						{m_processB="ggSpin2Pb"; }
-	else if( processB=="qqSpin2Ph" )						{m_processB="qqSpin2Ph"; }
-	else if( processB=="qqSpin2Mh" )						{m_processB="qqSpin2Mh"; }
-	else if( processB=="qqSpin2Pb" )						{m_processB="qqSpin2Pb"; }
-    else if( processB=="Custom")							{m_processB="Custom";}
+	/// processes A and B should be different
+	if( processA == processB ) return ERR_PROCESS;
+	/// check if processA is supported, translation of namings
+	if     ( processA=="ZZ")													{m_processA="ZZ"; }
+	else if( processA=="DY" )													{m_processA="DY"; }
+	else if( processA=="Higgs" || processA=="SMHiggs" || processA=="ggSpin0Pm" )	{m_processA="ggSpin0Pm"; }
+	else if( processA=="CP-odd" || processA=="Higgs0M" || processA=="ggSpin0M" )	{m_processA="ggSpin0M"; }
+	else if( processA=="CP-even" || processA=="Higgs0P")						{m_processA="CPevenScalar"; }
+	else if( processA=="Spin0PH" || processA=="Spin0Ph" || processA=="ggSpin0Ph" )	{m_processA="ggSpin0Ph"; }
+	else if( processA=="qqSpin1P" )												{m_processA="qqSpin1P"; }
+	else if( processA=="qqSpin1M" )												{m_processA="qqSpin1M"; }
+	else if( processA=="qqSpin2PM" || processA=="Graviton2PM" ||
+		processA=="ggSpin2Pm" )													{m_processA="ggSpin2Pm"; }
+	else if( processA=="qqSpin2PM" || processA=="qqGraviton2PM" ||
+		processA=="qqSpin2Pm" )													{m_processA="qqSpin2Pm"; }
+	else if( processA=="ggSpin2Ph" )											{m_processA="ggSpin2Ph"; }
+	else if( processA=="ggSpin2Mh" )											{m_processA="ggSpin2Mh"; }
+	else if( processA=="ggSpin2Pb" )											{m_processA="ggSpin2Pb"; }
+	else if( processA=="qqSpin2Ph" )											{m_processA="qqSpin2Ph"; }
+	else if( processA=="qqSpin2Mh" )											{m_processA="qqSpin2Mh"; }
+	else if( processA=="qqSpin2Pb" )											{m_processA="qqSpin2Pb"; }
+	else if( processA=="Spin0Pm" )												{m_processA="Spin0Pm"; }
+	else if( processA=="Spin0M" )												{m_processA="Spin0M"; }
+	else if( processA=="Spin0Ph" )												{m_processA="Spin0Ph";}
+	else if( processA=="Spin1P" )												{m_processA="Spin1P"; }
+	else if( processA=="Spin1M" )												{m_processA="Spin1M"; }
+	else if( processA=="Spin2Pm" )												{m_processA="Spin2Pm"; }
+	else if( processA=="Spin2Ph" )												{m_processA="Spin2Ph"; }
+	else if( processA=="Spin2Mh" )												{m_processA="Spin2Mh"; }
+	else if( processA=="Spin2Pb" )												{m_processA="Spin2Pb"; }
+	else if( processA=="Custom")												{m_processA="Custom"; }
+	else return ERR_PROCESS;
+	/// check if processB is supported, translation of namings
+	if     ( processB=="ZZ")													{m_processB="ZZ"; }
+	else if( processB=="DY" )													{m_processB="DY"; }
+	else if( processB=="Higgs" || processB=="SMHiggs" || processB=="ggSpin0Pm" )	{m_processB="ggSpin0Pm"; }
+	else if( processB=="CP-odd" || processB=="Higgs0M" || processB=="ggSpin0M" )	{m_processB="ggSpin0M"; }
+	else if( processB=="CP-even" || processB=="Higgs0P")						{m_processB="CPevenScalar"; }
+	else if( processB=="Spin0PH" || processB=="Spin0Ph" || processB=="ggSpin0Ph" )	{m_processB="ggSpin0Ph"; }
+	else if( processB=="qqSpin1P" )												{m_processB="qqSpin1P"; }
+	else if( processB=="qqSpin1M" )												{m_processB="qqSpin1M"; }
+	else if( processB=="qqSpin2PM" || processB=="Graviton2PM" ||
+		processB=="ggSpin2Pm" )													{m_processB="ggSpin2Pm"; }
+	else if( processB=="qqSpin2PM" || processB=="qqGraviton2PM" ||
+		processB=="qqSpin2Pm" )													{m_processB="qqSpin2Pm"; }
+	else if( processB=="ggSpin2Ph" )											{m_processB="ggSpin2Ph"; }
+	else if( processB=="ggSpin2Mh" )											{m_processB="ggSpin2Mh"; }
+	else if( processB=="ggSpin2Pb" )											{m_processB="ggSpin2Pb"; }
+	else if( processB=="qqSpin2Ph" )											{m_processB="qqSpin2Ph"; }
+	else if( processB=="qqSpin2Mh" )											{m_processB="qqSpin2Mh"; }
+	else if( processB=="qqSpin2Pb" )											{m_processB="qqSpin2Pb"; }
+	else if( processB=="Spin0Pm" )												{m_processB="Spin0Pm"; }
+	else if( processB=="Spin0M" )												{m_processB="Spin0M"; }
+	else if( processB=="Spin0Ph" )												{m_processB="Spin0Ph";}
+	else if( processB=="Spin1P" )												{m_processB="Spin1P"; }
+	else if( processB=="Spin1M" )												{m_processB="Spin1M"; }
+	else if( processB=="Spin2Pm" )												{m_processB="Spin2Pm"; }
+	else if( processB=="Spin2Ph" )												{m_processB="Spin2Ph"; }
+	else if( processB=="Spin2Mh" )												{m_processB="Spin2Mh"; }
+	else if( processB=="Spin2Pb" )												{m_processB="Spin2Pb"; }
+	else if( processB=="Custom")												{m_processB="Custom"; }
     else return ERR_PROCESS;
 	
     return 0;
@@ -163,7 +190,7 @@ int MEKD::computeKD( string processA, string processB,
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processA=="ZZ" )			me2processA = ME_ZZ;
-	else if( m_processA=="ggSpin0SMH" )	me2processA = ME_Spin0PSMH;
+	else if( m_processA=="ggSpin0Pm" )	me2processA = ME_Spin0PSMH;
 	else if( m_processA=="ggSpin0M" )	me2processA = ME_Spin0M;
 	else if( m_processA=="ggSpin0Ph" )	me2processA = ME_Spin0Ph;
 	else if( m_processA=="qqSpin1P" )	me2processA = ME_Spin1P;
@@ -176,7 +203,7 @@ int MEKD::computeKD( string processA, string processB,
 	/// Looking for the precalculated MEs
 	if( ME_ZZ == 0 ) { cerr << "ERROR! The requested process has not been precalculated.\n" ; return ERR_PROCESS; }
 	else if( m_processB=="ZZ" )			me2processB = ME_ZZ;
-	else if( m_processB=="ggSpin0SMH" )	me2processB = ME_Spin0PSMH;
+	else if( m_processB=="ggSpin0Pm" )	me2processB = ME_Spin0PSMH;
 	else if( m_processB=="ggSpin0M" )	me2processB = ME_Spin0M;
 	else if( m_processB=="ggSpin0Ph" )	me2processB = ME_Spin0Ph;
 	else if( m_processB=="qqSpin1P" )	me2processB = ME_Spin1P;
@@ -368,7 +395,7 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 	if( MEKD_MG_Calc.Test_Models.size()==0 )	// Fills in intersting models to compute only once
 	{
 		MEKD_MG_Calc.Test_Models.push_back( "ZZ" );
-		MEKD_MG_Calc.Test_Models.push_back( "ggSpin0SMH" );
+		MEKD_MG_Calc.Test_Models.push_back( "ggSpin0Pm" );
 		MEKD_MG_Calc.Test_Models.push_back( "ggSpin0M" );
 		MEKD_MG_Calc.Test_Models.push_back( "ggSpin0Ph" );
 		MEKD_MG_Calc.Test_Models.push_back( "qqSpin1P" );
