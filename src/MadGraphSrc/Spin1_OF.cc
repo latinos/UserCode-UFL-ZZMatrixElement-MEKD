@@ -219,7 +219,7 @@ double Spin1_OF::matrix_zp_emepmummup()
   std::complex<double> jamp[ncolor]; 
   // The color matrix;
   static const double denom[1] = {1.}; 
-  static const double cf[1][1] = {1.}; 
+  static const double cf[1][1] = {{1.}}; 
 
   // Calculate color flows
   jamp[0] = +amp[0]; 

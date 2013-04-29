@@ -260,7 +260,7 @@ double Spin1_SFpA::matrix_zp_mummupmummupa()
   std::complex<double> jamp[ncolor]; 
   // The color matrix;
   static const double denom[1] = {1.}; 
-  static const double cf[1][1] = {1.}; 
+  static const double cf[1][1] = {{1.}}; 
 
   // Calculate color flows
   jamp[0] = +amp[0] + amp[1] - amp[2] - amp[3] - amp[4] + amp[5] - amp[6] +
