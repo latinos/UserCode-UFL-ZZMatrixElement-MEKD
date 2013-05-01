@@ -23,6 +23,9 @@ void oxxxxx(double p[4], double fmass, int nhel, int nsf, std::complex<double>
 void vxxxxx(double p[4], double vmass, int nhel, int nsv, std::complex<double>
     v[6]);
 
+void txxxxx(double p[4], double tmass, int nhel, int nst, std::complex<double>
+    tc[18]);
+
 void sxxxxx(double p[4], int nss, std::complex<double> sc[3]); 
 
 void ixxxxx(double p[4], double fmass, int nhel, int nsf, std::complex<double>

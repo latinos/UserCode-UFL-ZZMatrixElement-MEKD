@@ -205,8 +205,7 @@ void Spin2_OF::calculate_wavefunctions(const int perm[], const int hel[])
 //   int i, j; 
 
   // Calculate all wavefunctions
-  vxxxxx(p[perm[0]], mME[0], hel[0], -1, w[0]); 
-//   txxxxx(p[perm[0]], mME[0], hel[0], -1, w[0]);
+  txxxxx(p[perm[0]], mME[0], hel[0], -1, w[0]);
   oxxxxx(p[perm[1]], mME[1], hel[1], +1, w[1]); 
   ixxxxx(p[perm[2]], mME[2], hel[2], -1, w[2]); 
   oxxxxx(p[perm[3]], mME[3], hel[3], +1, w[3]); 
