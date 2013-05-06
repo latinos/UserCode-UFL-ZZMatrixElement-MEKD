@@ -40,7 +40,7 @@ objects2_2=$(INCDIR4)/HelAmps_HEF_MEKD2_BKG_DY_2l.o $(INCDIR4)/HelAmps_HEF_MEKD2
 
 objects3=$(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o $(INCDIR2)/MEKD_MG_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
 
-objects4=$(INCDIR1)/MEKD_MG.o
+objects4=$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD_MG_2Model_Mixer.o
 
 
 objects1=$(objects1_bkg) $(objects1_spin0) $(objects1_spin1) $(objects1_spin2) $(objects1_bkg_2) $(objects1_spin0_2) $(objects1_spin1_2) $(objects1_spin2_2)

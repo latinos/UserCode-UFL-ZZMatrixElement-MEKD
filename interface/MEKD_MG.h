@@ -4,9 +4,14 @@
 #include <string>
 #include <vector>
 
+#include <sstream>
+#include <complex>
+
+#include "MEKD_MG_2Model_Mixer.h"
 #include "../src/MadGraphSrc/read_slha.h"
 
 using namespace std;
+
 
 
 class MEKD_MG
@@ -30,6 +35,9 @@ public:
 	double ContributionCoeff_c;	//3
 // 	double GG;	// Assign QCD coupling, force g3 running if needed
 	double Sqrt_s;	//Max energy, collision energy
+	
+	/// State mixing
+	MEKD_2Model_Mixer Mixing_Coefficients;
 	
 	/// Physical parameters
 	double Electron_mass;	//0.0005109989, for enabled overwriting
@@ -73,12 +81,38 @@ private:
 	
 	int error_value;
 	
+<<<<<<< MEKD_MG.h
+	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
+	
+	complex<double> *buffer_complex;
+	
+	// Parameters
+=======
 	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
 	
 	// Parameters
+>>>>>>> 1.8
 	double v_expectation;	// Vacuum expectation value
 	double hZZ_coupling;
+<<<<<<< MEKD_MG.h
+	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e, params_m_mu, params_m_Z;
+	complex<double> params_rhou01, params_rhou02, params_rhoc01, params_rhoc02,
+		params_rhod01, params_rhod02, params_rhos01, params_rhos02,
+		params_rhob01, params_rhob02;
+	complex<double> params_rhou11, params_rhou12, params_rhou13, params_rhou14,
+		params_rhoc11, params_rhoc12, params_rhoc13, params_rhoc14,
+		params_rhod11, params_rhod12, params_rhod13, params_rhod14,
+		params_rhos11, params_rhos12, params_rhos13, params_rhos14,
+		params_rhob11, params_rhob12, params_rhob13, params_rhob14;
+	complex<double> params_rhou21, params_rhou22, params_rhou23, params_rhou24,
+		params_rhoc21, params_rhoc22, params_rhoc23, params_rhoc24,
+		params_rhod21, params_rhod22, params_rhod23, params_rhod24,
+		params_rhos21, params_rhos22, params_rhos23, params_rhos24,
+		params_rhob21, params_rhob22, params_rhob23, params_rhob24;
+	
+=======
 	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e, params_m_mu, params_m_Z;
 	double params_rhou01, params_rhou02, params_rhoc01, params_rhoc02,
 		params_rhod01, params_rhod02, params_rhos01, params_rhos02,
@@ -94,6 +128,7 @@ private:
 		params_rhos21, params_rhos22, params_rhos23, params_rhos24,
 		params_rhob21, params_rhob22, params_rhob23, params_rhob24;
 	
+>>>>>>> 1.8
 	
 	string buffer_string;
 	
@@ -110,6 +145,31 @@ private:
 	/// Sets up particular choices
 	int Run_MEKD_MG_ME_BKG();
 	int Run_MEKD_MG_ME_Custom();
+<<<<<<< MEKD_MG.h
+	int Run_MEKD_MG_ME_CPevenScalar(string initial_state);
+	int Run_MEKD_MG_ME_Spin0Pm(string initial_state);	// SM Higgs
+	int Run_MEKD_MG_ME_Spin0M(string initial_state);
+	int Run_MEKD_MG_ME_Spin0Ph(string initial_state);
+	int Run_MEKD_MG_ME_Spin1P(string initial_state);
+	int Run_MEKD_MG_ME_Spin1M(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Pm(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Ph(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Mh(string initial_state);
+	int Run_MEKD_MG_ME_Spin2Pb(string initial_state);
+	int Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state);	// A mixed state
+	int Run_MEKD_MG_ME_Spin0Pm_Spin0Ph(string initial_state);
+	int Run_MEKD_MG_ME_Spin0M_Spin0Ph(string initial_state);
+	
+	/// Blind-calculation functions
+	int Run_MEKD_MG_MEs_BKG(string initial_state);
+	int Run_MEKD_MG_MEs_BKG_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin0(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin1(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Spin1_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Spin2(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, bool photon);
+=======
 	int Run_MEKD_MG_ME_CPevenScalar(string initial_state);
 	int Run_MEKD_MG_ME_Spin0Pm(string initial_state);	// SM Higgs
 	int Run_MEKD_MG_ME_Spin0M(string initial_state);
@@ -130,6 +190,7 @@ private:
 	int Run_MEKD_MG_MEs_SIG_Spin1_Sub(string initial_state, string flavor, bool photon);
 	int Run_MEKD_MG_MEs_SIG_Spin2(string initial_state);
 	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, bool photon);
+>>>>>>> 1.8
 };
 
 

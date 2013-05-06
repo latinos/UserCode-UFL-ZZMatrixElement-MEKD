@@ -4,7 +4,7 @@
 //
 //  Created by Myeonghun Park on 9/2/12.
 //
-//  Modified by Aurelijus Rinkevicius on 2012-12-17
+//  Modified by Aurelijus Rinkevicius on 2013-05-06
 //
 #ifndef _hggeffective_cpp
 #define _hggeffective_cpp
@@ -20,13 +20,13 @@ using namespace std;
 
 double EE= 3.12300000000e-1,
 	SW= 4.80800000000e-1,
-	Me= 5.11000000000e-4,
-	Mm= 1.05658000000e-1,
+	Me= 5.109989e-4,
+	Mm= 1.056584e-1,
 	Mcp= 1.40000000000e0,
-	Mtp= 1.72900000000e2,
-	MZ= 9.11876000000e1,
-	wZ= 2.49444000000e0;
-double Mbp = 4.967923e0;
+	Mtp= 1.77500000000e2,
+	MZ= 9.118760e1,
+	wZ= 2.495200e0;
+double Mbp = 4.891000e0;
 double CW = sqrt(1-SW*SW);
 double MW = MZ*sqrt(1-SW*SW);
 double alphaQh = 0.1184;

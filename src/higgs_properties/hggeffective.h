@@ -4,7 +4,7 @@
 //
 //  Created by Myeonghun Park on 9/2/12.
 //
-//  Modified by Aurelijus Rinkevicius on 2012-12-17
+//  Modified by Aurelijus Rinkevicius on 2013-05-06
 //
 #ifndef _hggeffective_h
 #define _hggeffective_h
