@@ -31,6 +31,10 @@ MEKD::MEKD(double collisionEnergy, string PDFName)
 	
 	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy*1000;	// translate TeV to GeV
 	
+	m_Mix_Spin0Pm_Spin0M = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0M", NULL );
+	m_Mix_Spin0Pm_Spin0Ph = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0Ph", NULL );
+	m_Mix_Spin0M_Spin0Ph = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0M", "Spin0Ph", NULL );
+	
 	ME_ZZ = 0;
 	ME_Spin0PSMH = 0;
 	ME_Spin0Ph = 0;
@@ -77,6 +81,7 @@ int MEKD::setProcessName(string process)
 	else if( process=="CP-odd" || process=="Higgs0M" || process=="ggSpin0M" )	{m_process="ggSpin0M"; }
 	else if( process=="CP-even" || process=="Higgs0P" )							{m_process="CPevenScalar"; }
 	else if( process=="ggSpin0PH" || process=="ggSpin0Ph" )						{m_process="ggSpin0Ph"; }
+	else if( process=="ggSpin0Pm_ggSpin0M" )									{m_process="ggSpin0Pm_ggSpin0M"; }
 	else if( process=="qqSpin1P" )												{m_process="qqSpin1P"; }
 	else if( process=="qqSpin1M" )												{m_process="qqSpin1M"; }
 	else if( process=="ggSpin2PM" || process=="Graviton2PM" ||
@@ -92,6 +97,7 @@ int MEKD::setProcessName(string process)
 	else if( process=="Spin0Pm" )												{m_process="Spin0Pm"; }
 	else if( process=="Spin0M" )												{m_process="Spin0M"; }
 	else if( process=="Spin0Ph" )												{m_process="Spin0Ph";}
+	else if( process=="Spin0Pm_Spin0M" )										{m_process="Spin0Pm_Spin0M"; }
 	else if( process=="Spin1P" )												{m_process="Spin1P"; }
 	else if( process=="Spin1M" )												{m_process="Spin1M"; }
 	else if( process=="Spin2Pm" )												{m_process="Spin2Pm"; }
@@ -118,6 +124,7 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processA=="CP-odd" || processA=="Higgs0M" || processA=="ggSpin0M" )	{m_processA="ggSpin0M"; }
 	else if( processA=="CP-even" || processA=="Higgs0P")						{m_processA="CPevenScalar"; }
 	else if( processA=="Spin0PH" || processA=="Spin0Ph" || processA=="ggSpin0Ph" )	{m_processA="ggSpin0Ph"; }
+	else if( processA=="ggSpin0Pm_ggSpin0M" )									{m_processA="ggSpin0Pm_ggSpin0M"; }
 	else if( processA=="qqSpin1P" )												{m_processA="qqSpin1P"; }
 	else if( processA=="qqSpin1M" )												{m_processA="qqSpin1M"; }
 	else if( processA=="qqSpin2PM" || processA=="Graviton2PM" ||
@@ -133,6 +140,7 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processA=="Spin0Pm" )												{m_processA="Spin0Pm"; }
 	else if( processA=="Spin0M" )												{m_processA="Spin0M"; }
 	else if( processA=="Spin0Ph" )												{m_processA="Spin0Ph";}
+	else if( processA=="Spin0Pm_Spin0M" )										{m_processA="Spin0Pm_Spin0M"; }
 	else if( processA=="Spin1P" )												{m_processA="Spin1P"; }
 	else if( processA=="Spin1M" )												{m_processA="Spin1M"; }
 	else if( processA=="Spin2Pm" )												{m_processA="Spin2Pm"; }
@@ -148,6 +156,7 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processB=="CP-odd" || processB=="Higgs0M" || processB=="ggSpin0M" )	{m_processB="ggSpin0M"; }
 	else if( processB=="CP-even" || processB=="Higgs0P")						{m_processB="CPevenScalar"; }
 	else if( processB=="Spin0PH" || processB=="Spin0Ph" || processB=="ggSpin0Ph" )	{m_processB="ggSpin0Ph"; }
+	else if( processB=="ggSpin0Pm_ggSpin0M" )									{m_processB="ggSpin0Pm_ggSpin0M"; }
 	else if( processB=="qqSpin1P" )												{m_processB="qqSpin1P"; }
 	else if( processB=="qqSpin1M" )												{m_processB="qqSpin1M"; }
 	else if( processB=="qqSpin2PM" || processB=="Graviton2PM" ||
@@ -163,6 +172,7 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processB=="Spin0Pm" )												{m_processB="Spin0Pm"; }
 	else if( processB=="Spin0M" )												{m_processB="Spin0M"; }
 	else if( processB=="Spin0Ph" )												{m_processB="Spin0Ph";}
+	else if( processB=="Spin0Pm_Spin0M" )										{m_processB="Spin0Pm_Spin0M"; }
 	else if( processB=="Spin1P" )												{m_processB="Spin1P"; }
 	else if( processB=="Spin1M" )												{m_processB="Spin1M"; }
 	else if( processB=="Spin2Pm" )												{m_processB="Spin2Pm"; }
@@ -444,6 +454,46 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 	
 	return buffer_int;
 }
+
+
+///------------------------------------------------------------------------
+/// MEKD::Mix_Spin0Pm_Spin0M - Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0M states
+///------------------------------------------------------------------------
+int MEKD::Mix_Spin0Pm_Spin0M( complex<double> Spin0Pm_relamp, complex<double> Spin0M_relamp )
+{
+	m_Mix_Spin0Pm_Spin0M[0] = Spin0Pm_relamp;
+	m_Mix_Spin0Pm_Spin0M[1] = Spin0M_relamp;
+	
+	if( m_Mix_Spin0Pm_Spin0M == NULL ) return ERR_OTHER;
+	return 0;
+}
+
+
+///------------------------------------------------------------------------
+/// MEKD::Mix_Spin0Pm_Spin0Ph - Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0Ph states
+///------------------------------------------------------------------------
+int MEKD::Mix_Spin0Pm_Spin0Ph( complex<double> Spin0Pm_relamp, complex<double> Spin0Ph_relamp )
+{
+	m_Mix_Spin0Pm_Spin0Ph[0] = Spin0Pm_relamp;
+	m_Mix_Spin0Pm_Spin0Ph[1] = Spin0Ph_relamp;
+	
+	if( m_Mix_Spin0Pm_Spin0Ph == NULL ) return ERR_OTHER;
+	return 0;
+}
+
+
+///------------------------------------------------------------------------
+/// MEKD::Mix_Spin0M_Spin0Ph - Mixed-state ME mixer of (gg)Spin0M and (gg)Spin0Ph states
+///------------------------------------------------------------------------
+int MEKD::Mix_Spin0M_Spin0Ph( complex<double> Spin0M_relamp, complex<double> Spin0Ph_relamp )
+{
+	m_Mix_Spin0M_Spin0Ph[0] = Spin0M_relamp;
+	m_Mix_Spin0M_Spin0Ph[1] = Spin0Ph_relamp;
+	
+	if( m_Mix_Spin0M_Spin0Ph == NULL ) return ERR_OTHER;
+	return 0;
+}
+
 
 
 #if (defined(MEKD_STANDALONE) && defined(MEKD_with_ROOT)) || !(defined(MEKD_STANDALONE))

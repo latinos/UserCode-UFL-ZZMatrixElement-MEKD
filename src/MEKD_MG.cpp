@@ -231,6 +231,14 @@ Spin2_qq_UP_2lpA ME_Signal_Spin2_qq_UpType_2lpA;
 
 MEKD_MG::MEKD_MG()
 {
+	buffer_complex = new complex<double>[2];
+	Mixing_Coefficients.set_block_entry( (string) "Spin0Pm", (string) "Spin0M", buffer_complex );
+	buffer_complex = new complex<double>[2];
+	Mixing_Coefficients.set_block_entry( (string) "Spin0Pm", (string) "Spin0Ph", buffer_complex );
+	buffer_complex = new complex<double>[2];
+	Mixing_Coefficients.set_block_entry( (string) "Spin0M", (string) "Spin0Ph", buffer_complex );
+	buffer_complex = NULL;
+	
 	Set_Default_MEKD_MG_Parameters();
 	
 	/// Cross-cheking MEs for consistency. ZZ
@@ -363,6 +371,13 @@ MEKD_MG::MEKD_MG()
 
 MEKD_MG::~MEKD_MG()
 {
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0Pm", (string) "Spin0M", NULL );
+	delete buffer_complex;
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0Pm", (string) "Spin0Ph", NULL );
+	delete buffer_complex;
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0M", (string) "Spin0Ph", NULL );
+	delete buffer_complex;
+	
 	if( Parameters_Are_Loaded ) Unload_pdfreader();
 	
 	p_set.clear();
@@ -466,13 +481,13 @@ int MEKD_MG::Load_Parameters()
 	ME_Signal_Spin2_qq_DownType_2lpA.initProc( Parameter_file );
 	ME_Signal_Spin2_qq_UpType_2lpA.initProc( Parameter_file );
 	
-	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
-	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
-	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
-	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
-	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
-	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 ).real();
+	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 ).real();
+	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 ).real();
+	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 ).real();
+	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 ).real();
+	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 ).real();
+	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 ).real();
 	
 	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "heff", 9, 0 );
 	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "heff", 10, 0 );
@@ -528,8 +543,8 @@ int MEKD_MG::Load_Parameters()
 	params_rhob24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 40, 0 );
 	
 	
-	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
-	hZZ_coupling = 2*params_m_Z*params_m_Z/v_expectation;
+	v_expectation = 1.0/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ).real() );
+	hZZ_coupling = 2.0*params_m_Z*params_m_Z/v_expectation;
 	
 	
 	Load_pdfreader( const_cast<char*>(PDF_file.c_str()) );
@@ -546,13 +561,13 @@ int MEKD_MG::Reload_Parameters()
 	
 	Set_Of_Model_Parameters.read_slha_file( static_cast<string>(Parameter_file) );
 	
-	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 );
-	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 );
-	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 );
-	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 );
-	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 );
-	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 );
-	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 );
+	params_m_d = Set_Of_Model_Parameters.get_block_entry( "mass", 1, 0 ).real();
+	params_m_u = Set_Of_Model_Parameters.get_block_entry( "mass", 2, 0 ).real();
+	params_m_s = Set_Of_Model_Parameters.get_block_entry( "mass", 3, 0 ).real();
+	params_m_c = Set_Of_Model_Parameters.get_block_entry( "mass", 4, 0 ).real();
+	params_m_e = Set_Of_Model_Parameters.get_block_entry( "mass", 11, 0 ).real();
+	params_m_mu = Set_Of_Model_Parameters.get_block_entry( "mass", 13, 0 ).real();
+	params_m_Z = Set_Of_Model_Parameters.get_block_entry( "mass", 23, 9.11876e+01 ).real();
 	
 	params_rhou11 = Set_Of_Model_Parameters.get_block_entry( "vec", 3, 0 );
 	params_rhou12 = Set_Of_Model_Parameters.get_block_entry( "vec", 4, 0 );
@@ -607,8 +622,8 @@ int MEKD_MG::Reload_Parameters()
 	params_rhob23 = Set_Of_Model_Parameters.get_block_entry( "gravity", 39, 0 );
 	params_rhob24 = Set_Of_Model_Parameters.get_block_entry( "gravity", 40, 0 );
 	
-	v_expectation = 1/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ) );
-	hZZ_coupling = 2*params_m_Z*params_m_Z/v_expectation;
+	v_expectation = 1.0/sqrt( sqrt(2)*Set_Of_Model_Parameters.get_block_entry( "sminputs", 2, 1.166370e-05 ).real() );
+	hZZ_coupling = 2.0*params_m_Z*params_m_Z/v_expectation;
 	
 	
 	Unload_pdfreader();
@@ -637,6 +652,17 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	ContributionCoeff_c = 0;	//3
 // 	GG=0;	// Assign QCD coupling, force g3 running if needed
 	Sqrt_s = 8000;	//Max energy, collision energy
+	
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0Pm", (string) "Spin0M", NULL );
+	buffer_complex[0] = complex<double>(1/sqrt(2), 0);
+	buffer_complex[1] = complex<double>(1/sqrt(2), 0);
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0Pm", (string) "Spin0Ph", NULL );
+	buffer_complex[0] = complex<double>(1/sqrt(2), 0);
+	buffer_complex[1] = complex<double>(1/sqrt(2), 0);
+	buffer_complex = Mixing_Coefficients.get_block_entry( (string) "Spin0M", (string) "Spin0Ph", NULL );
+	buffer_complex[0] = complex<double>(1/sqrt(2), 0);
+	buffer_complex[1] = complex<double>(1/sqrt(2), 0);
+	buffer_complex = NULL;
 	
 	Electron_mass = 0;	//0.0005109989, for enabled overwriting
 	Higgs_mass = 126;	// Works only if Use_mh_eq_m4l=false
@@ -684,14 +710,14 @@ int MEKD_MG::Run_MEKD_MG()
 	}
 	
 	if( Final_state == "4e" || Final_state == "4eA" )
-		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 11, Electron_mass ); ml2=ml1; ml3=ml1; ml4=ml1; }
+		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 11, Electron_mass ).real(); ml2=ml1; ml3=ml1; ml4=ml1; }
 	if( Final_state == "4m" || Final_state == "4mu" || Final_state == "4mA" || Final_state == "4muA" )
-		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ); ml2=ml1; ml3=ml1; ml4=ml1; }
+		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ).real(); ml2=ml1; ml3=ml1; ml4=ml1; }
 	if( Final_state == "2e2m" || Final_state == "2e2mu" || Final_state == "2e2mA" || Final_state == "2e2muA" )
-		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 11, Electron_mass ); ml2=ml1; ml3=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ); ml4=ml3; }
+		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 11, Electron_mass ).real(); ml2=ml1; ml3=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ).real(); ml4=ml3; }
 		
 	if( Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" || Final_state == "2muA" )
-		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ); ml2=ml1; ml3=0; ml4=0; }
+		{ ml1=Set_Of_Model_Parameters.get_block_entry( "mass", 13, Muon_mass ).real(); ml2=ml1; ml3=0; ml4=0; }
 	
 	
 	/// No boosting setup for initial partons
@@ -836,6 +862,12 @@ int MEKD_MG::Run_MEKD_MG()
 				Run_MEKD_MG_ME_Spin0M( "gg" );
 			if( Test_Models[i]=="3" || Test_Models[i]=="ggSpin0Ph" )
 		 		Run_MEKD_MG_ME_Spin0Ph( "gg" );
+			if( Test_Models[i]=="ggSpin0Pm_ggSpin0M" )
+				Run_MEKD_MG_ME_Spin0Pm_Spin0M( "gg" );
+			if( Test_Models[i]=="ggSpin0Pm_ggSpin0Ph" )
+				Run_MEKD_MG_ME_Spin0Pm_Spin0Ph( "gg" );
+			if( Test_Models[i]=="ggSpin0M_ggSpin0Ph" )
+				Run_MEKD_MG_ME_Spin0M_Spin0Ph( "gg" );
 			if( Test_Models[i]=="4" || Test_Models[i]=="qqSpin1M" )
 		 		Run_MEKD_MG_ME_Spin1M( "qq" );
 			if( Test_Models[i]=="5" || Test_Models[i]=="qqSpin1P" )
@@ -876,6 +908,12 @@ int MEKD_MG::Run_MEKD_MG()
 				Run_MEKD_MG_ME_Spin2Mh( "NO" );
 			if( Test_Models[i]=="Spin2Pb" )
 				Run_MEKD_MG_ME_Spin2Pb( "NO" );
+			if( Test_Models[i]=="Spin0Pm_Spin0M" )
+				Run_MEKD_MG_ME_Spin0Pm_Spin0M( "NO" );
+			if( Test_Models[i]=="Spin0Pm_Spin0Ph" )
+				Run_MEKD_MG_ME_Spin0Pm_Spin0Ph( "NO" );
+			if( Test_Models[i]=="Spin0M_Spin0Ph" )
+				Run_MEKD_MG_ME_Spin0M_Spin0Ph( "NO" );
 				
 			Signal_MEs.push_back( Signal_ME );
 		}
@@ -897,6 +935,15 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="3" || Test_Model=="ggSpin0Ph" ||
 			Test_Model=="!3" || Test_Model=="!ggSpin0Ph" )
 	 		Run_MEKD_MG_ME_Spin0Ph( "gg" );
+		if( Test_Model=="ggSpin0Pm_ggSpin0M" ||
+			Test_Model=="!ggSpin0Pm_ggSpin0M" )
+			Run_MEKD_MG_ME_Spin0Pm_Spin0M( "gg" );
+		if( Test_Model=="ggSpin0Pm_ggSpin0Ph" ||
+			Test_Model=="!ggSpin0Pm_ggSpin0Ph" )
+			Run_MEKD_MG_ME_Spin0Pm_Spin0Ph( "gg" );
+		if( Test_Model=="ggSpin0M_ggSpin0Ph" ||
+			Test_Model=="!ggSpin0M_ggSpin0Ph" )
+			Run_MEKD_MG_ME_Spin0M_Spin0Ph( "gg" );
 		if( Test_Model=="4" || Test_Model=="qqSpin1M" ||
 			Test_Model=="!4" || Test_Model=="!qqSpin1M" )
 	 		Run_MEKD_MG_ME_Spin1M( "qq" );
@@ -957,6 +1004,15 @@ int MEKD_MG::Run_MEKD_MG()
 		if( Test_Model=="Spin2Pb" ||
 			Test_Model=="!Spin2Pb" )
 			Run_MEKD_MG_ME_Spin2Pb( "NO" );
+		if( Test_Model=="Spin0Pm_Spin0M" ||
+			Test_Model=="!Spin0Pm_Spin0M" )
+			Run_MEKD_MG_ME_Spin0Pm_Spin0M( "NO" );
+		if( Test_Model=="Spin0Pm_Spin0Ph" ||
+			Test_Model=="!Spin0Pm_Spin0Ph" )
+			Run_MEKD_MG_ME_Spin0Pm_Spin0Ph( "NO" );
+		if( Test_Model=="Spin0M_Spin0Ph" ||
+			Test_Model=="!Spin0M_Spin0Ph" )
+			Run_MEKD_MG_ME_Spin0M_Spin0Ph( "NO" );
 	}
 	
 	
@@ -1027,9 +1083,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Mass_4l), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(hZZ_coupling, 0) );
 		}
 	}
 	else
@@ -1042,32 +1098,32 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Higgs_mass), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(hZZ_coupling, 0) );
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "heff", 1, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "heff", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(0, 0) );
 	
 	//qq
-	params_rhou01 = 0;
-	params_rhou02 = 0;
-	params_rhoc01 = 0;
-	params_rhoc02 = 0;
-	params_rhod01 = 0;
-	params_rhod02 = 0;
-	params_rhos01 = 0;
-	params_rhos02 = 0;
-	params_rhob01 = 0;
-	params_rhob02 = 0;
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
 }
@@ -1086,9 +1142,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 4, 4*LmbdGG(Mass_4l)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(4*LmbdGG(Mass_4l)*sqrt(3), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );
 		}
 	}
 	else
@@ -1101,32 +1157,32 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 4, 4*LmbdGG(Higgs_mass)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(4*LmbdGG(Higgs_mass)*sqrt(3), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 8, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "heff", 1, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 3, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "heff", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
 	
 	//qq
-	params_rhou01 = 0;
-	params_rhou02 = 0;
-	params_rhoc01 = 0;
-	params_rhoc02 = 0;
-	params_rhod01 = 0;
-	params_rhod02 = 0;
-	params_rhos01 = 0;
-	params_rhos02 = 0;
-	params_rhob01 = 0;
-	params_rhob02 = 0;
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
 }
@@ -1145,13 +1201,13 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 1, 4*LmbdGG(Mass_4l)*Mass_4l*Mass_4l );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 3, 4*LmbdGG(Mass_4l)/Mass_4l/Mass_4l/Mass_4l/Mass_4l );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(4*LmbdGG(Mass_4l)*Mass_4l*Mass_4l, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Mass_4l), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(4*LmbdGG(Mass_4l)/Mass_4l/Mass_4l/Mass_4l/Mass_4l, 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z);
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(hZZ_coupling, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z, 0) );
 		}
 	}
 	else
@@ -1164,32 +1220,32 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 1, 4*LmbdGG(Higgs_mass)*Higgs_mass*Higgs_mass );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass) );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 3, 4*LmbdGG(Higgs_mass)/Higgs_mass/Higgs_mass );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(4*LmbdGG(Higgs_mass)*Higgs_mass*Higgs_mass, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Higgs_mass), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(4*LmbdGG(Higgs_mass)/Higgs_mass/Higgs_mass, 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 5, hZZ_coupling );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z );
-			Set_Of_Model_Parameters.set_block_entry( "heff", 7, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(hZZ_coupling, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z, 0) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z/params_m_Z, 0) );
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(0, 0) );
 	
 	//qq
-	params_rhou01 = 0;
-	params_rhou02 = 0;
-	params_rhoc01 = 0;
-	params_rhoc02 = 0;
-	params_rhod01 = 0;
-	params_rhod02 = 0;
-	params_rhos01 = 0;
-	params_rhos02 = 0;
-	params_rhob01 = 0;
-	params_rhob02 = 0;
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
 }
@@ -1208,9 +1264,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Mass_4l)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Mass_4l)*sqrt(3), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );
 		}
 	}
 	else
@@ -1223,32 +1279,223 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "heff", 2, 4*LmbdGG(Higgs_mass)*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, complex<double>(4*LmbdGG(Higgs_mass)*sqrt(3), 0) );
 			
-			Set_Of_Model_Parameters.set_block_entry( "heff", 6, 2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3) );
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "heff", 1, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 4, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "heff", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "heff", 8, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(0, 0) );
 	
 	//qq
-	params_rhou01 = 0;
-	params_rhou02 = 0;
-	params_rhoc01 = 0;
-	params_rhoc02 = 0;
-	params_rhod01 = 0;
-	params_rhod02 = 0;
-	params_rhos01 = 0;
-	params_rhos02 = 0;
-	params_rhob01 = 0;
-	params_rhob02 = 0;
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state)
+{
+	buffer_complex = Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0M", NULL );
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, buffer_complex[0]*complex<double>(4*LmbdGG(Mass_4l), 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, buffer_complex[1]*complex<double>(4*LmbdGG(Mass_4l)*sqrt(3), 0) );	// Spin0M
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, buffer_complex[0]*complex<double>(hZZ_coupling, 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0M
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, buffer_complex[0]*complex<double>(4*LmbdGG(Higgs_mass), 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, buffer_complex[1]*complex<double>(4*LmbdGG(Higgs_mass)*sqrt(3), 0) );	// Spin0M
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, buffer_complex[0]*complex<double>(hZZ_coupling, 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0M
+		}
+	}
+	
+	//gg
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
+	
+	Set_Of_Model_Parameters.set_block_entry( "heff", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
+	
+	//qq
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
+	
+	buffer_complex = NULL;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0Ph(string initial_state)
+{
+	buffer_complex = Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0Ph", NULL );
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, (buffer_complex[0]+buffer_complex[1])*complex<double>(4*LmbdGG(Mass_4l), 0) );	// Spin0Pm+Spin0Ph
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, buffer_complex[0]*complex<double>(hZZ_coupling, 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0Ph
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, (buffer_complex[0]+buffer_complex[1])*complex<double>(4*LmbdGG(Higgs_mass), 0) );	// Spin0Pm+Spin0Ph
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 5, buffer_complex[0]*complex<double>(hZZ_coupling, 0) );	// Spin0Pm
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0Ph
+		}
+	}
+	
+	//gg
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 4, complex<double>(0, 0) );
+	
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 8, complex<double>(0, 0) );
+	
+	//qq
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
+	
+	buffer_complex = NULL;
+	
+	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
+}
+
+
+
+int MEKD_MG::Run_MEKD_MG_ME_Spin0M_Spin0Ph(string initial_state)
+{
+	buffer_complex = Mixing_Coefficients.get_block_entry( "Spin0M", "Spin0Ph", NULL );
+	if( Use_mh_eq_m4l )
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, buffer_complex[1]*complex<double>(4*LmbdGG(Mass_4l), 0) );	// Spin0Ph
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, buffer_complex[0]*complex<double>(4*LmbdGG(Mass_4l)*sqrt(3), 0) );	// Spin0M
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0Ph
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, buffer_complex[0]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0M
+		}
+	}
+	else
+	{
+		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
+		
+		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
+		
+		if( Vary_signal_couplings )
+		{
+			//gg
+			Set_Of_Model_Parameters.set_block_entry( "heff", 2, buffer_complex[1]*complex<double>(4*LmbdGG(Higgs_mass), 0) );	// Spin0Ph
+			Set_Of_Model_Parameters.set_block_entry( "heff", 4, buffer_complex[0]*complex<double>(4*LmbdGG(Higgs_mass)*sqrt(3), 0) );	// Spin0M
+			
+			Set_Of_Model_Parameters.set_block_entry( "heff", 6, buffer_complex[1]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0Ph
+			Set_Of_Model_Parameters.set_block_entry( "heff", 8, buffer_complex[0]*complex<double>(2*hZZ_coupling/params_m_Z/params_m_Z*sqrt(3), 0) );	// Spin0M
+		}
+	}
+	
+	//gg
+	Set_Of_Model_Parameters.set_block_entry( "heff", 1, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 3, complex<double>(0, 0) );
+	
+	Set_Of_Model_Parameters.set_block_entry( "heff", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "heff", 7, complex<double>(0, 0) );
+	
+	//qq
+	params_rhou01 = complex<double>(0, 0);
+	params_rhou02 = complex<double>(0, 0);
+	params_rhoc01 = complex<double>(0, 0);
+	params_rhoc02 = complex<double>(0, 0);
+	params_rhod01 = complex<double>(0, 0);
+	params_rhod02 = complex<double>(0, 0);
+	params_rhos01 = complex<double>(0, 0);
+	params_rhos02 = complex<double>(0, 0);
+	params_rhob01 = complex<double>(0, 0);
+	params_rhob02 = complex<double>(0, 0);
+	
+	buffer_complex = NULL;
 	
 	return Run_MEKD_MG_MEs_SIG_Spin0( initial_state );
 }
@@ -1268,13 +1515,13 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//qq
-			params_rhod11 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhos11 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhob11 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhou11 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhoc11 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhod11 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhos11 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhob11 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhou11 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhoc11 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
 			
-			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, complex<double>(hZZ_coupling/2/params_m_Z, 0) );
 		}
 	}
 	else
@@ -1287,34 +1534,34 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//qq
-			params_rhod11 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhos11 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhob11 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhou11 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhoc11 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhod11 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhos11 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhob11 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhou11 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhoc11 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
 			
-			Set_Of_Model_Parameters.set_block_entry( "vec", 1, hZZ_coupling/2/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "vec", 1, complex<double>(hZZ_coupling/2/params_m_Z, 0) );
 		}
 	}
 	
-	Set_Of_Model_Parameters.set_block_entry( "vec", 2, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 2, complex<double>(0, 0) );
 	
 	//qq
-	params_rhod12 = 0;
-	params_rhod13 = 0;
-	params_rhod14 = 0;
-	params_rhos12 = 0;
-	params_rhos13 = 0;
-	params_rhos14 = 0;
-	params_rhob12 = 0;
-	params_rhob13 = 0;
-	params_rhob14 = 0;
-	params_rhou12 = 0;
-	params_rhou13 = 0;
-	params_rhou14 = 0;
-	params_rhoc12 = 0;
-	params_rhoc13 = 0;
-	params_rhoc14 = 0;
+	params_rhod12 = complex<double>(0, 0);
+	params_rhod13 = complex<double>(0, 0);
+	params_rhod14 = complex<double>(0, 0);
+	params_rhos12 = complex<double>(0, 0);
+	params_rhos13 = complex<double>(0, 0);
+	params_rhos14 = complex<double>(0, 0);
+	params_rhob12 = complex<double>(0, 0);
+	params_rhob13 = complex<double>(0, 0);
+	params_rhob14 = complex<double>(0, 0);
+	params_rhou12 = complex<double>(0, 0);
+	params_rhou13 = complex<double>(0, 0);
+	params_rhou14 = complex<double>(0, 0);
+	params_rhoc12 = complex<double>(0, 0);
+	params_rhoc13 = complex<double>(0, 0);
+	params_rhoc14 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin1( initial_state );
 }
@@ -1334,13 +1581,13 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//qq
-			params_rhod12 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhos12 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhob12 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhou12 = LmbdGG(Mass_4l)*v_expectation;
-			params_rhoc12 = LmbdGG(Mass_4l)*v_expectation;
+			params_rhod12 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhos12 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhob12 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhou12 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
+			params_rhoc12 = complex<double>(LmbdGG(Mass_4l)*v_expectation, 0);
 			
-			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, complex<double>(hZZ_coupling/4/params_m_Z, 0) );
 		}
 	}
 	else
@@ -1353,34 +1600,34 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//qq
-			params_rhod12 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhos12 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhob12 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhou12 = LmbdGG(Higgs_mass)*v_expectation;
-			params_rhoc12 = LmbdGG(Higgs_mass)*v_expectation;
+			params_rhod12 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhos12 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhob12 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhou12 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
+			params_rhoc12 = complex<double>(LmbdGG(Higgs_mass)*v_expectation, 0);
 			
-			Set_Of_Model_Parameters.set_block_entry( "vec", 2, hZZ_coupling/4/params_m_Z );
+			Set_Of_Model_Parameters.set_block_entry( "vec", 2, complex<double>(hZZ_coupling/4/params_m_Z, 0) );
 		}
 	}
 	
-	Set_Of_Model_Parameters.set_block_entry( "vec", 1, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "vec", 1, complex<double>(0, 0) );
 	
 	//qq
-	params_rhod11 = 0;
-	params_rhod13 = 0;
-	params_rhod14 = 0;
-	params_rhos11 = 0;
-	params_rhos13 = 0;
-	params_rhos14 = 0;
-	params_rhob11 = 0;
-	params_rhob13 = 0;
-	params_rhob14 = 0;
-	params_rhou11 = 0;
-	params_rhou13 = 0;
-	params_rhou14 = 0;
-	params_rhoc11 = 0;
-	params_rhoc13 = 0;
-	params_rhoc14 = 0;
+	params_rhod11 = complex<double>(0, 0);
+	params_rhod13 = complex<double>(0, 0);
+	params_rhod14 = complex<double>(0, 0);
+	params_rhos11 = complex<double>(0, 0);
+	params_rhos13 = complex<double>(0, 0);
+	params_rhos14 = complex<double>(0, 0);
+	params_rhob11 = complex<double>(0, 0);
+	params_rhob13 = complex<double>(0, 0);
+	params_rhob14 = complex<double>(0, 0);
+	params_rhou11 = complex<double>(0, 0);
+	params_rhou13 = complex<double>(0, 0);
+	params_rhou14 = complex<double>(0, 0);
+	params_rhoc11 = complex<double>(0, 0);
+	params_rhoc13 = complex<double>(0, 0);
+	params_rhoc14 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin1( initial_state );
 }
@@ -1399,14 +1646,14 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Mass_4l);
-			params_rhos21 = LmbdGG(Mass_4l);
-			params_rhob21 = LmbdGG(Mass_4l);
-			params_rhou21 = LmbdGG(Mass_4l);
-			params_rhoc21 = LmbdGG(Mass_4l);
+			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhos21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhob21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhou21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Mass_4l), 0);
 		}
 	}
 	else
@@ -1419,60 +1666,60 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Higgs_mass);
-			params_rhos21 = LmbdGG(Higgs_mass);
-			params_rhob21 = LmbdGG(Higgs_mass);
-			params_rhou21 = LmbdGG(Higgs_mass);
-			params_rhoc21 = LmbdGG(Higgs_mass);
+			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhos21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhob21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhou21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Higgs_mass), 0);
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, -hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z );	// to match model: sqrt(2) -> 2 but numbers will go too low
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling/sqrt(2) );	// to match model: sqrt(2) -> 2 but numbers will go too low
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z, 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling/sqrt(2), 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, complex<double>(0, 0) );
 	
 	//qq
-// 	params_rhod21 = 0;
-	params_rhod22 = 0;
-	params_rhod23 = 0;
-	params_rhod24 = 0;
-// 	params_rhos21 = 0;
-	params_rhos22 = 0;
-	params_rhos23 = 0;
-	params_rhos24 = 0;
-// 	params_rhos21 = 0;
-	params_rhob22 = 0;
-	params_rhob23 = 0;
-	params_rhob24 = 0;
-// 	params_rhos21 = 0;
-	params_rhou22 = 0;
-	params_rhou23 = 0;
-	params_rhou24 = 0;
-// 	params_rhos21 = 0;
-	params_rhoc22 = 0;
-	params_rhoc23 = 0;
-	params_rhoc24 = 0;
+// 	params_rhod21 = complex<double>(0, 0);
+	params_rhod22 = complex<double>(0, 0);
+	params_rhod23 = complex<double>(0, 0);
+	params_rhod24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhos22 = complex<double>(0, 0);
+	params_rhos23 = complex<double>(0, 0);
+	params_rhos24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhob22 = complex<double>(0, 0);
+	params_rhob23 = complex<double>(0, 0);
+	params_rhob24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhou22 = complex<double>(0, 0);
+	params_rhou23 = complex<double>(0, 0);
+	params_rhou24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhoc22 = complex<double>(0, 0);
+	params_rhoc23 = complex<double>(0, 0);
+	params_rhoc24 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin2( initial_state );
 }
@@ -1491,14 +1738,14 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Mass_4l);
-			params_rhos21 = LmbdGG(Mass_4l);
-			params_rhob21 = LmbdGG(Mass_4l);
-			params_rhou21 = LmbdGG(Mass_4l);
-			params_rhoc21 = LmbdGG(Mass_4l);
+			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhos21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhob21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhou21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Mass_4l), 0);
 		}
 	}
 	else
@@ -1511,60 +1758,60 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Higgs_mass);
-			params_rhos21 = LmbdGG(Higgs_mass);
-			params_rhob21 = LmbdGG(Higgs_mass);
-			params_rhou21 = LmbdGG(Higgs_mass);
-			params_rhoc21 = LmbdGG(Higgs_mass);
+			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhos21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhob21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhou21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Higgs_mass), 0);
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, complex<double>(0, 0) );
 	
 	//qq
-// 	params_rhod21 = 0;
-	params_rhod22 = 0;
-	params_rhod23 = 0;
-	params_rhod24 = 0;
-// 	params_rhos21 = 0;
-	params_rhos22 = 0;
-	params_rhos23 = 0;
-	params_rhos24 = 0;
-// 	params_rhos21 = 0;
-	params_rhob22 = 0;
-	params_rhob23 = 0;
-	params_rhob24 = 0;
-// 	params_rhos21 = 0;
-	params_rhou22 = 0;
-	params_rhou23 = 0;
-	params_rhou24 = 0;
-// 	params_rhos21 = 0;
-	params_rhoc22 = 0;
-	params_rhoc23 = 0;
-	params_rhoc24 = 0;
+// 	params_rhod21 = complex<double>(0, 0);
+	params_rhod22 = complex<double>(0, 0);
+	params_rhod23 = complex<double>(0, 0);
+	params_rhod24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhos22 = complex<double>(0, 0);
+	params_rhos23 = complex<double>(0, 0);
+	params_rhos24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhob22 = complex<double>(0, 0);
+	params_rhob23 = complex<double>(0, 0);
+	params_rhob24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhou22 = complex<double>(0, 0);
+	params_rhou23 = complex<double>(0, 0);
+	params_rhou24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhoc22 = complex<double>(0, 0);
+	params_rhoc23 = complex<double>(0, 0);
+	params_rhoc24 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin2( initial_state );
 }
@@ -1583,14 +1830,14 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
 			
 			//qq
-			params_rhod22 = LmbdGG(Mass_4l);
-			params_rhos22 = LmbdGG(Mass_4l);
-			params_rhob22 = LmbdGG(Mass_4l);
-			params_rhou22 = LmbdGG(Mass_4l);
-			params_rhoc22 = LmbdGG(Mass_4l);
+			params_rhod22 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhos22 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhob22 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhou22 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhoc22 = complex<double>(LmbdGG(Mass_4l), 0);
 		}
 	}
 	else
@@ -1603,60 +1850,60 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
 			
 			//qq
-			params_rhod22 = LmbdGG(Higgs_mass);
-			params_rhos22 = LmbdGG(Higgs_mass);
-			params_rhob22 = LmbdGG(Higgs_mass);
-			params_rhou22 = LmbdGG(Higgs_mass);
-			params_rhoc22 = LmbdGG(Higgs_mass);
+			params_rhod22 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhos22 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhob22 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhou22 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhoc22 = complex<double>(LmbdGG(Higgs_mass), 0);
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, hZZ_coupling/params_m_Z/params_m_Z/params_m_Z );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, complex<double>(0, 0) );
 	
 	//qq
-	params_rhod21 = 0;
-// 	params_rhod22 = 0;
-	params_rhod23 = 0;
-	params_rhod24 = 0;
-	params_rhos21 = 0;
-// 	params_rhos22 = 0;
-	params_rhos23 = 0;
-	params_rhos24 = 0;
-	params_rhos21 = 0;
-// 	params_rhob22 = 0;
-	params_rhob23 = 0;
-	params_rhob24 = 0;
-	params_rhos21 = 0;
-// 	params_rhou22 = 0;
-	params_rhou23 = 0;
-// 	params_rhou24 = 0;
-	params_rhos21 = 0;
-	params_rhoc22 = 0;
-	params_rhoc23 = 0;
-	params_rhoc24 = 0;
+	params_rhod21 = complex<double>(0, 0);
+// 	params_rhod22 = complex<double>(0, 0);
+	params_rhod23 = complex<double>(0, 0);
+	params_rhod24 = complex<double>(0, 0);
+	params_rhos21 = complex<double>(0, 0);
+// 	params_rhos22 = complex<double>(0, 0);
+	params_rhos23 = complex<double>(0, 0);
+	params_rhos24 = complex<double>(0, 0);
+	params_rhos21 = complex<double>(0, 0);
+// 	params_rhob22 = complex<double>(0, 0);
+	params_rhob23 = complex<double>(0, 0);
+	params_rhob24 = complex<double>(0, 0);
+	params_rhos21 = complex<double>(0, 0);
+// 	params_rhou22 = complex<double>(0, 0);
+	params_rhou23 = complex<double>(0, 0);
+// 	params_rhou24 = complex<double>(0, 0);
+	params_rhos21 = complex<double>(0, 0);
+	params_rhoc22 = complex<double>(0, 0);
+	params_rhoc23 = complex<double>(0, 0);
+	params_rhoc24 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin2( initial_state );
 }
@@ -1675,14 +1922,14 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Mass_4l) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Mass_4l);
-			params_rhos21 = LmbdGG(Mass_4l);
-			params_rhob21 = LmbdGG(Mass_4l);
-			params_rhou21 = LmbdGG(Mass_4l);
-			params_rhoc21 = LmbdGG(Mass_4l);
+			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhos21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhob21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhou21 = complex<double>(LmbdGG(Mass_4l), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Mass_4l), 0);
 		}
 	}
 	else
@@ -1695,60 +1942,60 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, 4*LmbdGG(Higgs_mass) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
 			
 			//qq
-			params_rhod21 = LmbdGG(Higgs_mass);
-			params_rhos21 = LmbdGG(Higgs_mass);
-			params_rhob21 = LmbdGG(Higgs_mass);
-			params_rhou21 = LmbdGG(Higgs_mass);
-			params_rhoc21 = LmbdGG(Higgs_mass);
+			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhos21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhob21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhou21 = complex<double>(LmbdGG(Higgs_mass), 0);
+			params_rhoc21 = complex<double>(LmbdGG(Higgs_mass), 0);
 		}
 	}
 	
 	//gg
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, hZZ_coupling );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, 0 );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, 0 );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, complex<double>(0, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, complex<double>(0, 0) );
 	
 	//qq
-// 	params_rhod21 = 0;
-	params_rhod22 = 0;
-	params_rhod23 = 0;
-	params_rhod24 = 0;
-// 	params_rhos21 = 0;
-	params_rhos22 = 0;
-	params_rhos23 = 0;
-	params_rhos24 = 0;
-// 	params_rhos21 = 0;
-	params_rhob22 = 0;
-	params_rhob23 = 0;
-	params_rhob24 = 0;
-// 	params_rhos21 = 0;
-	params_rhou22 = 0;
-	params_rhou23 = 0;
-	params_rhou24 = 0;
-// 	params_rhos21 = 0;
-	params_rhoc22 = 0;
-	params_rhoc23 = 0;
-	params_rhoc24 = 0;
+// 	params_rhod21 = complex<double>(0, 0);
+	params_rhod22 = complex<double>(0, 0);
+	params_rhod23 = complex<double>(0, 0);
+	params_rhod24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhos22 = complex<double>(0, 0);
+	params_rhos23 = complex<double>(0, 0);
+	params_rhos24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhob22 = complex<double>(0, 0);
+	params_rhob23 = complex<double>(0, 0);
+	params_rhob24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhou22 = complex<double>(0, 0);
+	params_rhou23 = complex<double>(0, 0);
+	params_rhou24 = complex<double>(0, 0);
+// 	params_rhos21 = complex<double>(0, 0);
+	params_rhoc22 = complex<double>(0, 0);
+	params_rhoc23 = complex<double>(0, 0);
+	params_rhoc24 = complex<double>(0, 0);
 	
 	return Run_MEKD_MG_MEs_SIG_Spin2( initial_state );
 }
@@ -3528,6 +3775,28 @@ int MEKD_MG::Arrange_Internal_pls()
 ///////////////////////////////////
 /// END OF MEKD_MG_Sorter.cpp   ///
 ///////////////////////////////////
+
+
+
+
+
+///#include "MEKD_MG_2Model_Mixer.cpp"
+/////////////////////////////////////////
+/// INCLUDED MEKD_MG_2Model_Mixer.cpp ///
+/// code follows below                ///
+///                                   ///
+/// Part responsible for              ///
+/// holding mixed couplings           ///
+/////////////////////////////////////////
+
+
+
+
+
+
+///////////////////////////////////////
+/// END OF MEKD_MG_2Model_Mixer.cpp ///
+///////////////////////////////////////
 
 
 
