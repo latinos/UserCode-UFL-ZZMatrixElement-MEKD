@@ -30,13 +30,13 @@ class Parameters_HEF_MEKD
 		sw2, cw, sqrt__sw2, sw, vev, vev__exp__2, lam, yb, yc, ydo, ye, ym,
 		ys, yt, ytau, yup, muH, ee__exp__2, sw__exp__2, cw__exp__2;
 	// Spin 0
-	double rhob02, rhob01, rhos02, rhos01, rhod02, rhod01, rhoc02, rhoc01, rhou02, rhou01, g4z, g3z, g2z, g1z, g4g, g3g, g2g, g1g;
+	std::complex<double> rhob02, rhob01, rhos02, rhos01, rhod02, rhod01, rhoc02, rhoc01, rhou02, rhou01, g4z, g3z, g2z, g1z, g4g, g3g, g2g, g1g;
 	// Spin 1
-	double rhob14, rhob13, rhob12, rhob11, rhos14, rhos13, rhos12, rhos11, rhod14, rhod13, rhod12, rhod11, rhoc14, rhoc13, rhoc12, rhoc11, rhou14, rhou13, rhou12, rhou11, b2z, b1z;
+	std::complex<double> rhob14, rhob13, rhob12, rhob11, rhos14, rhos13, rhos12, rhos11, rhod14, rhod13, rhod12, rhod11, rhoc14, rhoc13, rhoc12, rhoc11, rhou14, rhou13, rhou12, rhou11, b2z, b1z;
 	// Spin 2
-	double rhob24, rhob23, rhob22, rhob21, rhos24, rhos23, rhos22, rhos21, rhod24, rhod23, rhod22, rhod21, rhoc24, rhoc23, rhoc22, rhoc21, rhou24, rhou23, rhou22, rhou21, k10g, k9g, k8g, k7g, k6g, k5g, k4g, k3g, k2g, k1g, k10z, k9z, k8z, k7z, k6z, k5z, k4z, k3z, k2z, k1z;
+	std::complex<double> rhob24, rhob23, rhob22, rhob21, rhos24, rhos23, rhos22, rhos21, rhod24, rhod23, rhod22, rhod21, rhoc24, rhoc23, rhoc22, rhoc21, rhou24, rhou23, rhou22, rhou21, k10g, k9g, k8g, k7g, k6g, k5g, k4g, k3g, k2g, k1g, k10z, k9z, k8z, k7z, k6z, k5z, k4z, k3z, k2z, k1z;
 	// Resonance to 2mu
-	double rhomu14, rhomu13, rhomu12, rhomu11, rhomu02, rhomu01, rhomu24, rhomu23, rhomu22, rhomu21;
+	std::complex<double> rhomu14, rhomu13, rhomu12, rhomu11, rhomu02, rhomu01, rhomu24, rhomu23, rhomu22, rhomu21;
 	
     std::complex<double> CKM11, CKM12, CKM13, CKM21, CKM22, CKM23, CKM31,
         CKM32, CKM33, conjg__CKM11, conjg__CKM21, conjg__CKM31, conjg__CKM12,
