@@ -961,22 +961,22 @@ int MEKD_MG::Run_MEKD_MG()
 	 		Run_MEKD_MG_ME_CPevenScalar( "gg" );
 		if( Test_Model=="9" || Test_Model=="ggSpin2Ph" ||
 			Test_Model=="!9" || Test_Model=="!ggSpin2Ph" )
-			Run_MEKD_MG_ME_Spin2Pm( "gg" );
+			Run_MEKD_MG_ME_Spin2Ph( "gg" );
 		if( Test_Model=="10" || Test_Model=="ggSpin2Mh" ||
 			Test_Model=="!10" || Test_Model=="!ggSpin2Mh" )
-			Run_MEKD_MG_ME_Spin2Pm( "gg" );
+			Run_MEKD_MG_ME_Spin2Mh( "gg" );
 		if( Test_Model=="11" || Test_Model=="ggSpin2Pb" ||
 			Test_Model=="!11" || Test_Model=="!ggSpin2Pb" )
-			Run_MEKD_MG_ME_Spin2Pm( "gg" );
+			Run_MEKD_MG_ME_Spin2Pb( "gg" );
 		if( Test_Model=="12" || Test_Model=="qqSpin2Ph" ||
 			Test_Model=="!12" || Test_Model=="!qqSpin2Ph" )
-			Run_MEKD_MG_ME_Spin2Pm( "qq" );
+			Run_MEKD_MG_ME_Spin2Ph( "qq" );
 		if( Test_Model=="13" || Test_Model=="qqSpin2Mh" ||
 			Test_Model=="!13" || Test_Model=="!qqSpin2Mh" )
-			Run_MEKD_MG_ME_Spin2Pm( "qq" );
+			Run_MEKD_MG_ME_Spin2Mh( "qq" );
 		if( Test_Model=="14" || Test_Model=="qqSpin2Pb" ||
 			Test_Model=="!14" || Test_Model=="!qqSpin2Pb" )
-			Run_MEKD_MG_ME_Spin2Pm( "qq" );
+			Run_MEKD_MG_ME_Spin2Pb( "qq" );
 		if( Test_Model=="Spin0Pm" ||
 			Test_Model=="!Spin0Pm" )
 			Run_MEKD_MG_ME_Spin0Pm( "NO" );
