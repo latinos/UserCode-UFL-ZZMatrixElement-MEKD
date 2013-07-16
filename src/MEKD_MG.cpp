@@ -1688,7 +1688,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z, 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(-hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z, 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
