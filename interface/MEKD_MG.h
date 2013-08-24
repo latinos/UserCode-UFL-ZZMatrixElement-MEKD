@@ -25,6 +25,7 @@ public:
 	bool Use_Higgs_width;	//	if false, width is fixed to =1
 	bool Use_mh_eq_m4l;	// Set mh to m4l for every event
 	bool Use_PDF_w_pT0;	// Use PDFs in the pT=0 frame. If true, Boost_To_CM is ignored
+	bool Vary_resonance_width;	// Allow width to be varied with mass
 	bool Vary_signal_couplings;	// Allow couplings to change with mass
 	bool Warning_Mode;	// Print warnings
 	
@@ -81,7 +82,7 @@ private:
 	
 	int error_value;
 	
-	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
 	
 	complex<double> *buffer_complex;

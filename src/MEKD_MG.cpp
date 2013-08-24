@@ -643,6 +643,7 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	Use_mh_eq_m4l = true;	// Set mh to m4l for every event
 	Use_Higgs_width = true;	//	if false, width is fixed to =1
 	Use_PDF_w_pT0 = true;	// Use PDFs in the pT=0 frame. If true, Boost_To_CM is ignored
+	Vary_resonance_width = true;	// Allow width to be varied with mass
 	Vary_signal_couplings = true;	// Allow couplings to change with mass
 	Warning_Mode = true;	// Print warnings
 	
@@ -1016,6 +1017,23 @@ int MEKD_MG::Run_MEKD_MG()
 	}
 	
 	
+	if( Debug_Mode )
+	{
+		printf( "Status after ME calculations are over:\n" );
+		printf( "Energy of Parton 1: %.10E\nEnergy of Parton 2: %.10E\n", p_set[0][0], p_set[1][0] );
+		printf( "Final-state four-momenta exiting ME(s) (E px py px):\n" );
+		printf( "%.10E %.10E %.10E %.10E\n", p_set[2][0], p_set[2][1], p_set[2][2], p_set[2][3] );
+		printf( "%.10E %.10E %.10E %.10E\n", p_set[3][0], p_set[3][1], p_set[3][2], p_set[3][3] );
+		printf( "%.10E %.10E %.10E %.10E\n", p_set[4][0], p_set[4][1], p_set[4][2], p_set[4][3] );
+		printf( "%.10E %.10E %.10E %.10E\n", p_set[5][0], p_set[5][1], p_set[5][2], p_set[5][3] );
+		printf( "%.10E %.10E %.10E %.10E\n", p_set[6][0], p_set[6][1], p_set[6][2], p_set[6][3] );
+		printf( "Sum px=%.10E\n", (p_set[2][1]+p_set[3][1]+p_set[4][1]+p_set[5][1]+p_set[6][1]) );
+		printf( "Sum py=%.10E\n", (p_set[2][2]+p_set[3][2]+p_set[4][2]+p_set[5][2]+p_set[6][2]) );
+		printf( "Sum pz=%.10E\n", (p_set[2][3]+p_set[3][3]+p_set[4][3]+p_set[5][3]+p_set[6][3]) );
+		printf( "Sum E=%.10E\n", (p_set[2][0]+p_set[3][0]+p_set[4][0]+p_set[5][0]+p_set[6][0]) );
+	}
+	
+	
 	if( Test_Model[0]!='!' ) KD = log( Signal_ME/Background_ME );
 	
 	return 0;
@@ -1077,7 +1095,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1092,7 +1114,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1136,7 +1162,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1151,7 +1181,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1195,7 +1229,11 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1214,7 +1252,11 @@ int MEKD_MG::Run_MEKD_MG_ME_CPevenScalar(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1258,7 +1300,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1273,7 +1319,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1318,7 +1368,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1335,7 +1389,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1382,7 +1440,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1398,7 +1460,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1445,7 +1511,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1462,7 +1532,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M_Spin0Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000006, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000006, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1509,7 +1583,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1528,7 +1606,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1M(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1575,7 +1657,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1594,7 +1680,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 300, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 300, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 300, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 300, 1 );
 		
 		if( Vary_signal_couplings )
@@ -1640,13 +1730,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(8*LmbdGG(Mass_4l), 0) );	// 8 flavors
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
@@ -1660,13 +1754,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(8*LmbdGG(Higgs_mass), 0) );	// 8 flavors
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
@@ -1688,11 +1786,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(-hZZ_coupling/sqrt(2)/params_m_Z/params_m_Z, 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(-hZZ_coupling/2/params_m_Z/params_m_Z/sqrt(2), 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling/sqrt(2), 0) );	// to match model: sqrt(2) -> 2 but numbers will go too low
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling/2/sqrt(2), 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(0, 0) );
@@ -1732,13 +1830,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(8*0.12*0.12/2/M_PI/Mass_4l*LmbdGG(Mass_4l), 0) );	// Dummy scale factor but = a_s(100 GeV)^2/2Pi/m4l
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
@@ -1752,13 +1854,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(8*0.12*0.12/2/M_PI/Higgs_mass*LmbdGG(Higgs_mass), 0) );	// Dummy scale factor but = a_s(100 GeV)^2/2Pi/m4l
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
@@ -1770,9 +1876,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 	}
 	
 	//gg
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(0, 0) ); /////!!!!!!!!!!!
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
@@ -1783,7 +1889,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 11, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(hZZ_coupling/2/params_m_Z/params_m_Z/params_m_Z, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
@@ -1824,13 +1930,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(8*0.12*0.12/2/M_PI/Mass_4l*LmbdGG(Mass_4l), 0) );	// Dummy scale factor but = a_s(100 GeV)^2/2Pi/m4l
 			
 			//qq
 			params_rhod22 = complex<double>(LmbdGG(Mass_4l), 0);
@@ -1844,13 +1954,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(8*0.12*0.12/2/M_PI/Higgs_mass*LmbdGG(Higgs_mass), 0) );	// Dummy scale factor but = a_s(100 GeV)^2/2Pi/m4l
 			
 			//qq
 			params_rhod22 = complex<double>(LmbdGG(Higgs_mass), 0);
@@ -1862,13 +1976,13 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 	}
 	
 	//gg
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 2, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 3, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 4, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 5, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 6, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 7, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 8, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 9, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 10, complex<double>(0, 0) );
 	
@@ -1879,7 +1993,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(hZZ_coupling/params_m_Z/params_m_Z/params_m_Z, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(hZZ_coupling/2/params_m_Z/params_m_Z/params_m_Z, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 19, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 20, complex<double>(0, 0) );
 	
@@ -1916,13 +2030,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Mass_4l );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Mass_4l), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(8*LmbdGG(Mass_4l), 0) );	// 8 flavors
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Mass_4l), 0);
@@ -1936,13 +2054,17 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 	{
 		Set_Of_Model_Parameters.set_block_entry( "mass", 9000007, Higgs_mass );
 		
-		if( Use_Higgs_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		if( Use_Higgs_width )
+		{
+			if( Vary_resonance_width ) Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, static_cast<double>( MEKD_CalcHEP_Extra::Higgs_width(Mass_4l) ) );
+			else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, Higgs_width );
+		}
 		else Set_Of_Model_Parameters.set_block_entry( "decay", 9000007, 1 );
 		
 		if( Vary_signal_couplings )
 		{
 			//gg
-			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(4*LmbdGG(Higgs_mass), 0) );
+			Set_Of_Model_Parameters.set_block_entry( "gravity", 1, complex<double>(8*LmbdGG(Higgs_mass), 0) );	// 8 flavors
 			
 			//qq
 			params_rhod21 = complex<double>(LmbdGG(Higgs_mass), 0);
@@ -1968,7 +2090,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 12, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 13, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 14, complex<double>(0, 0) );
-	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling, 0) );
+	Set_Of_Model_Parameters.set_block_entry( "gravity", 15, complex<double>(hZZ_coupling/2, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 16, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 17, complex<double>(0, 0) );
 	Set_Of_Model_Parameters.set_block_entry( "gravity", 18, complex<double>(0, 0) );
@@ -2426,8 +2548,11 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, 
 		/// No initial state block
 		if( flavor == "2l" ) { cerr << "Two-lepton final state without an initial state is unsupported.\n"; return 1; }
 		
+		
+		for( unsigned int count=0; count < 4; count++ ) buffer_p[count] = p_set[0][count];
+		
 		if( !photon )
-		{
+		{	
 			p_set[0][0] = p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0];
 			p_set[0][1] = p_set[2][1] + p_set[3][1] + p_set[4][1] + p_set[5][1];
 			p_set[0][2] = p_set[2][2] + p_set[3][2] + p_set[4][2] + p_set[5][2];
@@ -2491,6 +2616,8 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, 
 			for( unsigned int count=5; count > 0; count-- ) p_set[count+1] = p_set[count];
 			p_set[1] = buffer;
 		}
+		
+		for( unsigned int count=0; count < 4; count++ ) p_set[0][count] = buffer_p[count];
 	}
 	
 	
@@ -2800,6 +2927,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_Sub(string initial_state, string flavor, 
 		/// No initial state block
 		if( flavor == "2l" ) { cerr << "Two-lepton final state without an initial state is unsupported.\n"; return 1; }
 		
+		
+		for( unsigned int count=0; count < 4; count++ ) buffer_p[count] = p_set[0][count];
+		
 		if( !photon )
 		{
 			p_set[0][0] = p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0];
@@ -2865,6 +2995,8 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin1_Sub(string initial_state, string flavor, 
 			for( unsigned int count=5; count > 0; count-- ) p_set[count+1] = p_set[count];
 			p_set[1] = buffer;
 		}
+		
+		for( unsigned int count=0; count < 4; count++ ) p_set[0][count] = buffer_p[count];
 	}
 	
 	if( initial_state=="qq" )
@@ -3129,6 +3261,9 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, 
 		/// No initial state block
 		if( flavor == "2l" ) { cerr << "Two-lepton final state without an initial state is unsupported.\n"; return 1; }
 		
+		
+		for( unsigned int count=0; count < 4; count++ ) buffer_p[count] = p_set[0][count];
+		
 		if( !photon )
 		{
 			p_set[0][0] = p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0];
@@ -3194,6 +3329,8 @@ int MEKD_MG::Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, 
 			for( unsigned int count=5; count > 0; count-- ) p_set[count+1] = p_set[count];
 			p_set[1] = buffer;
 		}
+		
+		for( unsigned int count=0; count < 4; count++ ) p_set[0][count] = buffer_p[count];
 	}
 	
 	
